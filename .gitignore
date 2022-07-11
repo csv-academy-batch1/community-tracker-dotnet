@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/community-tracker-dotnet/v17
+/.vs
+/CommunityTracker/.vs/CommunityTracker.API/DesignTimeBuild
+/CommunityTracker/.vs/CommunityTracker.API/v17
+/CommunityTracker/CommunityTracker.API/bin/Debug/net6.0
+/CommunityTracker/CommunityTracker.API/obj
+/CommunityTracker/CommunityTracker.Model/bin/Debug/net6.0
+/CommunityTracker/CommunityTracker.Model/obj
+/CommunityTracker/CommunityTracker.Repository/obj
+/CommunityTracker/CommunityTracker.Repository/bin/Debug/net6.0
+/CommunityTracker/CommunityTracker.Service/obj
+/CommunityTracker/CommunityTracker.Service/bin/Debug/net6.0
