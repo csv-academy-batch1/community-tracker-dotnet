@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace CommunityTracker.API.TrackerApiDTO
 {
     public class AddResponseDTO
