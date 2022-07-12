@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityTracker.Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace CommunityTracker.Repository.Interfaces
 {
     public interface ICommunityRepositoryCommands
     {
+        void AddCommunity(CommunityData communityData);
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -16,11 +16,6 @@
     <PackageReference Include="Npgsql" Version="6.0.5" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CommunityTracker.Model\CommunityTracker.Model.csproj" />
-    <ProjectReference Include="..\CommunityTracker.Service\CommunityTracker.Service.csproj" />
   </ItemGroup>
 
 </Project>
