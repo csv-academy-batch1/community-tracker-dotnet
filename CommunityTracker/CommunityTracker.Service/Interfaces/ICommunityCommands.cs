@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommunityTracker.Service.Interfaces
 {
-    public interface ICommunityCommands
+    public interface ICommunityServiceCommands
     {
     }
 }

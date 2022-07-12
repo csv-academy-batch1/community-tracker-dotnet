@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CommunityTracker.Repository.Command
 {
-    public partial class CommunityCommands : ICommunityCommands
+    public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
     }
 }

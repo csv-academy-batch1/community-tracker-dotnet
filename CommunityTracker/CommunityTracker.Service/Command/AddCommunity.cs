@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CommunityTracker.Service.Command
 {
-    public partial class CommunityCommands : ICommunityCommands
+    public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
         //TODO: Create implementation to call the repository
     }
