@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CommunityTracker.Service.DTO
+namespace CommunityTracker.Repository.Entities
 {
-    public class CommunityDTO
+    public class Community
     {
         [Key]
         public int communityid { get; set; }
