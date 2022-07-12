@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityTracker.Service", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityTracker.Repository", "CommunityTracker.Repository\CommunityTracker.Repository.csproj", "{92D46C26-F30B-411E-9623-D97AAB4B9852}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityTracker.Model", "CommunityTracker.Model\CommunityTracker.Model.csproj", "{75FB09AD-4CAE-4435-8206-FD2DCB0FDC83}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityTracker.Test", "CommunityTracker.Test\CommunityTracker.Test.csproj", "{2C08E1A2-74EC-4F47-B0C7-43D890E79771}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunityTracker.Test", "CommunityTracker.Test\CommunityTracker.Test.csproj", "{2C08E1A2-74EC-4F47-B0C7-43D890E79771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{92D46C26-F30B-411E-9623-D97AAB4B9852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92D46C26-F30B-411E-9623-D97AAB4B9852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92D46C26-F30B-411E-9623-D97AAB4B9852}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75FB09AD-4CAE-4435-8206-FD2DCB0FDC83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75FB09AD-4CAE-4435-8206-FD2DCB0FDC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75FB09AD-4CAE-4435-8206-FD2DCB0FDC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75FB09AD-4CAE-4435-8206-FD2DCB0FDC83}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C08E1A2-74EC-4F47-B0C7-43D890E79771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C08E1A2-74EC-4F47-B0C7-43D890E79771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C08E1A2-74EC-4F47-B0C7-43D890E79771}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,5 +1,5 @@
-using CommunityTracker.Repository;
 using CommunityTracker.Repository.Command;
+using CommunityTracker.Repository.DataContext;
 using CommunityTracker.Repository.Interfaces;
 using CommunityTracker.Service.Command;
 using CommunityTracker.Service.Interfaces;

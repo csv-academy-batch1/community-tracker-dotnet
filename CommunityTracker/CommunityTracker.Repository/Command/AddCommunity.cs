@@ -10,9 +10,9 @@ namespace CommunityTracker.Repository.Command
 {
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public void Save(EntityTable entityTable)
+        public void Save(Community community)
         {
-            _appDataContext.Items.Add(entityTable);
+            _appDataContext.community.Add(community);
             _appDataContext.SaveChanges();
 
         }

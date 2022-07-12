@@ -9,6 +9,6 @@ namespace CommunityTracker.Repository.Interfaces
 {
     public interface ICommunityRepositoryCommands
     {
-        public void Save(EntityTable entityTable);
+        public void Save(Community community);
     }
 }

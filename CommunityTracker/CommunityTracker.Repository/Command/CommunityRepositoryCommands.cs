@@ -1,4 +1,5 @@
-﻿using CommunityTracker.Repository.Entities;
+﻿using CommunityTracker.Repository.DataContext;
+using CommunityTracker.Repository.Entities;
 using CommunityTracker.Repository.Interfaces;
 using System;
 using System.Collections.Generic;

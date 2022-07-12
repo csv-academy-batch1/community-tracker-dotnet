@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommunityTracker.Repository
-{  
+namespace CommunityTracker.Repository.DataContext
+{
     public class AppDataContext : DbContext
     {
-         public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
-         {
-         }
-         public DbSet<EntityTable> Items { get; set; }
-        
+        public AppDataContext(DbContextOptions<AppDataContext> options) : base(options)
+        {
+        }
+        public DbSet<Community> community { get; set; }
+
     }
 }
