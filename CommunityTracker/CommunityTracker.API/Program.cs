@@ -1,5 +1,4 @@
 using CommunityTracker.Repository.Command;
-using CommunityTracker.Repository.Data_Context;
 using CommunityTracker.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +13,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 //builder.Services.AddScoped<ICommunityCommands, CommunityCommands>;
 //builder.Services.AddScoped<ICommunityCommands, CommunityCommands>;
-builder.Services.AddDbContext<CommunityDBContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<CommunityDBContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 // Configure the HTTP request pipeline.
 
