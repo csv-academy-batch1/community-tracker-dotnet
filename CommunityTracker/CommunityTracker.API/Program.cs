@@ -10,6 +10,7 @@ var configuration = builder.Configuration;
 
 builder.Services.AddControllers();
 
+
 var app = builder.Build();
 //builder.Services.AddScoped<ICommunityCommands, CommunityCommands>;
 //builder.Services.AddScoped<ICommunityCommands, CommunityCommands>;
