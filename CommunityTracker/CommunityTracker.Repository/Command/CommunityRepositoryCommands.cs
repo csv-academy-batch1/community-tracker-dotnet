@@ -10,11 +10,12 @@ namespace CommunityTracker.Repository.Command
 {
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public void Save(EntityTable entityTable)
-        {
-            _appDataContext.Items.Add(entityTable);
-            _appDataContext.SaveChanges();
+        private readonly AppDataContext _appDataContext;
 
-        }
+        public CommunityRepositoryCommands(AppDataContext appDataContext)
+        {
+            _appDataContext = appDataContext;
+        }      
+        
     }
 }

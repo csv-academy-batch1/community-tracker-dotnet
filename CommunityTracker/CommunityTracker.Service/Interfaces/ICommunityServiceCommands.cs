@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommunityTracker.Repository.Interfaces
+namespace CommunityTracker.Service.Interfaces
 {
-    public interface ICommunityRepositoryCommands
+    public interface ICommunityServiceCommands
     {
+        public void Add(ItemDTO itemDTO);
     }
 }

@@ -10,5 +10,9 @@ namespace CommunityTracker.Service.Command
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
         //TODO: Create implementation to call the repository
+        public void Add()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
