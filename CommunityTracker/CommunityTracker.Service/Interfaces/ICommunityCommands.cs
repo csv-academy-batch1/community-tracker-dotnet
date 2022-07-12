@@ -4,5 +4,6 @@ namespace CommunityTracker.Service.Interfaces
     public interface ICommunityServiceCommands
     {
         void Add(CommunityDTO communityDTO);
+        IEnumerable<CommunityDTO> GetAllCommunities();
     }
 }

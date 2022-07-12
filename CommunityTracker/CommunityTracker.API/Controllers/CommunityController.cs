@@ -13,6 +13,13 @@ namespace CommunityTracker.API.Controllers
         {
             _communityServiceCommands = communityServiceCommands;
         }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var items = this._communityServiceCommands.GetAllCommunities();
+            return Ok(items);
+        }
         // POST api/<ValuesController>
         [HttpPost]
         public IActionResult Post([FromBody] AddRequestDTO apiDTO)
