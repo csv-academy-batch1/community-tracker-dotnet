@@ -2,6 +2,8 @@
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
+using System.Data.SqlClient;
+
 namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
@@ -9,6 +11,11 @@ namespace CommunityTracker.Service.Command
         public AddCommunityResponseDTO AddCommunityService(CommunityDTO communityDTO)
         {
             var getAllCommunities = new AddCommunityResponseDTO();
+            bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.communityname == communityDTO.communityname);
+            if (communityExists)
+            {
+                return null;
+            }
             _communityRepositoryCommands.AddCommunityRepository(new Community()
             {
                 communityid = communityDTO.communityid,
