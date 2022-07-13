@@ -1,7 +1,6 @@
 ﻿using CommunityTracker.Repository.Entities;
 using CommunityTracker.Repository.Interfaces;
 using CommunityTracker.Service.Interfaces;
-using CommunityTracker.Service.ServiceDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

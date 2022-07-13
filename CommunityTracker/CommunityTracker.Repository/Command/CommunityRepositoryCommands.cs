@@ -11,11 +11,11 @@ namespace CommunityTracker.Repository.Command
 {
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        private readonly AppDataContext _appDataContext;
+        private readonly CommunityDbContext _communityDbContext;
 
-        public CommunityRepositoryCommands(AppDataContext appDataContext)
+        public CommunityRepositoryCommands(CommunityDbContext communityDbContext)
         {
-            _appDataContext = appDataContext;
+            _communityDbContext = communityDbContext;
         }      
         
     }

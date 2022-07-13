@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using CommunityTracker.API.TrackerApiDTO;
+using CommunityTracker.Service.DTO;
+using CommunityTracker.Service.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 namespace CommunityTracker.API.Controllers
 {
     [Route("api/[controller]")]
