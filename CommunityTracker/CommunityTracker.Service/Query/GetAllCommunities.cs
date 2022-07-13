@@ -1,12 +1,13 @@
 ﻿using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
-namespace CommunityTracker.Service.Command
+
+namespace CommunityTracker.Service.Query
 {
-    public partial class CommunityServiceCommands : ICommunityServiceCommands
+    public partial class CommunityServiceQuery : ICommunityServiceQuery
     {
         public IEnumerable<CommunityDTO> GetAllCommunities()
         {
-            var displayAllCommunities = _communityRepositoryCommands.GetAllCommunities();
+            var displayAllCommunities = _communityRepositoryQuery.GetAllCommunities();
             List<CommunityDTO> result = new List<CommunityDTO>();
             foreach (var item in displayAllCommunities)
             {

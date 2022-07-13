@@ -1,8 +1,8 @@
 ﻿using CommunityTracker.Repository.Entities;
 using CommunityTracker.Repository.Interfaces;
-namespace CommunityTracker.Repository.Command
+namespace CommunityTracker.Repository.Query
 {
-    public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
+    public partial class CommunityRepositoryQuery : ICommunityRepositoryQuery
     {
         public IQueryable<Community> GetAllCommunities()
         {

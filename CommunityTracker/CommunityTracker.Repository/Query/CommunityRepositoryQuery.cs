@@ -1,11 +1,11 @@
 ﻿using CommunityTracker.Repository.DataContext;
 using CommunityTracker.Repository.Interfaces;
-namespace CommunityTracker.Repository.Command
+namespace CommunityTracker.Repository.Query
 {
-    public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
+    public partial class CommunityRepositoryQuery : ICommunityRepositoryQuery
     {
         private readonly CommunityDbContext _communityDbContext;
-        public CommunityRepositoryCommands(CommunityDbContext communityDbContext)
+        public CommunityRepositoryQuery(CommunityDbContext communityDbContext)
         {
             _communityDbContext = communityDbContext;
         }

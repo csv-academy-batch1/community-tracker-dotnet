@@ -1,19 +1,22 @@
 ﻿using CommunityTracker.Repository.Entities;
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CommunityTracker.Service.ServicesDTO;
+using System.Data.SqlClient;
 
 namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
-        public void Add(CommunityDTO communityDTO)
+        public AddCommunityResponseDTO AddCommunityService(CommunityDTO communityDTO)
         {
-            _communityRepositoryCommands.AddCommunity(new Community()
+            var getAllCommunities = new AddCommunityResponseDTO();
+            bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.communityname == communityDTO.communityname);
+            if (communityExists)
+            {
+                return null;
+            }
+            _communityRepositoryCommands.AddCommunityRepository(new Community()
             {
                 communityid = communityDTO.communityid,
                 communityname = communityDTO.communityname,
@@ -22,6 +25,25 @@ namespace CommunityTracker.Service.Command
                 communityicon = communityDTO.communityicon,
                 isactive = communityDTO.isactive
             });
+            getAllCommunities = AddCommunityResponse().Where(c => c.communityname == communityDTO.communityname).FirstOrDefault();
+            if (getAllCommunities is null)
+            {
+                return null;
+            }
+            return getAllCommunities;
+        }
+        private IEnumerable<AddCommunityResponseDTO> AddCommunityResponse()
+        {
+            var getAllManagers = _communityRepositoryQuery.GetAllCommunityManagers();
+            var getAllCommunities = _communityRepositoryQuery.GetAllCommunities().Select(x => new AddCommunityResponseDTO()
+            {
+                communityid = x.communityid,
+                communityname = x.communityname,
+                communitymanagername = getAllManagers.Where(m => m.communityadminandmanagerid == x.communitymgrid)
+                .Select(x => x.communityadminandmanagername).FirstOrDefault(),
+                communitydesc = x.communitydesc
+            }).ToList();
+            return getAllCommunities;
         }
     }
 }
