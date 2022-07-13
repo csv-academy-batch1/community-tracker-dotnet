@@ -38,10 +38,11 @@ namespace CommunityTracker.API.Controllers
             communityDTO.communitymgrid = apiDTO.communitymgrid;
             communityDTO.communitydesc = apiDTO.communitydesc;
             var response = _communityServiceCommands.AddCommunityService(communityDTO);
-            //check response
             if (response is null)
             {
-                return BadRequest(new CustomErrors());
+                return BadRequest(new CustomErrors() {
+                    result = new Result()
+                });
             }
             var res = new AddResponseDTO()
             {

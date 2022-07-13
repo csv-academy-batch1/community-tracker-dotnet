@@ -2,6 +2,10 @@
 {
     public class CustomErrors
     {
-        public ReturnResults result = new ReturnResults();
+        public Result result {get;set;}
+    }
+    public class Result
+    {
+        public string message { get; set; } = "failed";
     }
 }
