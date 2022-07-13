@@ -4,10 +4,9 @@ namespace CommunityTracker.Repository.Command
 {
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public void AddCommunity(Community communityData)
+        public IQueryable<Community> GetAllCommunities()
         {
-            _communityDbContext.Add(communityData);
-            _communityDbContext.SaveChanges();
+            return _communityDbContext.community.AsQueryable();
         }
     }
 }
