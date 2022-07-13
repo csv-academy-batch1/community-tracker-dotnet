@@ -1,5 +1,4 @@
-﻿using CommunityTracker.Service.ServiceDTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +8,7 @@ namespace CommunityTracker.Service.Interfaces
 {
     public interface ICommunityServiceCommands
     {
-        public void Add(ServiceCommunityDTO itemDTO);
-
+        void Add(CommunityDTO communityDTO);
+        IEnumerable<CommunityDTO> GetAllCommunities();
     }
 }

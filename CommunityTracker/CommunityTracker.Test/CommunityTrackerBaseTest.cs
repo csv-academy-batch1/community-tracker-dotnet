@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace CommunityTracker.Test
 {
     [TestClass]

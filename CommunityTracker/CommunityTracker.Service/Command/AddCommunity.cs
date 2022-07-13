@@ -1,6 +1,4 @@
-﻿using CommunityTracker.Repository.Entities;
-using CommunityTracker.Service.Interfaces;
-using CommunityTracker.Service.ServiceDTO;
+﻿using CommunityTracker.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +9,17 @@ namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
-        //TODO: Create implementation to call the repository
-
-            public void Add(ServiceCommunityDTO serviceCommunityDTO)
+        public void Add(CommunityDTO communityDTO)
+        {
+            _communityRepositoryCommands.AddCommunity(new Community()
             {
-                _communityRepositoryCommands.Save(new Community()
-                {
-                    communityid = serviceCommunityDTO.communityid,
-                    communityname = serviceCommunityDTO.communityname,
-                    communityicon = serviceCommunityDTO.communityicon,
-                    communitymgrid = serviceCommunityDTO.communitymgrid,
-                    communitydesc = serviceCommunityDTO.communitydesc,
-                    isactive = serviceCommunityDTO.isactive
-                });
-            }
-        
+                communityid = communityDTO.communityid,
+                communityname = communityDTO.communityname,
+                communitydesc = communityDTO.communitydesc,
+                communitymgrid = communityDTO.communitymgrid,
+                communityicon = communityDTO.communityicon,
+                isactive = communityDTO.isactive
+            });
+        }
     }
 }

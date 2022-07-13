@@ -1,5 +1,4 @@
-﻿using CommunityTracker.Repository.Entities;
-using CommunityTracker.Repository.Interfaces;
+﻿using CommunityTracker.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +9,10 @@ namespace CommunityTracker.Repository.Command
 {
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public void Save(Community community)
+        public void AddCommunity(Community communityData)
         {
-            _appDataContext.community.Add(community);
-            _appDataContext.SaveChanges();
-
+            _communityDbContext.Add(communityData);
+            _communityDbContext.SaveChanges();
         }
     }
 }
