@@ -4,11 +4,9 @@ namespace CommunityTracker.API.TrackerApiDTO
     public class AddResponseDTO
     {
         [Key]
-        public int communityid { get; set; }
-        public string communityname { get; set; }
-        public string communityicon { get; set; }
-        public int communitymgrid { get; set; }
-        public string communitydesc { get; set; }
-        public bool isactive { get; set; }
+        public int CommunityId { get; set; }
+        public string CommunityName { get; set; }
+        public string? CommunityManager { get; set; }
+        public string Description { get; set; }
     }
 }

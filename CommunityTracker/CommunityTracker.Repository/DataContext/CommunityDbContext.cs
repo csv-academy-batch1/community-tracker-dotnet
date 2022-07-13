@@ -1,4 +1,5 @@
 ﻿using CommunityTracker.Repository.Entities;
+using CommunityTracker.Repository.RepositoryDTO;
 using Microsoft.EntityFrameworkCore;
 namespace CommunityTracker.Repository.DataContext
 {
@@ -8,5 +9,6 @@ namespace CommunityTracker.Repository.DataContext
         {
         }
         public DbSet<Community> community { get; set; }
+        public DbSet<CommunityManagers> communityadminandmanager { get; set; }
     }
 }
