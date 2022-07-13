@@ -11,7 +11,7 @@ namespace CommunityTracker.Service.Command
         public AddCommunityResponseDTO AddCommunityService(CommunityDTO communityDTO)
         {
             var getAllCommunities = new AddCommunityResponseDTO();
-            bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.communityname == communityDTO.communityname);
+            bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.communityname.ToLower() == communityDTO.communityname.ToLower());
             if (communityExists)
             {
                 return null;
