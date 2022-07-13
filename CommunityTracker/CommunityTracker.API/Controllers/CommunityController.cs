@@ -43,7 +43,7 @@ namespace CommunityTracker.API.Controllers
                 return BadRequest(new CustomErrors() {
                     result = new Result()
                 });
-            }
+            } 
             var res = new AddResponseDTO()
             {
                 CommunityId = response.communityid,

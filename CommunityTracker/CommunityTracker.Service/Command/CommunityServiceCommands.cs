@@ -1,7 +1,5 @@
 ﻿using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Repository.Interfaces;
-using CommunityTracker.Service.ServicesDTO;
-
 namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
