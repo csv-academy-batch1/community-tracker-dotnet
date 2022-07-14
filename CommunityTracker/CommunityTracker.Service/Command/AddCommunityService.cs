@@ -2,8 +2,6 @@
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
-using System.Data.SqlClient;
-
 namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
