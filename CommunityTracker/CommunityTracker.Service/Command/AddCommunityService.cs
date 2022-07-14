@@ -6,40 +6,41 @@ namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
-        public AddCommunityResponseDTO AddCommunityService(CommunityDTO communityDTO)
+        public CommunityResponseDTO AddCommunityService(CommunityDTO communityDTO)
         {
-            var getAllCommunities = new AddCommunityResponseDTO();
-            bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.communityname.ToLower() == communityDTO.communityname.ToLower());
+            var communities = new CommunityResponseDTO();
+            bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.CommunityName.ToLower() == communityDTO.communityname.ToLower());
             if (communityExists)
             {
                 return null;
             }
             _communityRepositoryCommands.AddCommunityRepository(new Community()
             {
-                communityid = communityDTO.communityid,
-                communityname = communityDTO.communityname,
-                communitydesc = communityDTO.communitydesc,
-                communitymgrid = communityDTO.communitymgrid,
-                communityicon = communityDTO.communityicon,
-                isactive = communityDTO.isactive
+                CommunityId = communityDTO.communityid,
+                CommunityName = communityDTO.communityname,
+                CommunityDesc = communityDTO.communitydesc,
+                CommunityMgrid = communityDTO.communitymgrid,
+                CommunityIcon = communityDTO.communityicon,
+                IsActive = communityDTO.isactive
             });
-            getAllCommunities = AddCommunityResponse().Where(c => c.communityname == communityDTO.communityname).FirstOrDefault();
-            if(getAllCommunities is null)
+            var allCommunities = AddCommunityResponse();
+            communities = allCommunities.FirstOrDefault(c => c.communityname == communityDTO.communityname);
+            if (communities is null)
             {
                 return null;
             }
-            return getAllCommunities;
+            return communities;
         }
-        private IEnumerable<AddCommunityResponseDTO> AddCommunityResponse()
+        private IEnumerable<CommunityResponseDTO> AddCommunityResponse()
         {
-            var getAllManagers = _communityRepositoryQuery.GetAllCommunityManagers();
-            var getAllCommunities = _communityRepositoryQuery.GetAllCommunities().Select(x => new AddCommunityResponseDTO()
+            var managers = _communityRepositoryQuery.GetAllCommunityManagers();
+            var getAllCommunities = _communityRepositoryQuery.GetAllCommunities().Select(x => new CommunityResponseDTO()
             {
-                communityid = x.communityid,
-                communityname = x.communityname,
-                communitymanagername = getAllManagers.Where(m => m.communityadminandmanagerid == x.communitymgrid)
-                .Select(x => x.communityadminandmanagername).FirstOrDefault(),
-                communitydesc = x.communitydesc
+                communityid = x.CommunityId,
+                communityname = x.CommunityName,
+                communitymanagername = managers.Where(m => m.CommunityAdminAndManagerId == x.CommunityMgrid)
+                .Select(x => x.CommunityAdminAndManagerName).FirstOrDefault(),
+                communitydesc = x.CommunityDesc
             }).ToList();
             return getAllCommunities;
         }

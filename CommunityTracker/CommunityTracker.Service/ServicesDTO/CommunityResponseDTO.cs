@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace CommunityTracker.Service.ServicesDTO
 {
-    public class AddCommunityResponseDTO
+    public class CommunityResponseDTO
     {
         [Key]
         public int communityid { get; set; }

@@ -12,12 +12,12 @@ namespace CommunityTracker.Service.Query
             {
                 result.Add(new CommunityDTO()
                 {
-                    communityid = item.communityid,
-                    communitydesc = item.communitydesc,
-                    communityicon = item.communityicon,
-                    communitymgrid = item.communitymgrid,
-                    communityname = item.communityname,
-                    isactive = item.isactive
+                    communityid = item.CommunityId,
+                    communitydesc = item.CommunityDesc,
+                    communityicon = item.CommunityIcon,
+                    communitymgrid = item.CommunityMgrid,
+                    communityname = item.CommunityName,
+                    isactive = item.IsActive
                 });
             }
             return result;
