@@ -4,10 +4,10 @@ namespace CommunityTracker.API.TrackerApiDTO
     public class AddRequestDTO
     {
         [Required]
-        public string communityname { get; set; }
+        public string CommunityName { get; set; }
         [Required]
-        public int? communitymgrid { get; set; }
+        public int? CommunityManager { get; set; }
         [Required]
-        public string communitydesc { get; set; }
+        public string Description { get; set; }
     }
 }
