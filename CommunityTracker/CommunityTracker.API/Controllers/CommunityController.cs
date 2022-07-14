@@ -34,9 +34,9 @@ namespace CommunityTracker.API.Controllers
         public IActionResult AddCommunity([FromBody] AddRequestDTO apiDTO)
         {
             var communityDTO = new CommunityDTO();
-            communityDTO.communityname = apiDTO.communityname;
-            communityDTO.communitymgrid = apiDTO.communitymgrid;
-            communityDTO.communitydesc = apiDTO.communitydesc;
+            communityDTO.communityname = apiDTO.CommunityName;
+            communityDTO.communitymgrid = apiDTO.CommunityMgrId;
+            communityDTO.communitydesc = apiDTO.CommunityDesc;
             var response = _communityServiceCommands.AddCommunityService(communityDTO);
             if (response is null)
             {

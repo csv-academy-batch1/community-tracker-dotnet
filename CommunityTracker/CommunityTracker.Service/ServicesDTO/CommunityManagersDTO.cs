@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 namespace CommunityTracker.Service.ServicesDTO
 {
     public class CommunityManagersDTO

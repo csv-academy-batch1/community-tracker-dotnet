@@ -12,12 +12,12 @@ namespace CommunityTracker.Service.Query
             {
                 result.Add(new CommunityManagersDTO()
                 {
-                    communityadminandmanagerid = item.communityadminandmanagerid,
-                    communityadminandmanagername = item.communityadminandmanagername,
-                    csvemail = item.csvemail,
-                    passkey = item.passkey,
-                    roletype = item.roletype,
-                    isactive = item.isactive
+                    communityadminandmanagerid = item.CommunityAdminAndManagerId,
+                    communityadminandmanagername = item.CommunityAdminAndManagerName,
+                    csvemail = item.CSVEmail,
+                    passkey = item.PassKey,
+                    roletype = item.RoleType,
+                    isactive = item.IsActive
                 });
             }
             return result;
