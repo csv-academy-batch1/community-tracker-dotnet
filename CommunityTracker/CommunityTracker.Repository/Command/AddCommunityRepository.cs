@@ -4,7 +4,7 @@ namespace CommunityTracker.Repository.Command
 {
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public void AddCommunity(Community communityData)
+        public void AddCommunityRepository(Community communityData)
         {
             _communityDbContext.Add(communityData);
             _communityDbContext.SaveChanges();

@@ -3,7 +3,6 @@ namespace CommunityTracker.Repository.Interfaces
 {
     public interface ICommunityRepositoryCommands
     {
-        void AddCommunity(Community communityData);
-        IQueryable<Community> GetAllCommunities();
+        void AddCommunityRepository(Community communityData);
     }
 }
