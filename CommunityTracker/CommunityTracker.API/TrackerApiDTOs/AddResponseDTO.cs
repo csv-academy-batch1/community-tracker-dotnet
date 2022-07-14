@@ -12,6 +12,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         [JsonPropertyName("Community Manager")]
         public string? CommunityManager { get; set; }
         [JsonPropertyName("Description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace CommunityTracker.Service.DTO
         public string communityname { get; set; }
         public string? communityicon { get; set; }
         public int? communitymgrid { get; set; }
-        public string communitydesc { get; set; }
+        public string? communitydesc { get; set; }
         public bool isactive { get; set; }
     }
 }
