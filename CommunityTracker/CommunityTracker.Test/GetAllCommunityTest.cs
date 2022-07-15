@@ -30,7 +30,6 @@ namespace CommunityTracker.Test
             var mockData = GetAllCommunityFakeData();
             //Act
             var results = sut2.GetAll();
-            var count = results.mockData;
             //Assert
             results.Should().NotBeNull();
             
