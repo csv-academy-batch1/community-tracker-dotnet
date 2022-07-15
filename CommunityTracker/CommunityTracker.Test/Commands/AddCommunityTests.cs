@@ -31,7 +31,7 @@ namespace CommunityTracker.Test.Commands
             }); ;
 
             //Act
-            var mockAddCommunityService = sut.AddCommunityService(mockCommunity);
+            var mockAddCommunityService = sut.AddCommunityService(mocklistCommunity.FirstOrDefault());
             //Assert
             //Assert.AreEqual(1, mocklistCommunity.Count());
             Assert.IsNotNull(mockAddCommunityService);
