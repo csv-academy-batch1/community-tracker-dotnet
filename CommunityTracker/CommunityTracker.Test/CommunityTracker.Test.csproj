@@ -8,14 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="AddCommunityTests.cs~RFb4bb018.TMP" />
-    <None Remove="b4wmpeyc.c4q~" />
-    <None Remove="cmh315ew.qfp~" />
-    <None Remove="globzbyq.3se~" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.7" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="Moq" Version="4.18.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
