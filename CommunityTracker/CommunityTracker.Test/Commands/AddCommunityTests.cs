@@ -40,7 +40,7 @@ namespace CommunityTracker.Test.Commands
         [TestMethod]
         public void SadPath_TestAddCommunityService_AddingDuplicateValueInCommunityName()
         {
-            / Arrange
+            // Arrange
             var mockCommunityRepositoryCommands = new Mock<ICommunityRepositoryCommands>();
             var mockCommunityRepositoryQuery = new Mock<ICommunityRepositoryQuery>();
             var sut = new CommunityServiceCommands(mockCommunityRepositoryCommands.Object, mockCommunityRepositoryQuery.Object);
