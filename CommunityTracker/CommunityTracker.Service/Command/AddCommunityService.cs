@@ -2,6 +2,7 @@
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
+
 namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
@@ -31,6 +32,7 @@ namespace CommunityTracker.Service.Command
             }
             return communities;
         }
+
         private IEnumerable<CommunityResponseDTO> AddCommunityResponse()
         {
             var managers = _communityRepositoryQuery.GetAllCommunityManagers();
