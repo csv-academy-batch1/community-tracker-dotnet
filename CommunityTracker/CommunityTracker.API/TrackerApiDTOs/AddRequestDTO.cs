@@ -7,7 +7,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         [Required]
         public string CommunityName { get; set; }
         [Required]
-        public int? CommunityManager { get; set; }
+        public int CommunityManager { get; set; }
         [Required]
         public string Description { get; set; }
     }

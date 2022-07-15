@@ -3,6 +3,7 @@ using CommunityTracker.API.TrackerApiDTO;
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+
 namespace CommunityTracker.API.Controllers
 {
     [Route("/[controller]")]
@@ -34,11 +35,25 @@ namespace CommunityTracker.API.Controllers
         public IActionResult AddCommunity([FromBody] AddRequestDTO apiDTO)
         {
             var communityDTO = new CommunityDTO();
-            communityDTO.communityname = apiDTO.communityname;
-            communityDTO.communitymgrid = apiDTO.communitymgrid;
-            communityDTO.communitydesc = apiDTO.communitydesc;
-            _communityServiceCommands.Add(communityDTO);
-            return Ok();
+            communityDTO.communityname = apiDTO.CommunityName;
+            communityDTO.communitymgrid = apiDTO.CommunityManager;
+            communityDTO.communitydesc = apiDTO.Description;
+            var response = _communityServiceCommands.AddCommunityService(communityDTO);
+            if (response is null)
+            {
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
+            }
+            var res = new AddResponseDTO()
+            {
+                CommunityId = response.communityid,
+                CommunityName = response.communityname,
+                CommunityManager = response.communitymanagername,
+                Description = response.communitydesc
+            };
+            return Ok(res);
         }
     }
 }
