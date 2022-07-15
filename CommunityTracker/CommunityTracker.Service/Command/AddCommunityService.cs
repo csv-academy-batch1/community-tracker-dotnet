@@ -2,7 +2,6 @@
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
-
 namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands

@@ -21,13 +21,13 @@ namespace CommunityTracker.Test
             var mockCommunityRepositoryQuery = new Mock<ICommunityRepositoryQuery>();
             var sut = new CommunityServiceCommands(mockCommunityRepositoryCommands.Object, mockCommunityRepositoryQuery.Object);
             var communityDTO = new CommunityDTO();
-            var mocklistCommunity = new List<CommunityDTO>();
+            var mocklistCommunity= new List<CommunityDTO>();
             mocklistCommunity.Add(new CommunityDTO
             {
                 communityname = "Enterprise .NET",
                 communitymgrid = 10,
                 communitydesc = "TestDec"
-            }); ;
+            });;
 
             //Act
             var mockAddCommunityService = sut.AddCommunityService(mocklistCommunity.FirstOrDefault());

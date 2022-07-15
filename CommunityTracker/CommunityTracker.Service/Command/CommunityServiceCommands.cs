@@ -7,7 +7,6 @@ namespace CommunityTracker.Service.Command
     {
         private readonly ICommunityRepositoryCommands _communityRepositoryCommands;
         private readonly ICommunityRepositoryQuery _communityRepositoryQuery;
-
         public CommunityServiceCommands(ICommunityRepositoryCommands communityRepositoryCommands, ICommunityRepositoryQuery communityRepositoryQuery)
         {
             _communityRepositoryCommands = communityRepositoryCommands;

@@ -5,7 +5,7 @@ namespace CommunityTracker.Service.Interfaces
 {
     public interface ICommunityServiceQuery
     {
-        IEnumerable<CommunityDTO> GetAllCommunities();
+        IEnumerable<CommunityDTOResponse> GetAllCommunities();
         IEnumerable<CommunityManagersDTO> GetAllCommunityManagers();
     }
 }
