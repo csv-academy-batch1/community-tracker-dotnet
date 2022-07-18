@@ -2,7 +2,7 @@
 {
     public class CustomErrors
     {
-        public Result result {get;set;}
+        public Result result { get; set; }
     }
     public class Result
     {

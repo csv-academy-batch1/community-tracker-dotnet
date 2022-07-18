@@ -31,7 +31,7 @@ namespace CommunityTracker.Service.Command
             return communities;
         }
 
-        private async Task <List<CommunityResponseDTO>> AddCommunityResponse()
+        private async Task<List<CommunityResponseDTO>> AddCommunityResponse()
         {
             var managers = await _communityRepositoryQuery.GetAllCommunityManagers();
             var coms = await _communityRepositoryQuery.GetAllCommunities();
