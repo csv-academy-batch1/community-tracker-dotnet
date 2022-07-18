@@ -1,5 +1,6 @@
 ﻿using CommunityTracker.Repository.Interfaces;
 using CommunityTracker.Service.Interfaces;
+
 namespace CommunityTracker.Service.Query
 {
     public partial class CommunityServiceQuery : ICommunityServiceQuery

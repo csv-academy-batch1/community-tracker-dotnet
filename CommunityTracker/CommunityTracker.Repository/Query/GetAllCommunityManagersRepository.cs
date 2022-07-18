@@ -1,12 +1,14 @@
 ﻿using CommunityTracker.Repository.Interfaces;
 using CommunityTracker.Repository.RepositoryDTO;
+using Microsoft.EntityFrameworkCore;
+
 namespace CommunityTracker.Repository.Query
 {
     public partial class CommunityRepositoryQuery : ICommunityRepositoryQuery
     {
-        public IQueryable<CommunityManagers> GetAllCommunityManagers()
+        public async Task<List<CommunityManagers>> GetAllCommunityManagers()
         {
-            return _communityDbContext.communityadminandmanager.AsQueryable();
+            return await _communityDbContext.communityadminandmanager.ToListAsync();
         }
     }
 }
