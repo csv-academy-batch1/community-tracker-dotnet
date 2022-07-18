@@ -1,7 +1,5 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
-using CommunityTracker.API.TrackerApiDTOs;
-using CommunityTracker.Repository.Entities;
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -85,37 +83,6 @@ namespace CommunityTracker.API.Controllers
                 CommunityName = result.communityname,
                 CommunityManager = result.communitymanagername,
                 Description = result.communitydesc
-            };
-            return Ok(response);
-        }
-
-        /// <summary>
-        /// Updates the community.
-        /// </summary>
-        /// <param name="updateRequestDTO">The update request dto.</param>
-        /// <returns></returns>
-        [HttpPut]
-        public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
-        {
-            var communityDTO = new Community();
-            communityDTO.CommunityId = updateRequestDTO.communityid;
-            communityDTO.CommunityName = updateRequestDTO.communityname;
-            communityDTO.CommunityMgrid = updateRequestDTO.communitymgrid;
-            communityDTO.CommunityDesc = updateRequestDTO.communitydesc;
-            var result = await _communityServiceCommands.UpdateCommunityService(communityDTO);
-            if (result is null)
-            {
-                return BadRequest(new CustomErrors()
-                {
-                    result = new Result()
-                });
-            }
-            var response = new UpdateResponseDTO()
-            {
-                communityid = result.communityid,
-                communityname = result.communityname,
-                communitymanager = result.communitymanagername,
-                communitydesc = result.communitydesc
             };
             return Ok(response);
         }
