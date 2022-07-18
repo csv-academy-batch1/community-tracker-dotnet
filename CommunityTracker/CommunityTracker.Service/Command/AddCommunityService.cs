@@ -5,46 +5,57 @@ using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Command
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceCommands" />
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
-        public CommunityResponseDTO AddCommunityService(CommunityDTO communityDTO)
+        /// <summary>
+        /// Adds the community service.
+        /// </summary>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns></returns>
+        public async Task<CommunityResponseDTO> AddCommunityService(CommunityDTO communityDTO)
         {
-            var communities = new CommunityResponseDTO();
-            bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.CommunityName.ToLower() == communityDTO.communityname.ToLower());
+            var community = new CommunityResponseDTO();
+            var allcommunities = await _communityRepositoryQuery.GetAllCommunities();
+            bool communityExists = allcommunities.Any(x => x.CommunityName.ToLower() == communityDTO.communityname.ToLower());
             if (communityExists)
             {
                 return null;
             }
-            _communityRepositoryCommands.AddCommunityRepository(new Community()
+            await _communityRepositoryCommands.AddCommunityRepository(new Community()
             {
-                CommunityId = communityDTO.communityid,
                 CommunityName = communityDTO.communityname,
                 CommunityDesc = communityDTO.communitydesc,
                 CommunityMgrid = communityDTO.communitymgrid,
-                CommunityIcon = communityDTO.communityicon,
-                IsActive = communityDTO.isactive
             });
-            var allCommunities = AddCommunityResponse();
-            communities = allCommunities.FirstOrDefault(c => c.communityname == communityDTO.communityname);
-            if (communities is null)
+            community = await MapAddCommunityResponse(communityDTO);
+            if (community is null)
             {
                 return null;
             }
-            return communities;
+            return community;
         }
 
-        private IEnumerable<CommunityResponseDTO> AddCommunityResponse()
+        /// <summary>
+        /// Maps the add community response.
+        /// </summary>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns></returns>
+        private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
         {
-            var managers = _communityRepositoryQuery.GetAllCommunityManagers();
-            var getAllCommunities = _communityRepositoryQuery.GetAllCommunities().Select(x => new CommunityResponseDTO()
+            var managers = await _communityRepositoryQuery.GetCommunityManagersById((int)communityDTO.communitymgrid);
+            var allmanagers = await _communityRepositoryQuery.GetAllCommunities();
+            var community = allmanagers.Select(x => new CommunityResponseDTO()
             {
                 communityid = x.CommunityId,
                 communityname = x.CommunityName,
-                communitymanagername = managers.Where(m => m.CommunityAdminAndManagerId == x.CommunityMgrid)
-                .Select(x => x.CommunityAdminAndManagerName).FirstOrDefault(),
+                communitymanagername = managers.CommunityAdminAndManagerName,
                 communitydesc = x.CommunityDesc
-            }).ToList();
-            return getAllCommunities;
+            }).ToList().FirstOrDefault(c => c.communityname == communityDTO.communityname);
+            return community;
         }
     }
 }

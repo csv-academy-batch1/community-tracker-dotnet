@@ -15,7 +15,7 @@ namespace CommunityTracker.Test.Queries
             var mockDatabase = CreateCommunityDatabaseAsync();
 
             //Act
-            var communities = _serviceQueries.GetAllCommunities();
+            var communities = await _serviceQueries.GetAllCommunities();
 
             //Assert
             communities.Count().Should().Be(3);

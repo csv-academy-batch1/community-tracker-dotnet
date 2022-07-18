@@ -1,13 +1,22 @@
 ﻿using CommunityTracker.Repository.Entities;
 using CommunityTracker.Repository.Interfaces;
+
 namespace CommunityTracker.Repository.Command
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="CommunityTracker.Repository.Interfaces.ICommunityRepositoryCommands" />
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public void AddCommunityRepository(Community communityData)
+        /// <summary>
+        /// Adds the community repository.
+        /// </summary>
+        /// <param name="communityData">The community data.</param>
+        public async Task AddCommunityRepository(Community communityData)
         {
-            _communityDbContext.Add(communityData);
-            _communityDbContext.SaveChanges();
+            await _communityDbContext.AddAsync(communityData);
+            await _communityDbContext.SaveChangesAsync();
         }
     }
 }

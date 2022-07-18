@@ -1,12 +1,21 @@
 ﻿using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
+
 namespace CommunityTracker.Service.Query
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceQuery" />
     public partial class CommunityServiceQuery : ICommunityServiceQuery
     {
-        public IEnumerable<CommunityManagersDTO> GetAllCommunityManagers()
+        /// <summary>
+        /// Gets all community managers.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<CommunityManagersDTO>> GetAllCommunityManagers()
         {
-            var displayAllCommunityManagers = _communityRepositoryQuery.GetAllCommunityManagers();
+            var displayAllCommunityManagers = await _communityRepositoryQuery.GetAllManagers();
             List<CommunityManagersDTO> result = new List<CommunityManagersDTO>();
             foreach (var item in displayAllCommunityManagers)
             {
