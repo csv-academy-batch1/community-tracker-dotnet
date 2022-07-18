@@ -5,5 +5,6 @@ namespace CommunityTracker.Service.Interfaces
     public interface ICommunityServiceCommands
     {
         Task<CommunityResponseDTO> AddCommunityService(CommunityDTO communityDTO);
+        void UpdateCommunityService(CommunityDTO communityDTO);
     }
 }

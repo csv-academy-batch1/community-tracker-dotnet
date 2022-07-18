@@ -18,23 +18,20 @@ namespace CommunityTracker.Test.Commands
         public void HappyPath_TestAddCommunityService_AddingDuplicateValueInCommunityName()
         {
             //Arrange
-            var mockCommunityRepositoryCommands = new Mock<ICommunityRepositoryCommands>();
-            var mockCommunityRepositoryQuery = new Mock<ICommunityRepositoryQuery>();
-            var sut = new CommunityServiceCommands(mockCommunityRepositoryCommands.Object, mockCommunityRepositoryQuery.Object);
-            var communityDTO = new CommunityDTO();
-            var mocklistCommunity = new List<CommunityDTO>();
-            mocklistCommunity.Add(new CommunityDTO
+            var mockDataBase = CreateCommunityDatabaseAsync();
+
+            //Act
+            var community = _serviceCommands.AddCommunityService(new CommunityDTO()
             {
                 communityname = "Enterprise .NET",
                 communitymgrid = 10,
-                communitydesc = "TestDec"
-            }); ;
+                communitydesc = "Description"
+            });
 
-            //Act
-            var mockAddCommunityService = sut.AddCommunityService(mocklistCommunity.FirstOrDefault());
+            var community2 = _serviceQueries.GetAllCommunities();
             //Assert
-            //Assert.AreEqual(1, mocklistCommunity.Count());
-            Assert.IsNotNull(mockAddCommunityService);
+            community2.Count().Should().Be(4);
+            
         }
 
         [TestMethod]
@@ -52,8 +49,6 @@ namespace CommunityTracker.Test.Commands
             });
             //Act
             sut.AddCommunityService(communityDTO);
-            //Assert
-            Assert.AreEqual(0, mocklistCommunity.Count());
         }
     }
 }

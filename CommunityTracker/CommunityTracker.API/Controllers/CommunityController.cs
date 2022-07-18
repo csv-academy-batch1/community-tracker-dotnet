@@ -58,5 +58,17 @@ namespace CommunityTracker.API.Controllers
             };
             return Ok(res);
         }
+
+        [HttpPut]
+        public IActionResult UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
+        {
+            var communityDTO = new CommunityDTO();
+            communityDTO.communityid = updateRequestDTO.CommunityID;
+            communityDTO.communityname = updateRequestDTO.CommunityName;
+            communityDTO.communitymgrid = updateRequestDTO.CommunityManager;
+            communityDTO.communitydesc = updateRequestDTO.Description;
+            this._communityServiceCommands.UpdateCommunityService(communityDTO);
+            return Ok(communityDTO);
+        }
     }
 }

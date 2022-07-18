@@ -8,5 +8,6 @@ namespace CommunityTracker.Service.ServicesDTO
         public string communityname { get; set; }
         public string communitymanagername { get; set; }
         public string? communitydesc { get; set; }
+        public bool isactive { get; set; }
     }
 }

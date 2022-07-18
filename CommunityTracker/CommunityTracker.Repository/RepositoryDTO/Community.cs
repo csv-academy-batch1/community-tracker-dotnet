@@ -11,7 +11,7 @@ namespace CommunityTracker.Repository.Entities
         [Column("communityid")]
         public int CommunityId { get; set; }
         [Column("communityname")]
-        public string CommunityName { get; set; }
+        public string? CommunityName { get; set; }
         [Column("communityicon")]
         public string? CommunityIcon { get; set; }
         [Column("communitymgrid")]
