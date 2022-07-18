@@ -32,13 +32,13 @@ namespace CommunityTracker.API.Controllers
         }
         // POST api/<ValuesController>
         [HttpPost]
-        public IActionResult AddCommunity([FromBody] AddRequestDTO apiDTO)
+        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO apiDTO)
         {
             var communityDTO = new CommunityDTO();
             communityDTO.communityname = apiDTO.CommunityName;
             communityDTO.communitymgrid = apiDTO.CommunityManager;
             communityDTO.communitydesc = apiDTO.Description;
-            var response = _communityServiceCommands.AddCommunityService(communityDTO);
+            var response = await _communityServiceCommands.AddCommunityService(communityDTO);
             if (response is null)
             {
                 return BadRequest(new CustomErrors()

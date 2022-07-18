@@ -5,10 +5,10 @@ namespace CommunityTracker.Repository.Command
 {
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public void AddCommunityRepository(Community communityData)
+        public async Task AddCommunityRepository(Community communityData)
         {
-            _communityDbContext.Add(communityData);
-            _communityDbContext.SaveChanges();
+            await _communityDbContext.AddAsync(communityData);
+            await _communityDbContext.SaveChangesAsync();
         }
     }
 }
