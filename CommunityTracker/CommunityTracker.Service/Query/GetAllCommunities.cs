@@ -6,7 +6,7 @@ namespace CommunityTracker.Service.Query
 {
     public partial class CommunityServiceQuery : ICommunityServiceQuery
     {
-        public IEnumerable<CommunityDTOResponse> GetAllCommunities()
+        public async Task<IEnumerable<CommunityDTOResponse>> GetAllCommunities()
         {
             var displayAllCommunities = _communityRepositoryQuery.GetAllCommunities();
             List<CommunityDTOResponse> result = new List<CommunityDTOResponse>();

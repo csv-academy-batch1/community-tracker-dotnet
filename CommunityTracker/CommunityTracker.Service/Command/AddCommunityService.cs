@@ -7,7 +7,7 @@ namespace CommunityTracker.Service.Command
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
-        public CommunityResponseDTO AddCommunityService(CommunityDTO communityDTO)
+        public async Task<CommunityResponseDTO> AddCommunityService(CommunityDTO communityDTO)
         {
             var communities = new CommunityResponseDTO();
             bool communityExists = _communityRepositoryQuery.GetAllCommunities().Any(x => x.CommunityName.ToLower() == communityDTO.communityname.ToLower());
@@ -15,7 +15,7 @@ namespace CommunityTracker.Service.Command
             {
                 return null;
             }
-            _communityRepositoryCommands.AddCommunityRepository(new Community()
+            await _communityRepositoryCommands.AddCommunityRepository(new Community()
             {
                 CommunityId = communityDTO.communityid,
                 CommunityName = communityDTO.communityname,

@@ -4,7 +4,7 @@ namespace CommunityTracker.Service.Query
 {
     public partial class CommunityServiceQuery : ICommunityServiceQuery
     {
-        public IEnumerable<CommunityManagersDTO> GetAllCommunityManagers()
+        public async Task<IEnumerable<CommunityManagersDTO>> GetAllCommunityManagers()
         {
             var displayAllCommunityManagers = _communityRepositoryQuery.GetAllCommunityManagers();
             List<CommunityManagersDTO> result = new List<CommunityManagersDTO>();
