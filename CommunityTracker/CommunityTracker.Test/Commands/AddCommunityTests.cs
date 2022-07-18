@@ -50,7 +50,6 @@ namespace CommunityTracker.Test.Commands
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
-            var communityName = communities.Where(x => x.communityid == 4).Select(y => y.communityname).FirstOrDefault();
 
             //Assert
             communities.Count().Should().Be(3);
