@@ -18,12 +18,9 @@ namespace CommunityTracker.Service.Command
             }
             await _communityRepositoryCommands.AddCommunityRepository(new Community()
             {
-                CommunityId = communityDTO.communityid,
                 CommunityName = communityDTO.communityname,
                 CommunityDesc = communityDTO.communitydesc,
                 CommunityMgrid = communityDTO.communitymgrid,
-                CommunityIcon = communityDTO.communityicon,
-                IsActive = communityDTO.isactive
             });
             var allCommunities = await AddCommunityResponse();
             communities = allCommunities.FirstOrDefault(c => c.communityname == communityDTO.communityname);
