@@ -20,7 +20,7 @@ namespace CommunityTracker.Test.Commands
             var mockDatabase = CreateCommunityDatabaseAsync();
 
             //Act
-            var community = _serviceCommands.AddCommunityService(new CommunityDTO()
+            var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
             {
                 communityname = "Enterprise .Net",
                 communitymgrid = 10,
@@ -28,9 +28,11 @@ namespace CommunityTracker.Test.Commands
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
+            var communityName = communities.Where(x => x.communityid == 4).Select(y => y.communityname).FirstOrDefault();
 
             //Assert
             communities.Count().Should().Be(4);
+            community.communityname.Should().Be(communityName);
         }
 
         [TestMethod]
@@ -40,7 +42,7 @@ namespace CommunityTracker.Test.Commands
             var mockDatabase = CreateCommunityDatabaseAsync();
 
             //Act
-            var community = _serviceCommands.AddCommunityService(new CommunityDTO()
+            var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
             {
                 communityname = "TestCommunityName1",
                 communitymgrid = 10,
@@ -48,6 +50,7 @@ namespace CommunityTracker.Test.Commands
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
+            var communityName = communities.Where(x => x.communityid == 4).Select(y => y.communityname).FirstOrDefault();
 
             //Assert
             communities.Count().Should().Be(3);
