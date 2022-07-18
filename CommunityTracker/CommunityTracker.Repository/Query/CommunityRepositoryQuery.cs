@@ -7,6 +7,10 @@ namespace CommunityTracker.Repository.Query
     {
         private readonly CommunityDbContext _communityDbContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommunityRepositoryQuery"/> class.
+        /// </summary>
+        /// <param name="communityDbContext">The community database context.</param>
         public CommunityRepositoryQuery(CommunityDbContext communityDbContext)
         {
             _communityDbContext = communityDbContext;

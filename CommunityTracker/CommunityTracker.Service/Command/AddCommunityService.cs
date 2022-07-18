@@ -5,8 +5,17 @@ using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Command
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceCommands" />
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
+        /// <summary>
+        /// Adds the community service.
+        /// </summary>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns></returns>
         public async Task<CommunityResponseDTO> AddCommunityService(CommunityDTO communityDTO)
         {
             var community = new CommunityResponseDTO();
@@ -30,6 +39,11 @@ namespace CommunityTracker.Service.Command
             return community;
         }
 
+        /// <summary>
+        /// Maps the add community response.
+        /// </summary>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns></returns>
         private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
         {
             var managers = await _communityRepositoryQuery.GetCommunityManagersById((int)communityDTO.communitymgrid);

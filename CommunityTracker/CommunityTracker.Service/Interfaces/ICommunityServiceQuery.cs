@@ -1,12 +1,22 @@
-﻿using CommunityTracker.Repository.RepositoryDTO;
-using CommunityTracker.Service.DTO;
-using CommunityTracker.Service.ServicesDTO;
+﻿using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Interfaces
 {
+    /// <summary>
+    ///
+    /// </summary>
     public interface ICommunityServiceQuery
     {
+        /// <summary>
+        /// Gets all communities.
+        /// </summary>
+        /// <returns></returns>
         Task<List<CommunityDTOResponse>> GetAllCommunities();
+
+        /// <summary>
+        /// Gets all community managers.
+        /// </summary>
+        /// <returns></returns>
         Task<List<CommunityManagersDTO>> GetAllCommunityManagers();
     }
 }

@@ -4,24 +4,43 @@ using CommunityTracker.API.TrackerApiDTOs;
 using CommunityTracker.Repository.Entities;
 using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
-using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunityTracker.API.Controllers
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("/[controller]")]
     [ApiController]
     public class CommunityController : ControllerBase
     {
+        /// <summary>
+        /// The community service commands
+        /// </summary>
         private readonly ICommunityServiceCommands _communityServiceCommands;
+
+        /// <summary>
+        /// The community service query
+        /// </summary>
         private readonly ICommunityServiceQuery _communityServiceQuery;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommunityController"/> class.
+        /// </summary>
+        /// <param name="communityServiceCommands">The community service commands.</param>
+        /// <param name="communityServiceQuery">The community service query.</param>
         public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQuery communityServiceQuery)
         {
             _communityServiceCommands = communityServiceCommands;
             _communityServiceQuery = communityServiceQuery;
         }
 
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -29,6 +48,10 @@ namespace CommunityTracker.API.Controllers
             return Ok(items);
         }
 
+        /// <summary>
+        /// Gets all managers.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("managers")]
         public async Task<IActionResult> GetAllManagers()
         {
@@ -36,6 +59,11 @@ namespace CommunityTracker.API.Controllers
             return Ok(items);
         }
 
+        /// <summary>
+        /// Adds the community.
+        /// </summary>
+        /// <param name="apiDTO">The API dto.</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO apiDTO)
         {
@@ -61,6 +89,11 @@ namespace CommunityTracker.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Updates the community.
+        /// </summary>
+        /// <param name="updateRequestDTO">The update request dto.</param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
         {

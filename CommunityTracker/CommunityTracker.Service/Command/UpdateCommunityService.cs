@@ -1,17 +1,20 @@
 ﻿using CommunityTracker.Repository.Entities;
-using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommunityTracker.Service.Command
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceCommands" />
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
+        /// <summary>
+        /// Updates the community service.
+        /// </summary>
+        /// <param name="community">The community.</param>
+        /// <returns></returns>
         public async Task<CommunityUpdateResponseDTO> UpdateCommunityService(Community community)
         {
             var coms = new CommunityUpdateResponseDTO();
