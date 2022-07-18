@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CommunityTracker.Service.DTO
+namespace CommunityTracker.Service.ServicesDTO
 {
     /// <summary>
     ///
@@ -14,7 +14,7 @@ namespace CommunityTracker.Service.DTO
         /// The communityid.
         /// </value>
         [Key]
-        public int communityid { get; set; }
+        public int CommunityId { get; set; }
 
         /// <summary>
         /// Gets or sets the communityname.
@@ -22,7 +22,7 @@ namespace CommunityTracker.Service.DTO
         /// <value>
         /// The communityname.
         /// </value>
-        public string communityname { get; set; }
+        public string CommunityName { get; set; }
 
         /// <summary>
         /// Gets or sets the communityicon.
@@ -30,7 +30,7 @@ namespace CommunityTracker.Service.DTO
         /// <value>
         /// The communityicon.
         /// </value>
-        public string? communityicon { get; set; }
+        public string? CommunityIcon { get; set; }
 
         /// <summary>
         /// Gets or sets the communitymgrid.
@@ -38,7 +38,7 @@ namespace CommunityTracker.Service.DTO
         /// <value>
         /// The communitymgrid.
         /// </value>
-        public int? communitymgrid { get; set; }
+        public int? CommunityMgrid { get; set; }
 
         /// <summary>
         /// Gets or sets the communitydesc.
@@ -46,7 +46,7 @@ namespace CommunityTracker.Service.DTO
         /// <value>
         /// The communitydesc.
         /// </value>
-        public string? communitydesc { get; set; }
+        public string? CommunityDesc { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="CommunityDTO"/> is isactive.
@@ -54,6 +54,6 @@ namespace CommunityTracker.Service.DTO
         /// <value>
         ///   <c>true</c> if isactive; otherwise, <c>false</c>.
         /// </value>
-        public bool isactive { get; set; }
+        public bool IsActive { get; set; }
     }
 }

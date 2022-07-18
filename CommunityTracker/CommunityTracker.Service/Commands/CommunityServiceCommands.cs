@@ -1,7 +1,7 @@
 ﻿using CommunityTracker.Repository.Interfaces;
 using CommunityTracker.Service.Interfaces;
 
-namespace CommunityTracker.Service.Command
+namespace CommunityTracker.Service.Commands
 {
     /// <summary>
     ///

@@ -1,7 +1,7 @@
 ﻿using CommunityTracker.Repository.DataContext;
 using CommunityTracker.Repository.Interfaces;
 
-namespace CommunityTracker.Repository.Query
+namespace CommunityTracker.Repository.Queries
 {
     public partial class CommunityRepositoryQuery : ICommunityRepositoryQuery
     {

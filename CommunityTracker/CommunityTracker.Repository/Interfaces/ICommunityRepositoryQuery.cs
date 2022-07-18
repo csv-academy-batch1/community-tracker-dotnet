@@ -1,4 +1,4 @@
-﻿using CommunityTracker.Repository.Entities;
+﻿using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Repository.RepositoryDTO;
 
 namespace CommunityTracker.Repository.Interfaces
@@ -30,5 +30,13 @@ namespace CommunityTracker.Repository.Interfaces
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         Task<CommunityManagers> GetCommunityManagersById(int id);
+
+        /// <summary>
+        /// Gets the name of all communities with manager name.
+        /// </summary>
+        /// <param name="managerId">The manager identifier.</param>
+        /// <param name="communityName">Name of the community.</param>
+        /// <returns></returns>
+        Task<CommunityDetails> GetCommunitiesWithManagerName(int? managerId, string communityName);
     }
 }

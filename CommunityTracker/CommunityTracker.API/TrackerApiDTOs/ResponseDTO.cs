@@ -6,7 +6,8 @@ namespace CommunityTracker.API.TrackerApiDTO
     /// <summary>
     ///
     /// </summary>
-    public class AddResponseDTO
+    [Serializable]
+    public class ResponseDTO
     {
         /// <summary>
         /// Gets or sets the community identifier.
@@ -15,7 +16,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// The community identifier.
         /// </value>
         [Key]
-        [JsonPropertyName("Community Id")]
         public int CommunityId { get; set; }
 
         /// <summary>
@@ -24,8 +24,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The name of the community.
         /// </value>
-        [JsonPropertyName("Community Name")]
-        public string CommunityName { get; set; }
+        public string? CommunityName { get; set; }
 
         /// <summary>
         /// Gets or sets the community manager.
@@ -33,7 +32,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The community manager.
         /// </value>
-        [JsonPropertyName("Community Manager")]
         public string? CommunityManager { get; set; }
 
         /// <summary>
@@ -42,7 +40,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The description.
         /// </value>
-        [JsonPropertyName("Description")]
         public string? Description { get; set; }
     }
 }

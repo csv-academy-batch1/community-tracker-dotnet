@@ -14,7 +14,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// The communityid.
         /// </value>
         [Key]
-        public int communityid { get; set; }
+        public int CommunityId { get; set; }
 
         /// <summary>
         /// Gets or sets the communityname.
@@ -22,7 +22,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communityname.
         /// </value>
-        public string communityname { get; set; }
+        public string CommunityName { get; set; }
 
         /// <summary>
         /// Gets or sets the communitymanagername.
@@ -30,7 +30,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communitymanagername.
         /// </value>
-        public string communitymanagername { get; set; }
+        public string CommunityManagerName { get; set; }
 
         /// <summary>
         /// Gets or sets the communitydesc.
@@ -38,6 +38,6 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communitydesc.
         /// </value>
-        public string? communitydesc { get; set; }
+        public string? CommunityDesc { get; set; }
     }
 }

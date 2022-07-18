@@ -1,7 +1,7 @@
 ﻿using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
 
-namespace CommunityTracker.Service.Query
+namespace CommunityTracker.Service.Queries
 {
     /// <summary>
     ///

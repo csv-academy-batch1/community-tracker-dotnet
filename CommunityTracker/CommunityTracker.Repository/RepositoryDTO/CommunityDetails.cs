@@ -1,13 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace CommunityTracker.Repository.RepositoryDTO
+﻿namespace CommunityTracker.Repository.RepositoryDTO
 {
     /// <summary>
     ///
     /// </summary>
-    [Table("community")]
-    public class Community
+    public class CommunityDetails
     {
         /// <summary>
         /// Gets or sets the community identifier.
@@ -15,8 +11,6 @@ namespace CommunityTracker.Repository.RepositoryDTO
         /// <value>
         /// The community identifier.
         /// </value>
-        [Key]
-        [Column("communityid")]
         public int CommunityId { get; set; }
 
         /// <summary>
@@ -25,17 +19,7 @@ namespace CommunityTracker.Repository.RepositoryDTO
         /// <value>
         /// The name of the community.
         /// </value>
-        [Column("communityname")]
-        public string CommunityName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the community icon.
-        /// </summary>
-        /// <value>
-        /// The community icon.
-        /// </value>
-        [Column("communityicon")]
-        public string? CommunityIcon { get; set; }
+        public string? CommunityName { get; set; }
 
         /// <summary>
         /// Gets or sets the community mgrid.
@@ -43,7 +27,6 @@ namespace CommunityTracker.Repository.RepositoryDTO
         /// <value>
         /// The community mgrid.
         /// </value>
-        [Column("communitymgrid")]
         public int? CommunityMgrid { get; set; }
 
         /// <summary>
@@ -52,16 +35,14 @@ namespace CommunityTracker.Repository.RepositoryDTO
         /// <value>
         /// The community desc.
         /// </value>
-        [Column("communitydesc")]
         public string? CommunityDesc { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is active.
+        /// Gets or sets the name of the community admin and manager.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
+        /// The name of the community admin and manager.
         /// </value>
-        [Column("isactive")]
-        public bool IsActive { get; set; }
+        public string? CommunityAdminAndManagerName { get; set; }
     }
 }

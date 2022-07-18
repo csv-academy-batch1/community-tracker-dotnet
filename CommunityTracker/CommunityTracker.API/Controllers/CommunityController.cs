@@ -1,6 +1,6 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
-using CommunityTracker.Service.DTO;
+using CommunityTracker.Service.ServicesDTO;
 using CommunityTracker.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,30 +60,41 @@ namespace CommunityTracker.API.Controllers
         /// <summary>
         /// Adds the community.
         /// </summary>
-        /// <param name="apiDTO">The API dto.</param>
+        /// <param name="request">The API dto.</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO apiDTO)
+        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO request)
         {
-            var communityDTO = new CommunityDTO();
-            communityDTO.communityname = apiDTO.CommunityName;
-            communityDTO.communitymgrid = apiDTO.CommunityManager;
-            communityDTO.communitydesc = apiDTO.Description;
+            if (request == null)
+            {
+                return null;
+            }
+
+            var communityDTO = new CommunityDTO
+            {
+                CommunityName = request.CommunityName,
+                CommunityMgrid = request.CommunityManager,
+                CommunityDesc = request.Description
+            };
+
             var result = await _communityServiceCommands.AddCommunityService(communityDTO);
-            if (result is null)
+            
+            if (result == null)
             {
                 return BadRequest(new CustomErrors()
                 {
                     result = new Result()
                 });
             }
-            var response = new AddResponseDTO()
+
+            var response = new ResponseDTO()
             {
-                CommunityId = result.communityid,
-                CommunityName = result.communityname,
-                CommunityManager = result.communitymanagername,
-                Description = result.communitydesc
+                CommunityId = result.CommunityId,
+                CommunityName = result.CommunityName,
+                CommunityManager = result.CommunityManagerName,
+                Description = result.CommunityDesc
             };
+
             return Ok(response);
         }
     }

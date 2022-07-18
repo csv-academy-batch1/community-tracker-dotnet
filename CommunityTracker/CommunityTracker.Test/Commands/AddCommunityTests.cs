@@ -1,4 +1,4 @@
-using CommunityTracker.Service.DTO;
+using CommunityTracker.Service.ServicesDTO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -18,9 +18,9 @@ namespace CommunityTracker.Test.Commands
             //Act
             var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
             {
-                communityname = "Enterprise .Net",
-                communitymgrid = 10,
-                communitydesc = "Test Desc Happy Path"
+                CommunityName = "Enterprise .Net",
+                CommunityMgrid = 10,
+                CommunityDesc = "Test Desc Happy Path"
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
@@ -28,7 +28,7 @@ namespace CommunityTracker.Test.Commands
 
             //Assert
             communities.Count().Should().Be(4);
-            community.communityname.Should().Be(communityName);
+            community.CommunityName.Should().Be(communityName);
         }
 
         [TestMethod]
@@ -40,9 +40,9 @@ namespace CommunityTracker.Test.Commands
             //Act
             var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
             {
-                communityname = "TestCommunityName1",
-                communitymgrid = 10,
-                communitydesc = "Test Desc Sad Path"
+                CommunityName = "TestCommunityName1",
+                CommunityMgrid = 10,
+                CommunityDesc = "Test Desc Sad Path"
             });
 
             var communities = await _serviceQueries.GetAllCommunities();

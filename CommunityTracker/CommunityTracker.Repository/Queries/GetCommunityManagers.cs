@@ -2,7 +2,7 @@
 using CommunityTracker.Repository.RepositoryDTO;
 using Microsoft.EntityFrameworkCore;
 
-namespace CommunityTracker.Repository.Query
+namespace CommunityTracker.Repository.Queries
 {
     public partial class CommunityRepositoryQuery : ICommunityRepositoryQuery
     {

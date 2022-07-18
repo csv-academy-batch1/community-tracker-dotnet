@@ -1,5 +1,5 @@
-﻿using CommunityTracker.Repository.Entities;
-using CommunityTracker.Service.DTO;
+﻿using CommunityTracker.Repository.RepositoryDTO;
+using CommunityTracker.Service.ServicesDTO;
 using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Interfaces

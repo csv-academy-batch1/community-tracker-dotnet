@@ -1,7 +1,7 @@
 ﻿using CommunityTracker.Repository.DataContext;
 using CommunityTracker.Repository.Interfaces;
 
-namespace CommunityTracker.Repository.Command
+namespace CommunityTracker.Repository.Commands
 {
     /// <summary>
     ///

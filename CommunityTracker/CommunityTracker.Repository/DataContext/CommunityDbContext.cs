@@ -1,5 +1,4 @@
-﻿using CommunityTracker.Repository.Entities;
-using CommunityTracker.Repository.RepositoryDTO;
+﻿using CommunityTracker.Repository.RepositoryDTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommunityTracker.Repository.DataContext
