@@ -6,6 +6,8 @@ namespace CommunityTracker.Repository.Interfaces
     public interface ICommunityRepositoryQuery
     {
         Task<List<Community>> GetAllCommunities();
-        Task<List<CommunityManagers>> GetAllCommunityManagers();
+        Task<Community> GetCommunityById(int id);
+        Task<List<CommunityManagers>> GetAllManagers();
+        Task<CommunityManagers> GetCommunityManagersById(int id);
     }
 }

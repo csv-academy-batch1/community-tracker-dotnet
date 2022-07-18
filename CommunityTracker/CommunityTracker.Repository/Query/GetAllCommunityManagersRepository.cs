@@ -6,9 +6,19 @@ namespace CommunityTracker.Repository.Query
 {
     public partial class CommunityRepositoryQuery : ICommunityRepositoryQuery
     {
-        public async Task<List<CommunityManagers>> GetAllCommunityManagers()
+        private IQueryable<CommunityManagers> GetManagers()
         {
-            return await _communityDbContext.communityadminandmanager.ToListAsync();
+            return _communityDbContext.communityadminandmanager.AsQueryable();
+        }
+
+        public async Task<List<CommunityManagers>> GetAllManagers()
+        {
+            return await GetManagers().ToListAsync();
+        }
+
+        public async Task<CommunityManagers> GetCommunityManagersById(int id)
+        {
+            return await GetManagers().Where(x => x.CommunityAdminAndManagerId == id).FirstOrDefaultAsync();
         }
     }
 }

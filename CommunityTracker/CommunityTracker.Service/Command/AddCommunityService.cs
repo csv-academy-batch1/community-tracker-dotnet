@@ -9,9 +9,9 @@ namespace CommunityTracker.Service.Command
     {
         public async Task<CommunityResponseDTO> AddCommunityService(CommunityDTO communityDTO)
         {
-            var communities = new CommunityResponseDTO();
-            var coms = await _communityRepositoryQuery.GetAllCommunities();
-            bool communityExists = coms.Any(x => x.CommunityName.ToLower() == communityDTO.communityname.ToLower());
+            var community = new CommunityResponseDTO();
+            var allcommunities = await _communityRepositoryQuery.GetAllCommunities();
+            bool communityExists = allcommunities.Any(x => x.CommunityName.ToLower() == communityDTO.communityname.ToLower());
             if (communityExists)
             {
                 return null;
@@ -22,28 +22,26 @@ namespace CommunityTracker.Service.Command
                 CommunityDesc = communityDTO.communitydesc,
                 CommunityMgrid = communityDTO.communitymgrid,
             });
-            var allCommunities = await AddCommunityResponse();
-            communities = allCommunities.FirstOrDefault(c => c.communityname == communityDTO.communityname);
-            if (communities is null)
+            community = await MapAddCommunityResponse(communityDTO);
+            if (community is null)
             {
                 return null;
             }
-            return communities;
+            return community;
         }
 
-        private async Task<List<CommunityResponseDTO>> AddCommunityResponse()
+        private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
         {
-            var managers = await _communityRepositoryQuery.GetAllCommunityManagers();
-            var coms = await _communityRepositoryQuery.GetAllCommunities();
-            var getAllCommunities = coms.Select(x => new CommunityResponseDTO()
+            var managers = await _communityRepositoryQuery.GetCommunityManagersById((int)communityDTO.communitymgrid);
+            var allmanagers = await _communityRepositoryQuery.GetAllCommunities();
+            var community = allmanagers.Select(x => new CommunityResponseDTO()
             {
                 communityid = x.CommunityId,
                 communityname = x.CommunityName,
-                communitymanagername = managers.Where(m => m.CommunityAdminAndManagerId == x.CommunityMgrid)
-                .Select(x => x.CommunityAdminAndManagerName).FirstOrDefault(),
+                communitymanagername = managers.CommunityAdminAndManagerName,
                 communitydesc = x.CommunityDesc
-            }).ToList();
-            return getAllCommunities;
+            }).ToList().FirstOrDefault(c => c.communityname == communityDTO.communityname);
+            return community;
         }
     }
 }

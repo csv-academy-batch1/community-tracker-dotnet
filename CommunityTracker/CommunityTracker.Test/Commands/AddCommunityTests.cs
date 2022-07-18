@@ -1,10 +1,6 @@
-using CommunityTracker.Repository.Interfaces;
-using CommunityTracker.Service.Command;
 using CommunityTracker.Service.DTO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

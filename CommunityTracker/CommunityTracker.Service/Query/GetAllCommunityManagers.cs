@@ -7,7 +7,7 @@ namespace CommunityTracker.Service.Query
     {
         public async Task<List<CommunityManagersDTO>> GetAllCommunityManagers()
         {
-            var displayAllCommunityManagers = await _communityRepositoryQuery.GetAllCommunityManagers();
+            var displayAllCommunityManagers = await _communityRepositoryQuery.GetAllManagers();
             List<CommunityManagersDTO> result = new List<CommunityManagersDTO>();
             foreach (var item in displayAllCommunityManagers)
             {
