@@ -1,14 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CommunityTracker.Repository.RepositoryDTO
 {
+    [Table("communityadminandmanager")]
     public class CommunityManagers
     {
         [Key]
-        public int communityadminandmanagerid { get; set; }
-        public string communityadminandmanagername { get; set; }
-        public string csvemail { get; set; }
-        public string passkey { get; set; }
-        public string roletype { get; set; }
-        public bool isactive { get; set; }
+        [Column("communityadminandmanagerid")]
+        public int CommunityAdminAndManagerId { get; set; }
+        [Column("communityadminandmanagername")]
+        public string CommunityAdminAndManagerName { get; set; }
+        [Column("csvemail")]
+        public string CSVEmail { get; set; }
+        [Column("passkey")]
+        public string PassKey { get; set; }
+        [Column("roletype")]
+        public string RoleType { get; set; }
+        [Column("isactive")]
+        public bool IsActive { get; set; }
     }
 }

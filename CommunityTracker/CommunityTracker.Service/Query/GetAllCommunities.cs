@@ -1,23 +1,21 @@
 ﻿using CommunityTracker.Service.DTO;
 using CommunityTracker.Service.Interfaces;
+using CommunityTracker.Service.ServicesDTO;
+
 namespace CommunityTracker.Service.Query
 {
     public partial class CommunityServiceQuery : ICommunityServiceQuery
     {
-        public IEnumerable<CommunityDTO> GetAllCommunities()
+        public IEnumerable<CommunityDTOResponse> GetAllCommunities()
         {
             var displayAllCommunities = _communityRepositoryQuery.GetAllCommunities();
-            List<CommunityDTO> result = new List<CommunityDTO>();
+            List<CommunityDTOResponse> result = new List<CommunityDTOResponse>();
             foreach (var item in displayAllCommunities)
             {
-                result.Add(new CommunityDTO()
+                result.Add(new CommunityDTOResponse()
                 {
-                    communityid = item.communityid,
-                    communitydesc = item.communitydesc,
-                    communityicon = item.communityicon,
-                    communitymgrid = item.communitymgrid,
-                    communityname = item.communityname,
-                    isactive = item.isactive
+                    communityid = item.CommunityId,
+                    communityname = item.CommunityName
                 });
             }
             return result;
