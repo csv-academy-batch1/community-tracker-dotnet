@@ -4,7 +4,7 @@ namespace CommunityTracker.Repository.Interfaces
 {
     public interface ICommunityRepositoryQuery
     {
-        IQueryable<Community> GetAllCommunities();
-        IQueryable<CommunityManagers> GetAllCommunityManagers();
+        Task<Community> GetAllCommunities();
+        Task<CommunityManagers> GetAllCommunityManagers();
     }
 }
