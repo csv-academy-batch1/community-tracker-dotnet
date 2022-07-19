@@ -33,4 +33,4 @@ jobs:
       with:
         push: true
         tags: communitytrackeracr.azurecr.io/ct/community-tracker-dotnet:${{ github.sha }}
-        file: ./CommunityTracker.API/Dockerfile
+        file: ./CommunityTracker/Dockerfile
