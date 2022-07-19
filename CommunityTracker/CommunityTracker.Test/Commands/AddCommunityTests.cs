@@ -1,10 +1,8 @@
-using CommunityTracker.Repository.Interfaces;
-using CommunityTracker.Service.Command;
-using CommunityTracker.Service.DTO;
+using CommunityTracker.Service.ServicesDTO;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CommunityTracker.Test.Commands
 {
@@ -12,45 +10,45 @@ namespace CommunityTracker.Test.Commands
     public class AddCommunityServiceTests : CommunityTrackerBaseTest
     {
         [TestMethod]
-        public void HappyPath_TestAddCommunityService_AddingDuplicateValueInCommunityName()
+        public async Task HappyPath_TestAddCommunityService_AddingDuplicateValueInCommunityNameAsync()
         {
             //Arrange
-            var mockCommunityRepositoryCommands = new Mock<ICommunityRepositoryCommands>();
-            var mockCommunityRepositoryQuery = new Mock<ICommunityRepositoryQuery>();
-            var sut = new CommunityServiceCommands(mockCommunityRepositoryCommands.Object, mockCommunityRepositoryQuery.Object);
-            var communityDTO = new CommunityDTO();
-            var mocklistCommunity = new List<CommunityDTO>();
-            mocklistCommunity.Add(new CommunityDTO
-            {
-                communityname = "Enterprise .NET",
-                communitymgrid = 10,
-                communitydesc = "TestDec"
-            }); ;
+            var mockDatabase = CreateCommunityDatabaseAsync();
 
             //Act
-            var mockAddCommunityService = sut.AddCommunityService(mocklistCommunity.FirstOrDefault());
+            var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
+            {
+                CommunityName = "Enterprise .Net",
+                CommunityMgrid = 10,
+                CommunityDesc = "Test Desc Happy Path"
+            });
+
+            var communities = await _serviceQueries.GetAllCommunities();
+            var communityName = communities.Where(x => x.communityid == 4).Select(y => y.communityname).FirstOrDefault();
+
             //Assert
-            //Assert.AreEqual(1, mocklistCommunity.Count());
-            Assert.IsNotNull(mockAddCommunityService);
+            communities.Count().Should().Be(4);
+            community.CommunityName.Should().Be(communityName);
         }
 
         [TestMethod]
-        public void SadPath_TestAddCommunityService_AddingDuplicateValueInCommunityName()
+        public async Task SadPath_TestAddCommunityService_AddingDuplicateValueInCommunityNameAsync()
         {
             //Arrange
-            var mockCommunityRepositoryCommands = new Mock<ICommunityRepositoryCommands>();
-            var mockCommunityRepositoryQuery = new Mock<ICommunityRepositoryQuery>();
-            var sut = new CommunityServiceCommands(mockCommunityRepositoryCommands.Object, mockCommunityRepositoryQuery.Object);
-            var communityDTO = new CommunityDTO();
-            var mocklistCommunity = new List<CommunityDTO>();
-            mocklistCommunity.Add(new CommunityDTO
-            {
-                communityname = null
-            });
+            var mockDatabase = CreateCommunityDatabaseAsync();
+
             //Act
-            sut.AddCommunityService(communityDTO);
+            var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
+            {
+                CommunityName = "TestCommunityName1",
+                CommunityMgrid = 10,
+                CommunityDesc = "Test Desc Sad Path"
+            });
+
+            var communities = await _serviceQueries.GetAllCommunities();
+
             //Assert
-            Assert.AreEqual(0, mocklistCommunity.Count());
+            communities.Count().Should().Be(3);
         }
     }
 }

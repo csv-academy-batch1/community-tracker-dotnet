@@ -1,5 +1,5 @@
 using CommunityTracker.Repository.DataContext;
-using CommunityTracker.Repository.Entities;
+using CommunityTracker.Repository.RepositoryDTO;
 using System.Threading.Tasks;
 
 namespace CommunityTracker.Test.MockData

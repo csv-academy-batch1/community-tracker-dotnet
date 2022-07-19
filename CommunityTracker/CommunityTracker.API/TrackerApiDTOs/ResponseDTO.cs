@@ -1,20 +1,30 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace CommunityTracker.API.TrackerApiDTO
 {
     /// <summary>
     ///
     /// </summary>
-    public class AddRequestDTO
+    [Serializable]
+    public class ResponseDTO
     {
+        /// <summary>
+        /// Gets or sets the community identifier.
+        /// </summary>
+        /// <value>
+        /// The community identifier.
+        /// </value>
+        [Key]
+        public int CommunityId { get; set; }
+
         /// <summary>
         /// Gets or sets the name of the community.
         /// </summary>
         /// <value>
         /// The name of the community.
         /// </value>
-        [Required]
-        public string CommunityName { get; set; }
+        public string? CommunityName { get; set; }
 
         /// <summary>
         /// Gets or sets the community manager.
@@ -22,8 +32,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The community manager.
         /// </value>
-        [Required]
-        public int? CommunityManager { get; set; }
+        public string? CommunityManager { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -31,6 +40,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The description.
         /// </value>
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

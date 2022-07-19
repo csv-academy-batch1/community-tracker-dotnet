@@ -1,62 +1,101 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
-using CommunityTracker.Service.DTO;
+using CommunityTracker.Service.ServicesDTO;
 using CommunityTracker.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunityTracker.API.Controllers
 {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("/[controller]")]
     [ApiController]
     public class CommunityController : ControllerBase
     {
+        /// <summary>
+        /// The community service commands
+        /// </summary>
         private readonly ICommunityServiceCommands _communityServiceCommands;
+
+        /// <summary>
+        /// The community service query
+        /// </summary>
         private readonly ICommunityServiceQuery _communityServiceQuery;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommunityController"/> class.
+        /// </summary>
+        /// <param name="communityServiceCommands">The community service commands.</param>
+        /// <param name="communityServiceQuery">The community service query.</param>
         public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQuery communityServiceQuery)
         {
             _communityServiceCommands = communityServiceCommands;
             _communityServiceQuery = communityServiceQuery;
         }
 
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var items = this._communityServiceQuery.GetAllCommunities();
+            var items = await _communityServiceQuery.GetAllCommunities();
             return Ok(items);
         }
 
+        /// <summary>
+        /// Gets all managers.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("managers")]
-        public IActionResult GetAllManagers()
+        public async Task<IActionResult> GetAllManagers()
         {
-            var items = this._communityServiceQuery.GetAllCommunityManagers();
+            var items = await _communityServiceQuery.GetAllCommunityManagers();
             return Ok(items);
         }
 
-        // POST api/<ValuesController>
+        /// <summary>
+        /// Adds the community.
+        /// </summary>
+        /// <param name="request">The API dto.</param>
+        /// <returns></returns>
         [HttpPost]
-        public IActionResult AddCommunity([FromBody] AddRequestDTO apiDTO)
+        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO request)
         {
-            var communityDTO = new CommunityDTO();
-            communityDTO.communityname = apiDTO.CommunityName;
-            communityDTO.communitymgrid = apiDTO.CommunityManager;
-            communityDTO.communitydesc = apiDTO.Description;
-            var response = _communityServiceCommands.AddCommunityService(communityDTO);
-            if (response is null)
+            if (request == null)
+            {
+                return null;
+            }
+
+            var communityDTO = new CommunityDTO
+            {
+                CommunityName = request.CommunityName,
+                CommunityMgrid = request.CommunityManager,
+                CommunityDesc = request.Description
+            };
+
+            var result = await _communityServiceCommands.AddCommunityService(communityDTO);
+            
+            if (result == null)
             {
                 return BadRequest(new CustomErrors()
                 {
                     result = new Result()
                 });
             }
-            var res = new AddResponseDTO()
+
+            var response = new ResponseDTO()
             {
-                CommunityId = response.communityid,
-                CommunityName = response.communityname,
-                CommunityManager = response.communitymanagername,
-                Description = response.communitydesc
+                CommunityId = result.CommunityId,
+                CommunityName = result.CommunityName,
+                CommunityManager = result.CommunityManagerName,
+                Description = result.CommunityDesc
             };
-            return Ok(res);
+
+            return Ok(response);
         }
     }
 }

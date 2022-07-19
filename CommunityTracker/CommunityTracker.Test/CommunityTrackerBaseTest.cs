@@ -1,10 +1,10 @@
-using CommunityTracker.Repository.Command;
+using CommunityTracker.Repository.Commands;
 using CommunityTracker.Repository.DataContext;
 using CommunityTracker.Repository.Interfaces;
-using CommunityTracker.Repository.Query;
-using CommunityTracker.Service.Command;
+using CommunityTracker.Repository.Queries;
+using CommunityTracker.Service.Commands;
 using CommunityTracker.Service.Interfaces;
-using CommunityTracker.Service.Query;
+using CommunityTracker.Service.Queries;
 using CommunityTracker.Test.MockData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
