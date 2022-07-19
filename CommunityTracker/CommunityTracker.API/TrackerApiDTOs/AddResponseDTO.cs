@@ -7,7 +7,7 @@ namespace CommunityTracker.API.TrackerApiDTO
     ///
     /// </summary>
     [Serializable]
-    public class ResponseDTO
+    public class AddResponseDTO
     {
         /// <summary>
         /// Gets or sets the community identifier.

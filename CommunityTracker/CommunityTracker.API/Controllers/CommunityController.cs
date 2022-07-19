@@ -3,6 +3,7 @@ using CommunityTracker.API.TrackerApiDTO;
 using CommunityTracker.Service.ServicesDTO;
 using CommunityTracker.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using CommunityTracker.Repository.RepositoryDTO;
 
 namespace CommunityTracker.API.Controllers
 {
@@ -87,7 +88,7 @@ namespace CommunityTracker.API.Controllers
                 });
             }
 
-            var response = new ResponseDTO()
+            var response = new AddResponseDTO()
             {
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
@@ -99,15 +100,32 @@ namespace CommunityTracker.API.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
+        public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
         {
-            var communityDTO = new CommunityDTO();
-            communityDTO.CommunityId = updateRequestDTO.CommunityID;
-            communityDTO.CommunityName = updateRequestDTO.CommunityName;
-            communityDTO.CommunityMgrid = updateRequestDTO.CommunityManager;
-            communityDTO.CommunityDesc = updateRequestDTO.Description;
-            _communityServiceCommands.UpdateCommunityService(communityDTO);
-            return Ok(communityDTO);
+            var communityDTO = new Community();
+            communityDTO.CommunityId = updateRequestDTO.communityid;
+            communityDTO.CommunityName = updateRequestDTO.communityname;
+            communityDTO.CommunityMgrid = updateRequestDTO.communitymgrid;
+            communityDTO.CommunityDesc = updateRequestDTO.communitydesc;
+            var result = await this._communityServiceCommands.UpdateCommunityService(communityDTO);
+
+            if (result == null)
+            {
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
+            }
+
+            var response = new UpdateResponseDTO()
+            {
+                CommunityId = result.CommunityId,
+                CommunityName = result.CommunityName,
+                CommunityManager = result.CommunityManager,
+                Description = result.CommunityDesc
+            };
+
+            return Ok(response);
         }
     }
 }

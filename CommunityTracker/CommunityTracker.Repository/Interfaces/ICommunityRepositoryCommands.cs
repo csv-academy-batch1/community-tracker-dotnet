@@ -10,6 +10,6 @@ namespace CommunityTracker.Repository.Interfaces
         ///   <br />
         /// </returns>
         Task AddCommunityRepository(Community communityData);
-        void UpdateCommunityRepository(Community communityData);
+        Task UpdateCommunityRepository(Community communityData);
     }
 }
