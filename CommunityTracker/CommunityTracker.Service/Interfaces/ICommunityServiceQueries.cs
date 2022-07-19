@@ -5,7 +5,7 @@ namespace CommunityTracker.Service.Interfaces
     /// <summary>
     ///
     /// </summary>
-    public interface ICommunityServiceQuery
+    public interface ICommunityServiceQueries
     {
         /// <summary>
         /// Gets all communities.
