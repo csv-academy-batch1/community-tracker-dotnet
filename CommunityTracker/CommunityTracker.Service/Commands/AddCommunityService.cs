@@ -1,7 +1,6 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Service.ServicesDTO;
 using CommunityTracker.Service.Interfaces;
-using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Commands
 {
@@ -23,10 +22,10 @@ namespace CommunityTracker.Service.Commands
                 var community = new CommunityResponseDTO();
 
                 var communities = await _communityRepositoryQuery.GetAllCommunities();
-                
+
                 //checks if community is existing
                 bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
-                             
+
                 if (communityExists)
                 {
                     return null;
@@ -40,7 +39,7 @@ namespace CommunityTracker.Service.Commands
                 });
 
                 community = await MapAddCommunityResponse(communityDTO);
-             
+
                 return community;
             }
             catch (Exception)
@@ -57,7 +56,7 @@ namespace CommunityTracker.Service.Commands
         private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
         {
             var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
-            
+
             var result = new CommunityResponseDTO()
             {
                 CommunityId = community.CommunityId,
