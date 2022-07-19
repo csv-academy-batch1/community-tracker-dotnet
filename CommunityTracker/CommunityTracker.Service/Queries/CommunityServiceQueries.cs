@@ -6,19 +6,19 @@ namespace CommunityTracker.Service.Queries
     /// <summary>
     ///
     /// </summary>
-    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceQuery" />
-    public partial class CommunityServiceQuery : ICommunityServiceQuery
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceQueries" />
+    public partial class CommunityServiceQueries : ICommunityServiceQueries
     {
         /// <summary>
         /// The community repository query
         /// </summary>
-        private readonly ICommunityRepositoryQuery _communityRepositoryQuery;
+        private readonly ICommunityRepositoryQueries _communityRepositoryQuery;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommunityServiceQuery"/> class.
+        /// Initializes a new instance of the <see cref="CommunityServiceQueries"/> class.
         /// </summary>
         /// <param name="communityRepositoryQuery">The community repository query.</param>
-        public CommunityServiceQuery(ICommunityRepositoryQuery communityRepositoryQuery)
+        public CommunityServiceQueries(ICommunityRepositoryQueries communityRepositoryQuery)
         {
             _communityRepositoryQuery = communityRepositoryQuery;
         }

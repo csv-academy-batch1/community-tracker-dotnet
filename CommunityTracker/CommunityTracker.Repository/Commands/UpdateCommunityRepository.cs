@@ -1,21 +1,28 @@
-﻿using CommunityTracker.Repository.Interfaces;
-using CommunityTracker.Repository.RepositoryDTO;
+﻿using CommunityTracker.Repository.RepositoryDTO;
+using CommunityTracker.Repository.Interfaces;
 
 namespace CommunityTracker.Repository.Commands
 {
+    /// <summary>
+    /// CommunityRepositoryCommands
+    /// </summary>
+    /// <seealso cref="CommunityTracker.Repository.Interfaces.ICommunityRepositoryCommands" />
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public async Task UpdateCommunityRepository(Community communityData)
+        /// <summary>
+        /// Adds the community to the database.
+        /// </summary>
+        /// <param name="communityData">The community data.</param>
+        public async Task UpdateCommunity(Community communityData)
         {
-            var community = this._communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
-            if (community != null)
+            var community = new Community()
             {
-                community.CommunityName = communityData.CommunityName;
-                community.CommunityMgrid = communityData.CommunityMgrid;
-                community.CommunityDesc = communityData.CommunityDesc;
-                community.IsActive = communityData.IsActive;
-            }
-            await _communityDbContext.SaveChangesAsync();
+                CommunityName = communityData.CommunityName,
+                CommunityMgrid = communityData.CommunityMgrid,
+                CommunityDesc = communityData.CommunityDesc
+            };
+            _communityDbContext.Update(community);
+            await SaveChangesAsync();
         }
     }
 }

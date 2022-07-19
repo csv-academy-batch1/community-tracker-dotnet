@@ -6,30 +6,32 @@ namespace CommunityTracker.Service.Commands
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
-        public async Task<CommunityUpdateDTO> UpdateCommunityService(Community community)
+        public async Task<CommunityResponseDTO> UpdateCommunity(CommunityDTO communityDTO)
         {
-            var managers = await _communityRepositoryQuery.GetAllManagers();
+            var communityUpdate = new CommunityResponseDTO();
 
             var communities = await _communityRepositoryQuery.GetAllCommunities();
 
-            //checks if community is existing
-            bool communityExists = communities.Any(x => x.CommunityName.ToLower() == community.CommunityName.ToLower());
+            bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
 
             if (communityExists)
             {
                 return null;
             }
 
-            var updateCommunity = new CommunityUpdateDTO();
-            updateCommunity.CommunityId = community.CommunityId;
-            updateCommunity.CommunityName = community.CommunityName;
-            updateCommunity.CommunityManager = managers.Where(x => x.CommunityAdminAndManagerId == community.CommunityMgrid).Select(x => x.CommunityAdminAndManagerName).FirstOrDefault();
-            updateCommunity.CommunityDesc = community.CommunityDesc;
-            updateCommunity.IsActive = community.IsActive;
-            
-            _communityRepositoryCommands.UpdateCommunityRepository(community);
+            communities.FirstOrDefault(x => x.CommunityId == communityDTO.CommunityId);
 
-            return updateCommunity;
+            await _communityRepositoryCommands.UpdateCommunity(new Community()
+            {
+                CommunityId = communityDTO.CommunityId,
+                CommunityName = communityDTO.CommunityName,
+                CommunityMgrid = communityDTO.CommunityMgrid,
+                CommunityDesc = communityDTO.CommunityDesc
+            }) ;
+
+            communityUpdate = await MapCommunityResponse(communityDTO);
+
+            return communityUpdate;
         }
     }
 }

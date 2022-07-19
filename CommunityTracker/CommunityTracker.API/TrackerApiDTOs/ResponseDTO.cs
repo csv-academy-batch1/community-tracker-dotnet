@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace CommunityTracker.API.TrackerApiDTO
 {
@@ -7,7 +6,7 @@ namespace CommunityTracker.API.TrackerApiDTO
     ///
     /// </summary>
     [Serializable]
-    public class AddResponseDTO
+    public class ResponseDTO
     {
         /// <summary>
         /// Gets or sets the community identifier.
@@ -41,5 +40,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// The description.
         /// </value>
         public string? Description { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

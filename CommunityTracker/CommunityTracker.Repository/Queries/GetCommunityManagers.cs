@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommunityTracker.Repository.Queries
 {
-    public partial class CommunityRepositoryQuery : ICommunityRepositoryQuery
+    public partial class CommunityRepositoryQueries : ICommunityRepositoryQueries
     {
         /// <summary>Gets all managers.</summary>
         /// <returns>

@@ -23,14 +23,14 @@ namespace CommunityTracker.API.Controllers
         /// <summary>
         /// The community service query
         /// </summary>
-        private readonly ICommunityServiceQuery _communityServiceQuery;
+        private readonly ICommunityServiceQueries _communityServiceQuery;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommunityController"/> class.
         /// </summary>
         /// <param name="communityServiceCommands">The community service commands.</param>
         /// <param name="communityServiceQuery">The community service query.</param>
-        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQuery communityServiceQuery)
+        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQueries communityServiceQuery)
         {
             _communityServiceCommands = communityServiceCommands;
             _communityServiceQuery = communityServiceQuery;
@@ -78,7 +78,7 @@ namespace CommunityTracker.API.Controllers
                 CommunityDesc = request.Description
             };
 
-            var result = await _communityServiceCommands.AddCommunityService(communityDTO);
+            var result = await _communityServiceCommands.AddCommunity(communityDTO);
             
             if (result == null)
             {
@@ -88,7 +88,7 @@ namespace CommunityTracker.API.Controllers
                 });
             }
 
-            var response = new AddResponseDTO()
+            var response = new ResponseDTO()
             {
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
@@ -102,14 +102,14 @@ namespace CommunityTracker.API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
         {
-            var community = new Community();
+            var community = new CommunityDTO();
 
             community.CommunityId = updateRequestDTO.communityid;
             community.CommunityName = updateRequestDTO.communityname;
             community.CommunityMgrid = updateRequestDTO.communitymgrid;
             community.CommunityDesc = updateRequestDTO.communitydesc;
 
-            var result = await this._communityServiceCommands.UpdateCommunityService(community);
+            var result = await this._communityServiceCommands.UpdateCommunity(community);
 
             if (result == null)
             {
@@ -119,12 +119,13 @@ namespace CommunityTracker.API.Controllers
                 });
             }
 
-            var response = new UpdateResponseDTO()
+            var response = new ResponseDTO()
             {
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
-                CommunityManager = result.CommunityManager,
-                Description = result.CommunityDesc
+                CommunityManager = result.CommunityManagerName,
+                Description = result.CommunityDesc,
+                IsActive = result.IsActive
             };
 
             return Ok(response);
