@@ -102,12 +102,12 @@ namespace CommunityTracker.API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
         {
-            var communityDTO = new Community();
-            communityDTO.CommunityId = updateRequestDTO.communityid;
-            communityDTO.CommunityName = updateRequestDTO.communityname;
-            communityDTO.CommunityMgrid = updateRequestDTO.communitymgrid;
-            communityDTO.CommunityDesc = updateRequestDTO.communitydesc;
-            var result = await this._communityServiceCommands.UpdateCommunityService(communityDTO);
+            var community = new Community();
+            community.CommunityId = updateRequestDTO.communityid;
+            community.CommunityName = updateRequestDTO.communityname;
+            community.CommunityMgrid = updateRequestDTO.communitymgrid;
+            community.CommunityDesc = updateRequestDTO.communitydesc;
+            var result = await this._communityServiceCommands.UpdateCommunityService(community);
 
             if (result == null)
             {
