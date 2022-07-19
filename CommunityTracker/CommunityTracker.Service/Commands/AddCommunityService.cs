@@ -1,21 +1,20 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
-using CommunityTracker.Service.ServicesDTO;
 using CommunityTracker.Service.Interfaces;
 
 namespace CommunityTracker.Service.Commands
 {
     /// <summary>
-    ///
+    /// CommunityServiceCommands
     /// </summary>
     /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceCommands" />
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
         /// <summary>
-        /// Adds the community service.
+        /// Add community service.
         /// </summary>
         /// <param name="communityDTO">The community dto.</param>
         /// <returns></returns>
-        public async Task<CommunityResponseDTO> AddCommunityService(CommunityDTO communityDTO)
+        public async Task<CommunityResponseDTO> AddCommunity(CommunityDTO communityDTO)
         {
             try
             {
@@ -31,7 +30,7 @@ namespace CommunityTracker.Service.Commands
                     return null;
                 }
 
-                await _communityRepositoryCommands.AddCommunityRepository(new Community()
+                await _communityRepositoryCommands.AddCommunity(new Community()
                 {
                     CommunityName = communityDTO.CommunityName,
                     CommunityDesc = communityDTO.CommunityDesc,
@@ -49,13 +48,18 @@ namespace CommunityTracker.Service.Commands
         }
 
         /// <summary>
-        /// Maps the add community response.
+        /// Maps the community to response.
         /// </summary>
         /// <param name="communityDTO">The community dto.</param>
         /// <returns></returns>
         private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
         {
             var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
+            
+            if (community == null)
+            {
+                return null;
+            }
 
             var result = new CommunityResponseDTO()
             {

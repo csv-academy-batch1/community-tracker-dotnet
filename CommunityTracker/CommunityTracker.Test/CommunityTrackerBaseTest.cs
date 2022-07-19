@@ -17,9 +17,9 @@ namespace CommunityTracker.Test
     public class CommunityTrackerBaseTest
     {
         public ICommunityRepositoryCommands _repoCommands;
-        public ICommunityRepositoryQuery _repoQueries;
+        public ICommunityRepositoryQueries _repoQueries;
         public ICommunityServiceCommands _serviceCommands;
-        public ICommunityServiceQuery _serviceQueries;
+        public ICommunityServiceQueries _serviceQueries;
         public DbContextOptions<CommunityDbContext> _dbContextOptions;
         public string dbName;
 
@@ -34,10 +34,10 @@ namespace CommunityTracker.Test
             var communityContext = new CommunityDbContext(_dbContextOptions);
 
             _repoCommands = new CommunityRepositoryCommands(communityContext);
-            _repoQueries = new CommunityRepositoryQuery(communityContext);
+            _repoQueries = new CommunityRepositoryQueries(communityContext);
 
             _serviceCommands = new CommunityServiceCommands(_repoCommands, _repoQueries);
-            _serviceQueries = new CommunityServiceQuery(_repoQueries);
+            _serviceQueries = new CommunityServiceQueries(_repoQueries);
         }
 
         public async Task<CommunityRepositoryCommands> CreateCommunityDatabaseAsync()
