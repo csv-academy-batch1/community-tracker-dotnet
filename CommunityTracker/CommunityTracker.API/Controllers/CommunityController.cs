@@ -78,7 +78,7 @@ namespace CommunityTracker.API.Controllers
             };
 
             var result = await _communityServiceCommands.AddCommunityService(communityDTO);
-            
+
             if (result == null)
             {
                 return BadRequest(new CustomErrors()
@@ -92,7 +92,8 @@ namespace CommunityTracker.API.Controllers
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
-                Description = result.CommunityDesc
+                Description = result.CommunityDesc,
+                IsActive = result.Equals(true)
             };
 
             return Ok(response);
