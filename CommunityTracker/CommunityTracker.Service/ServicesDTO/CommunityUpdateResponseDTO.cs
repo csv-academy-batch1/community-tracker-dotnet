@@ -3,7 +3,7 @@
 namespace CommunityTracker.Service.ServicesDTO
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     public class CommunityUpdateResponseDTO
     {
@@ -39,5 +39,12 @@ namespace CommunityTracker.Service.ServicesDTO
         /// The communitydesc.
         /// </value>
         public string? communitydesc { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
+        /// </value>
+        public bool isActive { get; set; } = true;
     }
 }
