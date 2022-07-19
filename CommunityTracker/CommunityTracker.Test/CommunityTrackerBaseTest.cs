@@ -44,6 +44,7 @@ namespace CommunityTracker.Test
         {
             CommunityDbContext context = new CommunityDbContext(_dbContextOptions);
             await CommunityMockData.PopulateCommunityAsync(context);
+            await CommunityMockData.PopulateCommunityManagersAsync(context);
             return new CommunityRepositoryCommands(context);
         }
     }
