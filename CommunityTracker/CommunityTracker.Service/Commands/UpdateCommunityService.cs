@@ -25,6 +25,7 @@ namespace CommunityTracker.Service.Commands
             updateCommunity.CommunityName = community.CommunityName;
             updateCommunity.CommunityManager = managers.Where(x => x.CommunityAdminAndManagerId == community.CommunityMgrid).Select(x => x.CommunityAdminAndManagerName).FirstOrDefault();
             updateCommunity.CommunityDesc = community.CommunityDesc;
+            updateCommunity.IsActive = community.IsActive;
             
             _communityRepositoryCommands.UpdateCommunityRepository(community);
 

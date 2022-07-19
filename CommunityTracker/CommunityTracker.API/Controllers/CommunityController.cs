@@ -107,6 +107,7 @@ namespace CommunityTracker.API.Controllers
             community.CommunityName = updateRequestDTO.communityname;
             community.CommunityMgrid = updateRequestDTO.communitymgrid;
             community.CommunityDesc = updateRequestDTO.communitydesc;
+            community.IsActive = updateRequestDTO.isactive;
             var result = await this._communityServiceCommands.UpdateCommunityService(community);
 
             if (result == null)
@@ -122,7 +123,8 @@ namespace CommunityTracker.API.Controllers
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManager,
-                Description = result.CommunityDesc
+                Description = result.CommunityDesc,
+                IsActive = result.IsActive
             };
 
             return Ok(response);
