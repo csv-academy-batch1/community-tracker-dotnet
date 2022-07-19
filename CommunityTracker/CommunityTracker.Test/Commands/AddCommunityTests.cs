@@ -20,7 +20,7 @@ namespace CommunityTracker.Test.Commands
             {
                 CommunityName = "Enterprise .Net",
                 CommunityMgrid = 10,
-                CommunityDesc = "Test Success"
+                CommunityDesc = "Test_Success"
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
