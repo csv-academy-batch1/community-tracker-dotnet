@@ -9,6 +9,5 @@ namespace CommunityTracker.API.TrackerApiDTO
         [Required]
         public int? communitymgrid { get; set; }
         public string communitydesc { get; set; }
-        public bool isactive { get; set; }
     }
 }

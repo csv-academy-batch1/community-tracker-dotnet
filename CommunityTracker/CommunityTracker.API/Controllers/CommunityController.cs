@@ -103,11 +103,12 @@ namespace CommunityTracker.API.Controllers
         public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
         {
             var community = new Community();
+
             community.CommunityId = updateRequestDTO.communityid;
             community.CommunityName = updateRequestDTO.communityname;
             community.CommunityMgrid = updateRequestDTO.communitymgrid;
             community.CommunityDesc = updateRequestDTO.communitydesc;
-            community.IsActive = updateRequestDTO.isactive;
+
             var result = await this._communityServiceCommands.UpdateCommunityService(community);
 
             if (result == null)
@@ -123,8 +124,7 @@ namespace CommunityTracker.API.Controllers
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManager,
-                Description = result.CommunityDesc,
-                IsActive = result.IsActive
+                Description = result.CommunityDesc
             };
 
             return Ok(response);
