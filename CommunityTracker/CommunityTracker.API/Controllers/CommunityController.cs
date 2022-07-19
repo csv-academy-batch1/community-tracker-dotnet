@@ -1,7 +1,8 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
-using CommunityTracker.Service.ServicesDTO;
+using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Service.Interfaces;
+using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunityTracker.API.Controllers
@@ -60,41 +61,61 @@ namespace CommunityTracker.API.Controllers
         /// <summary>
         /// Adds the community.
         /// </summary>
-        /// <param name="request">The API dto.</param>
+        /// <param name="apiDTO">The API dto.</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO request)
+        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO apiDTO)
         {
-            if (request == null)
-            {
-                return null;
-            }
-
-            var communityDTO = new CommunityDTO
-            {
-                CommunityName = request.CommunityName,
-                CommunityMgrid = request.CommunityManager,
-                CommunityDesc = request.Description
-            };
-
+            var communityDTO = new CommunityDTO();
+            communityDTO.CommunityName = apiDTO.CommunityName;
+            communityDTO.CommunityMgrid = apiDTO.CommunityManager;
+            communityDTO.CommunityDesc = apiDTO.Description;
             var result = await _communityServiceCommands.AddCommunityService(communityDTO);
-            
-            if (result == null)
+            if (result is null)
             {
                 return BadRequest(new CustomErrors()
                 {
                     result = new Result()
                 });
             }
-
-            var response = new ResponseDTO()
+            var response = new AddResponseDTO()
             {
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc
             };
+            return Ok(response);
+        }
 
+        /// <summary>
+        /// Updates the community.
+        /// </summary>
+        /// <param name="updateRequestDTO">The update request dto.</param>
+        /// <returns></returns>
+        [HttpPut]
+        public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
+        {
+            var communityDTO = new Community();
+            communityDTO.CommunityId = updateRequestDTO.communityid;
+            communityDTO.CommunityName = updateRequestDTO.communityname;
+            communityDTO.CommunityMgrid = updateRequestDTO.communitymgrid;
+            communityDTO.CommunityDesc = updateRequestDTO.communitydesc;
+            var result = await _communityServiceCommands.UpdateCommunityService(communityDTO);
+            if (result is null)
+            {
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
+            }
+            var response = new UpdateResponseDTO()
+            {
+                communityid = result.communityid,
+                communityname = result.communityname,
+                communitymanager = result.communitymanagername,
+                communitydesc = result.communitydesc
+            };
             return Ok(response);
         }
     }

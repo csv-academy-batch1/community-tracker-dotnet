@@ -10,5 +10,12 @@ namespace CommunityTracker.Repository.Interfaces
         ///   <br />
         /// </returns>
         Task AddCommunityRepository(Community communityData);
+
+        /// <summary>
+        /// Updates the community repository.
+        /// </summary>
+        /// <param name="communityData">The community data.</param>
+        /// <returns></returns>
+        Task UpdateCommunityRepository(Community communityData);
     }
 }
