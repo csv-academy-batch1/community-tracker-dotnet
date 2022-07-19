@@ -1,9 +1,8 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
-using CommunityTracker.Repository.RepositoryDTO;
 
 namespace CommunityTracker.Repository.Interfaces
 {
-    public interface ICommunityRepositoryQuery
+    public interface ICommunityRepositoryQueries
     {
         /// <summary>
         /// Gets all communities.

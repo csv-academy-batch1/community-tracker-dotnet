@@ -6,8 +6,8 @@ namespace CommunityTracker.Service.Queries
     /// <summary>
     ///
     /// </summary>
-    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceQuery" />
-    public partial class CommunityServiceQuery : ICommunityServiceQuery
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceQueries" />
+    public partial class CommunityServiceQueries : ICommunityServiceQueries
     {
         /// <summary>
         /// Gets all communities.

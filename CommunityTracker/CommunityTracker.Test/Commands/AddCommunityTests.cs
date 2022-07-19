@@ -16,7 +16,7 @@ namespace CommunityTracker.Test.Commands
             var mockDatabase = CreateCommunityDatabaseAsync();
 
             //Act
-            var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
+            var community = await _serviceCommands.AddCommunity(new CommunityDTO()
             {
                 CommunityName = "Enterprise .Net",
                 CommunityMgrid = 10,
@@ -38,7 +38,7 @@ namespace CommunityTracker.Test.Commands
             var mockDatabase = CreateCommunityDatabaseAsync();
 
             //Act
-            var community = await _serviceCommands.AddCommunityService(new CommunityDTO()
+            var community = await _serviceCommands.AddCommunity(new CommunityDTO()
             {
                 CommunityName = "TestCommunityName1",
                 CommunityMgrid = 10,

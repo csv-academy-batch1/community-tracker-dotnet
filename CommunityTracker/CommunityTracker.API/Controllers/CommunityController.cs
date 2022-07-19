@@ -23,14 +23,14 @@ namespace CommunityTracker.API.Controllers
         /// <summary>
         /// The community service query
         /// </summary>
-        private readonly ICommunityServiceQuery _communityServiceQuery;
+        private readonly ICommunityServiceQueries _communityServiceQuery;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommunityController"/> class.
         /// </summary>
         /// <param name="communityServiceCommands">The community service commands.</param>
         /// <param name="communityServiceQuery">The community service query.</param>
-        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQuery communityServiceQuery)
+        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQueries communityServiceQuery)
         {
             _communityServiceCommands = communityServiceCommands;
             _communityServiceQuery = communityServiceQuery;
