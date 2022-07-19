@@ -6,8 +6,8 @@ namespace CommunityTracker.Service.Queries
     /// <summary>
     ///
     /// </summary>
-    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceQuery" />
-    public partial class CommunityServiceQuery : ICommunityServiceQuery
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceQueries" />
+    public partial class CommunityServiceQueries : ICommunityServiceQueries
     {
         /// <summary>
         /// Gets all community managers.
@@ -15,20 +15,22 @@ namespace CommunityTracker.Service.Queries
         /// <returns></returns>
         public async Task<List<CommunityManagersDTO>> GetAllCommunityManagers()
         {
-            var displayAllCommunityManagers = await _communityRepositoryQuery.GetAllManagers();
+            var managers = await _communityRepositoryQuery.GetAllManagers();
             List<CommunityManagersDTO> result = new List<CommunityManagersDTO>();
-            foreach (var item in displayAllCommunityManagers)
+            
+            foreach (var manager in managers)
             {
                 result.Add(new CommunityManagersDTO()
                 {
-                    communityadminandmanagerid = item.CommunityAdminAndManagerId,
-                    communityadminandmanagername = item.CommunityAdminAndManagerName,
-                    csvemail = item.CSVEmail,
-                    passkey = item.PassKey,
-                    roletype = item.RoleType,
-                    isactive = item.IsActive
+                    communityadminandmanagerid = manager.CommunityAdminAndManagerId,
+                    communityadminandmanagername = manager.CommunityAdminAndManagerName,
+                    csvemail = manager.CSVEmail,
+                    passkey = manager.PassKey,
+                    roletype = manager.RoleType,
+                    isactive = manager.IsActive
                 });
             }
+
             return result;
         }
     }

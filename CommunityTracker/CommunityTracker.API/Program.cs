@@ -15,9 +15,9 @@ var configuration = builder.Configuration;
 builder.Services.AddControllers().AddJsonOptions(opt => opt.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 builder.Services.AddScoped<ICommunityRepositoryCommands, CommunityRepositoryCommands>();
-builder.Services.AddScoped<ICommunityRepositoryQuery, CommunityRepositoryQuery>();
+builder.Services.AddScoped<ICommunityRepositoryQueries, CommunityRepositoryQueries>();
 builder.Services.AddScoped<ICommunityServiceCommands, CommunityServiceCommands>();
-builder.Services.AddScoped<ICommunityServiceQuery, CommunityServiceQuery>();
+builder.Services.AddScoped<ICommunityServiceQueries, CommunityServiceQueries>();
 builder.Services.AddDbContext<CommunityDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 
