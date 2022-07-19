@@ -96,7 +96,7 @@ namespace CommunityTracker.API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
         {
-            var communityDTO = new Community();
+            var communityDTO = new CommunityDTO();
             communityDTO.CommunityId = updateRequestDTO.communityId;
             communityDTO.CommunityName = updateRequestDTO.communityName;
             communityDTO.CommunityMgrid = updateRequestDTO.communityMgrid;
@@ -111,10 +111,10 @@ namespace CommunityTracker.API.Controllers
             }
             var response = new ResponseDTO()
             {
-                CommunityId = result.communityid,
-                CommunityName = result.communityname,
-                CommunityManager = result.communitymanagername,
-                Description = result.communitydesc
+                CommunityId = result.CommunityId,
+                CommunityName = result.CommunityName,
+                CommunityManager = result.CommunityManagerName,
+                Description = result.CommunityDesc
             };
             return Ok(response);
         }

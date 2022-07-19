@@ -27,7 +27,7 @@ namespace CommunityTracker.Service.Commands
             {
                 return null;
             }
-
+            //communities.FirstOrDefault(x => x.CommunityId == community.CommunityId);
             await _communityRepositoryCommands.UpdateCommunity(new Community()
             {
                 CommunityId = community.CommunityId,
@@ -37,14 +37,6 @@ namespace CommunityTracker.Service.Commands
             });
 
             coms = await MapAddCommunityResponse(community);
-            //var manager = await _communityRepositoryQuery.GetAllManagers();
-            //var updateCommunity = new CommunityUpdateResponseDTO();
-            //updateCommunity.communityid = community.CommunityId;
-            //updateCommunity.communityname = community.CommunityName;
-            //updateCommunity.communitymgrid = community.CommunityMgrid;
-            //updateCommunity.communitymanagername = manager.Where(x => x.CommunityAdminAndManagerId == community.CommunityMgrid).Select(x => x.CommunityAdminAndManagerName).FirstOrDefault();
-            //updateCommunity.communitydesc = community.CommunityDesc;
-            //await _communityRepositoryCommands.UpdateCommunity(community);
             return coms;
         }
     }

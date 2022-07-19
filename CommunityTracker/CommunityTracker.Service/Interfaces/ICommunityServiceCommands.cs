@@ -20,6 +20,6 @@ namespace CommunityTracker.Service.Interfaces
         /// </summary>
         /// <param name="communityDTO">The community dto.</param>
         /// <returns></returns>
-        Task<CommunityResponseDTO> UpdateCommunity(Community communityDTO);
+        Task<CommunityResponseDTO> UpdateCommunity(CommunityDTO communityDTO);
     }
 }
