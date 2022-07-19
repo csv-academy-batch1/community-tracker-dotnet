@@ -32,6 +32,7 @@ namespace CommunityTracker.Service.Commands
             community.communityname = communities.CommunityName;
             community.communitymanagername = manager.Where(x => x.CommunityAdminAndManagerId == communities.CommunityMgrid).Select(x => x.CommunityAdminAndManagerName).FirstOrDefault();
             community.communitydesc = communities.CommunityDesc;
+            community.isActive = communities.IsActive;
             await _communityRepositoryCommands.UpdateCommunityRepository(communities);
             return community;
         }

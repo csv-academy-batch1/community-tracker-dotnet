@@ -19,6 +19,7 @@ namespace CommunityTracker.Repository.Commands
             community.CommunityName = communityData.CommunityName;
             community.CommunityMgrid = communityData.CommunityMgrid;
             community.CommunityDesc = communityData.CommunityDesc;
+            community.IsActive = communityData.IsActive;
             await _communityDbContext.SaveChangesAsync();
         }
     }
