@@ -1,5 +1,6 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Service.Interfaces;
+using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Commands
 {

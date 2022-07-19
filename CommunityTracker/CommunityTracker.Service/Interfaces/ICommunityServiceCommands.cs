@@ -1,4 +1,5 @@
-﻿using CommunityTracker.Service.ServicesDTO;
+﻿using CommunityTracker.Repository.RepositoryDTO;
+using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Interfaces
 {
@@ -12,13 +13,13 @@ namespace CommunityTracker.Service.Interfaces
         /// </summary>
         /// <param name="communityDTO">The community dto.</param>
         /// <returns></returns>
-        Task<CommunityResponseDTO> AddCommunityService(CommunityDTO communityDTO);
+        Task<CommunityResponseDTO> AddCommunity(CommunityDTO communityDTO);
 
         /// <summary>
         /// Updates the community service.
         /// </summary>
         /// <param name="communityDTO">The community dto.</param>
         /// <returns></returns>
-        Task<CommunityUpdateResponseDTO> UpdateCommunityService(Community communityDTO);
+        Task<CommunityResponseDTO> UpdateCommunity(Community communityDTO);
     }
 }

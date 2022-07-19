@@ -14,7 +14,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// The communityid.
         /// </value>
         [Required]
-        public int communityid { get; set; }
+        public int communityId { get; set; }
 
         /// <summary>
         /// Gets or sets the communityname.
@@ -22,7 +22,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The communityname.
         /// </value>
-        public string communityname { get; set; }
+        public string communityName { get; set; }
 
         /// <summary>
         /// Gets or sets the communitymgrid.
@@ -30,7 +30,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The communitymgrid.
         /// </value>
-        public int? communitymgrid { get; set; }
+        public int? communityMgrid { get; set; }
 
         /// <summary>
         /// Gets or sets the communitydesc.
@@ -38,6 +38,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The communitydesc.
         /// </value>
-        public string communitydesc { get; set; }
+        public string communityDesc { get; set; }
     }
 }

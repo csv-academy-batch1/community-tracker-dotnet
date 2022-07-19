@@ -70,7 +70,7 @@ namespace CommunityTracker.API.Controllers
             communityDTO.CommunityName = apiDTO.CommunityName;
             communityDTO.CommunityMgrid = apiDTO.CommunityManager;
             communityDTO.CommunityDesc = apiDTO.Description;
-            var result = await _communityServiceCommands.AddCommunityService(communityDTO);
+            var result = await _communityServiceCommands.AddCommunity(communityDTO);
             if (result is null)
             {
                 return BadRequest(new CustomErrors()
@@ -78,7 +78,7 @@ namespace CommunityTracker.API.Controllers
                     result = new Result()
                 });
             }
-            var response = new AddResponseDTO()
+            var response = new ResponseDTO()
             {
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
@@ -97,11 +97,11 @@ namespace CommunityTracker.API.Controllers
         public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
         {
             var communityDTO = new Community();
-            communityDTO.CommunityId = updateRequestDTO.communityid;
-            communityDTO.CommunityName = updateRequestDTO.communityname;
-            communityDTO.CommunityMgrid = updateRequestDTO.communitymgrid;
-            communityDTO.CommunityDesc = updateRequestDTO.communitydesc;
-            var result = await _communityServiceCommands.UpdateCommunityService(communityDTO);
+            communityDTO.CommunityId = updateRequestDTO.communityId;
+            communityDTO.CommunityName = updateRequestDTO.communityName;
+            communityDTO.CommunityMgrid = updateRequestDTO.communityMgrid;
+            communityDTO.CommunityDesc = updateRequestDTO.communityDesc;
+            var result = await _communityServiceCommands.UpdateCommunity(communityDTO);
             if (result is null)
             {
                 return BadRequest(new CustomErrors()
@@ -109,12 +109,12 @@ namespace CommunityTracker.API.Controllers
                     result = new Result()
                 });
             }
-            var response = new UpdateResponseDTO()
+            var response = new ResponseDTO()
             {
-                communityid = result.communityid,
-                communityname = result.communityname,
-                communitymanager = result.communitymanagername,
-                communitydesc = result.communitydesc
+                CommunityId = result.communityid,
+                CommunityName = result.communityname,
+                CommunityManager = result.communitymanagername,
+                Description = result.communitydesc
             };
             return Ok(response);
         }

@@ -1,50 +1,51 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CommunityTracker.Service.ServicesDTO
+namespace CommunityTracker.API.TrackerApiDTO
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    public class CommunityUpdateResponseDTO
+    [Serializable]
+    public class ResponseDTO
     {
         /// <summary>
-        /// Gets or sets the communityid.
+        /// Gets or sets the community identifier.
         /// </summary>
         /// <value>
-        /// The communityid.
+        /// The community identifier.
         /// </value>
         [Key]
-        public int communityid { get; set; }
+        public int CommunityId { get; set; }
 
         /// <summary>
-        /// Gets or sets the communityname.
+        /// Gets or sets the name of the community.
         /// </summary>
         /// <value>
-        /// The communityname.
+        /// The name of the community.
         /// </value>
-        public string communityname { get; set; }
+        public string? CommunityName { get; set; }
 
         /// <summary>
-        /// Gets or sets the communitymanagername.
+        /// Gets or sets the community manager.
         /// </summary>
         /// <value>
-        /// The communitymanagername.
+        /// The community manager.
         /// </value>
-        public string communitymanagername { get; set; }
+        public string? CommunityManager { get; set; }
 
         /// <summary>
-        /// Gets or sets the communitydesc.
+        /// Gets or sets the description.
         /// </summary>
         /// <value>
-        /// The communitydesc.
+        /// The description.
         /// </value>
-        public string? communitydesc { get; set; }
+        public string? Description { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is active.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
         /// </value>
-        public bool isActive { get; set; } = true;
     }
 }

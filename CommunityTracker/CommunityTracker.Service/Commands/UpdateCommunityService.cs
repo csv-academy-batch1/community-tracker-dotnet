@@ -15,26 +15,37 @@ namespace CommunityTracker.Service.Commands
         /// </summary>
         /// <param name="community">The community.</param>
         /// <returns></returns>
-        public async Task<CommunityUpdateResponseDTO> UpdateCommunityService(Community communities)
+        public async Task<CommunityResponseDTO> UpdateCommunity(CommunityDTO community)
         {
-            var allcommunities = await _communityRepositoryQuery.GetAllCommunities();
+            var coms = new CommunityResponseDTO();
+            var communities = await _communityRepositoryQuery.GetAllCommunities();
 
             //checks if community is existing
-            bool communityExists = allcommunities.Any(x => x.CommunityName.ToLower() == communities.CommunityName.ToLower());
+            bool communityExists = communities.Any(x => x.CommunityName.ToLower() == community.CommunityName.ToLower());
 
             if (communityExists)
             {
                 return null;
             }
-            var manager = await _communityRepositoryQuery.GetAllManagers();
-            var community = new CommunityUpdateResponseDTO();
-            community.communityid = communities.CommunityId;
-            community.communityname = communities.CommunityName;
-            community.communitymanagername = manager.Where(x => x.CommunityAdminAndManagerId == communities.CommunityMgrid).Select(x => x.CommunityAdminAndManagerName).FirstOrDefault();
-            community.communitydesc = communities.CommunityDesc;
-            community.isActive = communities.IsActive;
-            await _communityRepositoryCommands.UpdateCommunityRepository(communities);
-            return community;
+
+            await _communityRepositoryCommands.UpdateCommunity(new Community()
+            {
+                CommunityId = community.CommunityId,
+                CommunityName = community.CommunityName,
+                CommunityMgrid = community.CommunityMgrid,
+                CommunityDesc = community.CommunityDesc
+            });
+
+            coms = await MapAddCommunityResponse(community);
+            //var manager = await _communityRepositoryQuery.GetAllManagers();
+            //var updateCommunity = new CommunityUpdateResponseDTO();
+            //updateCommunity.communityid = community.CommunityId;
+            //updateCommunity.communityname = community.CommunityName;
+            //updateCommunity.communitymgrid = community.CommunityMgrid;
+            //updateCommunity.communitymanagername = manager.Where(x => x.CommunityAdminAndManagerId == community.CommunityMgrid).Select(x => x.CommunityAdminAndManagerName).FirstOrDefault();
+            //updateCommunity.communitydesc = community.CommunityDesc;
+            //await _communityRepositoryCommands.UpdateCommunity(community);
+            return coms;
         }
     }
 }
