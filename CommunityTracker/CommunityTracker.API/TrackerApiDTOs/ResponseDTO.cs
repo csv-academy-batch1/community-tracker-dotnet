@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace CommunityTracker.API.TrackerApiDTO
 {
     /// <summary>
     ///
     /// </summary>
-    [Serializable]
     public class ResponseDTO
     {
         /// <summary>
