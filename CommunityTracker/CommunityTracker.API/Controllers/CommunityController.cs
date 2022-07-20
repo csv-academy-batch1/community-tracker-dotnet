@@ -1,7 +1,8 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
-using CommunityTracker.Service.ServicesDTO;
+using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Service.Interfaces;
+using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunityTracker.API.Controllers
@@ -78,7 +79,7 @@ namespace CommunityTracker.API.Controllers
             };
 
             var result = await _communityServiceCommands.AddCommunity(communityDTO);
-            
+
             if (result == null)
             {
                 return BadRequest(new CustomErrors()
@@ -92,7 +93,8 @@ namespace CommunityTracker.API.Controllers
                 CommunityId = result.CommunityId,
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
-                Description = result.CommunityDesc
+                Description = result.CommunityDesc,
+                Active = result.isActive    
             };
 
             return Ok(response);
