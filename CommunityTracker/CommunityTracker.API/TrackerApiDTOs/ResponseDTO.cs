@@ -39,6 +39,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// The description.
         /// </value>
         public string? Description { get; set; }
-        public bool IsActive { get; set; }
+        //public bool IsActive { get; set; }
     }
 }

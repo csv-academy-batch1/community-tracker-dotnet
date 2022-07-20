@@ -25,14 +25,16 @@ namespace CommunityTracker.Test.Commands
                 CommunityDesc = "Success - Should be able to update community details based on ID."
             });
 
-            var communities = await _serviceQueries.GetAllCommunities();
-            var addedCommunity = communities.FirstOrDefault(x => x.communityid == 2);
+            var afterUpdate = await _serviceQueries.GetAllCommunities();
+            var updatedCommunity = afterUpdate.FirstOrDefault(x => x.communityid == 2);
 
             //Assert
-            communities.Should().NotBeEmpty();
-            communities.Count().Should().Be(3);
-            communities.Should().OnlyHaveUniqueItems(i => i.communityname);
-            community.CommunityName.Should().Be(addedCommunity.communityname);
+            community.CommunityId.Should().Be(updatedCommunity.communityid);
+            community.CommunityName.Should().Be(updatedCommunity.communityname);
+            afterUpdate.Should().NotBeEmpty();
+            afterUpdate.Count().Should().Be(3);
+            afterUpdate.Should().OnlyHaveUniqueItems(i => i.communityname);
+            community.CommunityName.Should().Be(updatedCommunity.communityname);
         }
 
         //Endpoint Validation
@@ -52,14 +54,13 @@ namespace CommunityTracker.Test.Commands
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
-            var addedCommunity = communities.FirstOrDefault(x => x.communityid == 2);
+            var updatedCommunity = communities.FirstOrDefault(x => x.communityid == 2);
 
             //Assert
             communities.Should().NotBeEmpty();
             communities.Count().Should().Be(3);
             communities.Should().OnlyHaveUniqueItems(i => i.communityname);
-            //community.CommunityName.Should().Be("TestCommunityName2");
-            addedCommunity.communityname.Should().Be("TestCommunityName2");
+            updatedCommunity.communityname.Should().Be("TestCommunityName2");
         }
     }
 }

@@ -94,18 +94,17 @@ namespace CommunityTracker.API.Controllers
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc,
-                IsActive = result.Equals(true)
             };
 
             return Ok(response);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateRequestDTO updateRequestDTO)
         {
             var community = new CommunityDTO();
 
-            community.CommunityId = updateRequestDTO.communityid;
+            community.CommunityId = id;
             community.CommunityName = updateRequestDTO.communityname;
             community.CommunityMgrid = updateRequestDTO.communitymgrid;
             community.CommunityDesc = updateRequestDTO.communitydesc;
@@ -126,7 +125,6 @@ namespace CommunityTracker.API.Controllers
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc,
-                IsActive = result.IsActive
             };
 
             return Ok(response);

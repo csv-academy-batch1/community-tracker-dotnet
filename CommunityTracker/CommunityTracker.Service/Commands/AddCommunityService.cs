@@ -21,6 +21,9 @@ namespace CommunityTracker.Service.Commands
             {
                 var community = new CommunityResponseDTO();
 
+                //TODO: create separate method
+                //Update with migz
+
                 var communities = await _communityRepositoryQuery.GetAllCommunities();
                 var managers = await _communityRepositoryQuery.GetAllManagers();
 

@@ -19,7 +19,7 @@ namespace CommunityTracker.Test.Commands
             var community = await _serviceCommands.AddCommunity(new CommunityDTO()
             {
                 CommunityName = "Enterprise .Net",
-                CommunityMgrid = 1,
+                CommunityMgrid = 10,
                 CommunityDesc = "Test_Success - Should be able to add in community table."
             });
 
