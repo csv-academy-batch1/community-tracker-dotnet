@@ -21,21 +21,11 @@ namespace CommunityTracker.Service.Commands
             {
                 var community = new CommunityResponseDTO();
 
-                //TODO: create separate method
-                //Update with migz
+                var validation = await ResponseValidation(communityDTO);
 
-                var communities = await _communityRepositoryQuery.GetAllCommunities();
-                var managers = await _communityRepositoryQuery.GetAllManagers();
-
-                //checks if community is existing
-                bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
-
-                //checks if managerId is existing
-                bool managerIdExists = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
-
-                if (communityExists || !managerIdExists)
+                if (validation == null)
                 {
-                    return null;
+                    return validation;
                 }
 
                 await _communityRepositoryCommands.AddCommunity(new Community()
@@ -53,6 +43,27 @@ namespace CommunityTracker.Service.Commands
             {
                 return null;
             }
+        }
+
+        private async Task<CommunityResponseDTO> ResponseValidation(CommunityDTO communityDTO)
+        {
+            var community = new CommunityResponseDTO();
+
+            var communities = await _communityRepositoryQuery.GetAllCommunities();
+            var managers = await _communityRepositoryQuery.GetAllManagers();
+
+            //checks if community is existing
+            bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
+
+            //checks if managerId is existing
+            bool managerIdExists = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
+
+            if (communityExists || !managerIdExists)
+            {
+                return null;
+            }
+
+            return community;
         }
     }
 }
