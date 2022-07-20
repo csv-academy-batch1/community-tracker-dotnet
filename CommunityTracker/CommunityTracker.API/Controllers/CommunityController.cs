@@ -94,7 +94,7 @@ namespace CommunityTracker.API.Controllers
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc,
-                isActive = result.isActive    
+                Active = result.isActive    
             };
 
             return Ok(response);
