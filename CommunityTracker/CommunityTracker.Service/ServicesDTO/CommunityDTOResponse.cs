@@ -26,5 +26,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// </value>
         [JsonPropertyName("Community Name")]
         public string communityname { get; set; }
+        [JsonPropertyName("Descrpition")]
+        public string communitydescription { get; set; }
     }
 }

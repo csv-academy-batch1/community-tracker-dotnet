@@ -63,7 +63,16 @@ namespace CommunityTracker.Service.Commands
                 return null;
             }
 
-            return community;
+            var result = new CommunityResponseDTO()
+            {
+                CommunityId = community.CommunityId,
+                CommunityName = community.CommunityName,
+                CommunityManagerName = community.CommunityAdminAndManagerName,
+                CommunityDesc = community.CommunityDesc,
+                isActive = community.isActive
+            };
+
+            return result;
         }
     }
 }

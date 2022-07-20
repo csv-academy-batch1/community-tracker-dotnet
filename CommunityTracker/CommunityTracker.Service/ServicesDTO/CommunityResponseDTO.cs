@@ -39,6 +39,6 @@ namespace CommunityTracker.Service.ServicesDTO
         /// The communitydesc.
         /// </value>
         public string? CommunityDesc { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool isActive { get; set; } = true;
     }
 }

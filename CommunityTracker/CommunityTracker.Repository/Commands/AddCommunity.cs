@@ -18,7 +18,7 @@ namespace CommunityTracker.Repository.Commands
             try
             {
                 await _communityDbContext.AddAsync(communityData);
-                await _communityDbContext.SaveChangesAsync();
+                await SaveChangesAsync();
             }
             catch (Exception)
             {
