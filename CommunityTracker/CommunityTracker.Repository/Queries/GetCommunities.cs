@@ -48,7 +48,8 @@ namespace CommunityTracker.Repository.Queries
                                   CommunityName = c.CommunityName,
                                   CommunityDesc = c.CommunityDesc,
                                   CommunityMgrid = c.CommunityMgrid,
-                                  CommunityAdminAndManagerName = cm.CommunityAdminAndManagerName
+                                  CommunityAdminAndManagerName = cm.CommunityAdminAndManagerName,
+                                  isActive = c.IsActive
                               }).FirstOrDefaultAsync();
 
             return data;

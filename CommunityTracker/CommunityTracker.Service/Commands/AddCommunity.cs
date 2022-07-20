@@ -67,7 +67,8 @@ namespace CommunityTracker.Service.Commands
                 CommunityId = community.CommunityId,
                 CommunityName = community.CommunityName,
                 CommunityManagerName = community.CommunityAdminAndManagerName,
-                CommunityDesc = community.CommunityDesc
+                CommunityDesc = community.CommunityDesc,
+                isActive = community.isActive
             };
 
             return result;

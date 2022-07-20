@@ -62,6 +62,6 @@ namespace CommunityTracker.Repository.RepositoryDTO
         ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
         /// </value>
         [Column("isactive")]
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
