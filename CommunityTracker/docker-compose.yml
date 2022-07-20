@@ -1,0 +1,28 @@
+version: '3'
+volumes:
+    pgadmin:
+    postgres:
+services:
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4
+        restart: unless-stopped
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin
+            PGADMIN_DEFAULT_PASSWORD: admin
+        volumes:
+            - pgadmin:/root/.pgadmin
+        ports:
+            - '8082:80'
+    postgres:
+        container_name: postgres
+        image: postgres
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: password
+            PGDATA: /data/postgres
+        volumes:
+            - postgres:/data/postgres
+        ports:
+            - '5432:5432'
+        restart: unless-stopped

@@ -12,14 +12,16 @@ namespace CommunityTracker.Service.Commands
 
             var communities = await _communityRepositoryQuery.GetAllCommunities();
 
-            bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
+            bool communityNameExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
 
-            if (communityExists)
+            bool communityIdExists = communities.Any(x => x.CommunityId == null);
+
+            if (communityNameExists || communityIdExists)
             {
                 return null;
             }
 
-            var communityIdFilter = communities.First(x => x.CommunityId == communityDTO.CommunityId);
+            //var communityIdFilter = communities.First(x => x.CommunityId == communityDTO.CommunityId);
 
             await _communityRepositoryCommands.UpdateCommunity(new Community()
             {

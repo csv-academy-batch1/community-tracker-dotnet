@@ -99,12 +99,17 @@ namespace CommunityTracker.API.Controllers
             return Ok(response);
         }
 
+        [Route("{id}")]
         [HttpPut]
-        public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
+        public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateRequestDTO updateRequestDTO)
         {
+            //Todo Add data validation for int id and body id
+            
+            //Todo add validation where community id not found will return fail: INPROGRESS
+
             var community = new CommunityDTO();
 
-            community.CommunityId = updateRequestDTO.communityid;
+            community.CommunityId = id;
             community.CommunityName = updateRequestDTO.communityname;
             community.CommunityMgrid = updateRequestDTO.communitymgrid;
             community.CommunityDesc = updateRequestDTO.communitydesc;

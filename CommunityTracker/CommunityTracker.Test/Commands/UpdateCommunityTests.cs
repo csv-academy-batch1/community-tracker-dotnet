@@ -14,6 +14,7 @@ namespace CommunityTracker.Test.Commands
         {
             //Arrange
             var mockDatabase = CreateCommunityDatabaseAsync();
+           
 
             //Act
             var community = await _serviceCommands.UpdateCommunity(new CommunityDTO()
@@ -24,14 +25,16 @@ namespace CommunityTracker.Test.Commands
                 CommunityDesc = "Update Desc"
             });
 
-            var communities = await _serviceQueries.GetAllCommunities();
-            var addedCommunity = communities.FirstOrDefault(x => x.communityid == 2);
+            var afterUpdate = await _serviceQueries.GetAllCommunities();
+            var updatedCommunity = afterUpdate.FirstOrDefault(x => x.communityid == 2);
 
             //Assert
-            communities.Should().NotBeEmpty();
-            communities.Count().Should().Be(3);
-            communities.Should().OnlyHaveUniqueItems(i => i.communityname);
-            community.CommunityName.Should().Be(addedCommunity.communityname);
+            community.CommunityId.Should().Be(updatedCommunity.communityid);
+            community.CommunityName.Should().Be(updatedCommunity.communityname);
+            afterUpdate.Should().NotBeEmpty();
+            afterUpdate.Count().Should().Be(3);
+            afterUpdate.Should().OnlyHaveUniqueItems(i => i.communityname);
+            community.CommunityName.Should().Be(updatedCommunity.communityname);
         }
     }
 }
