@@ -25,7 +25,7 @@ namespace CommunityTracker.Service.Commands
 
                 if (validation == null)
                 {
-                    return validation;
+                    return null;
                 }
 
                 await _communityRepositoryCommands.AddCommunity(new Community()
