@@ -54,6 +54,6 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         ///   <c>true</c> if isactive; otherwise, <c>false</c>.
         /// </value>
-        public bool isactive { get; set; }
+        public bool isactive { get; set; } = true;
     }
 }

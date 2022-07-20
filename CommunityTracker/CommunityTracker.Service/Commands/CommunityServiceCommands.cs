@@ -1,5 +1,6 @@
 ﻿using CommunityTracker.Repository.Interfaces;
 using CommunityTracker.Service.Interfaces;
+using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Commands
 {
@@ -9,7 +10,7 @@ namespace CommunityTracker.Service.Commands
     /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceCommands" />
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
-      
+
         private readonly ICommunityRepositoryCommands _communityRepositoryCommands;
         private readonly ICommunityRepositoryQueries _communityRepositoryQuery;
 
@@ -23,6 +24,26 @@ namespace CommunityTracker.Service.Commands
         {
             _communityRepositoryCommands = communityRepositoryCommands;
             _communityRepositoryQuery = communityRepositoryQuery;
+        }
+
+        private async Task<CommunityResponseDTO> MapCommunityResponse(CommunityDTO communityDTO)
+        {
+            var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
+
+            if (community == null)
+            {
+                return null;
+            }
+
+            var result = new CommunityResponseDTO()
+            {
+                CommunityId = community.CommunityId,
+                CommunityName = community.CommunityName,
+                CommunityManagerName = community.CommunityAdminAndManagerName,
+                CommunityDesc = community.CommunityDesc
+            };
+
+            return result;
         }
     }
 }

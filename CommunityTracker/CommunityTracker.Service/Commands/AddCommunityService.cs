@@ -38,7 +38,7 @@ namespace CommunityTracker.Service.Commands
                     CommunityMgrid = communityDTO.CommunityMgrid,
                 });
 
-                community = await MapAddCommunityResponse(communityDTO);
+                community = await MapCommunityResponse(communityDTO);
 
                 return community;
             }
@@ -46,31 +46,6 @@ namespace CommunityTracker.Service.Commands
             {
                 return null;
             }
-        }
-
-        /// <summary>
-        /// Maps the community to response.
-        /// </summary>
-        /// <param name="communityDTO">The community dto.</param>
-        /// <returns></returns>
-        private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
-        {
-            var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
-
-            if (community == null)
-            {
-                return null;
-            }
-
-            var result = new CommunityResponseDTO()
-            {
-                CommunityId = community.CommunityId,
-                CommunityName = community.CommunityName,
-                CommunityManagerName = community.CommunityAdminAndManagerName,
-                CommunityDesc = community.CommunityDesc
-            };
-
-            return result;
         }
     }
 }

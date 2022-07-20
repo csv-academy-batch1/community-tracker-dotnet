@@ -9,21 +9,18 @@ namespace CommunityTracker.Repository.Commands
     /// <seealso cref="CommunityTracker.Repository.Interfaces.ICommunityRepositoryCommands" />
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        /// <summary>Updates the community repository.</summary>
-        /// <param name="communityData">The community data.</param>
-        public async Task UpdateCommunityRepository(Community communityData)
+        public async Task UpdateCommunity(Community communityData)
         {
-            var communities = _communityDbContext.community.FirstOrDefault(c => c.CommunityId == communityData.CommunityId);
+            var community = _communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
 
-            if (communities != null)
+            if (community != null)
             {
-                communities.CommunityId = communityData.CommunityId;
-                communities.CommunityName = communityData.CommunityName;
-                communities.CommunityMgrid = communityData.CommunityMgrid;
-                communities.CommunityDesc = communityData.CommunityDesc;
+                community.CommunityName = communityData.CommunityName;
+                community.CommunityMgrid = communityData.CommunityMgrid;
+                community.CommunityDesc = communityData.CommunityDesc;
             }
 
-            await _communityDbContext.SaveChangesAsync();
+            await SaveChangesAsync();
         }
     }
 }
