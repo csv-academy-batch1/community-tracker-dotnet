@@ -10,5 +10,6 @@ namespace CommunityTracker.Repository.Queries
         {
             return await _communityDbContext.people.ToListAsync();
         }
+
     }
 }

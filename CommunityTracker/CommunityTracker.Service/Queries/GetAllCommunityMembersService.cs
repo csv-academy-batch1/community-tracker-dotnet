@@ -14,14 +14,14 @@ namespace CommunityTracker.Service.Queries
             {
                 result.Add(new CommunityMembersResponseDTO()
                 {
-                    PeopleId = item.PeopleId,
-                    LastName = item.LastName,
-                    FirstName = item.FirstName,
-                    MiddleName = item.MiddleName,
-                    HiredDate = item.HiredDate,
-                    JobLevelId = item.JobLevelId,
-                    WorkStateId = item.WorkStateId,
-                    IsActive = item.IsActive
+                    peopleid = item.PeopleId,
+                    lastname = item.LastName,
+                    firstname = item.FirstName,
+                    middlename = item.MiddleName,
+                    hireddate = item.HiredDate,
+                    joblevelid = item.JobLevelId,
+                    workstateid = item.WorkStateId,
+                    isactive = item.IsActive
                 });
             }
 

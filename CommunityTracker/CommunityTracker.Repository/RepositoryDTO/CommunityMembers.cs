@@ -12,7 +12,7 @@ namespace CommunityTracker.Repository.RepositoryDTO
     {
         [Key]
         
-        [Column("poepleid")]
+        [Column("peopleid")]
         public int PeopleId { get; set; }
         
         [Column("lastname")]

@@ -58,6 +58,15 @@ namespace CommunityTracker.API.Controllers
             return Ok(items);
         }
 
+  
+        [HttpGet("members")]
+        public async Task<IActionResult> GetAllMembers()
+        {
+            var members = await _communityServiceQuery.GetAllCommunityMembers();
+            return Ok(members);
+        }
+
+
         /// <summary>
         /// Adds the community.
         /// </summary>
@@ -98,14 +107,6 @@ namespace CommunityTracker.API.Controllers
             };
 
             return Ok(response);
-        }
-
-        [Route("/{Members}")]
-        [HttpGet]
-        public async Task<IActionResult> GetAllMembers()
-        {
-            var members = await _communityServiceQuery.GetAllCommunityMembers();
-            return Ok(members);
         }
 
     }
