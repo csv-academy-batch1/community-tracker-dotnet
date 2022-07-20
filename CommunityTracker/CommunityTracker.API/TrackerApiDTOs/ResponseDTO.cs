@@ -2,10 +2,6 @@
 
 namespace CommunityTracker.API.TrackerApiDTO
 {
-    /// <summary>
-    ///
-    /// </summary>
-    [Serializable]
     public class ResponseDTO
     {
         /// <summary>
