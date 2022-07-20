@@ -24,15 +24,16 @@ namespace CommunityTracker.Test.Commands
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
-            var newcommunity = communities.Where(x => x.communityid == 4).Select(y => y.communityname).FirstOrDefault();
+            var addedCommunity = communities
+                .Where(x => x.communityid == 4)
+                .Select(y => y.communityname).FirstOrDefault();
 
             //Assert
+            community.isActive.Should().BeTrue();
+            community.CommunityName.Should().Be(addedCommunity);
             communities.Should().NotBeEmpty();
             communities.Count().Should().Be(4);
-            community.CommunityName.Should().Be(newcommunity);
-            communities.Should().NotBeEmpty();
-            communities.Should().OnlyHaveUniqueItems(x => x.communityname);
-            communities.Should().OnlyHaveUniqueItems(x => x.communityid);
+            communities.Should().OnlyHaveUniqueItems(i => i.communityname);
         }
 
         [TestMethod]
