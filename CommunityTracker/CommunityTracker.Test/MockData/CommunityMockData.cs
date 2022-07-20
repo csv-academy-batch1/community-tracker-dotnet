@@ -27,6 +27,7 @@ namespace CommunityTracker.Test.MockData
 
             await context.SaveChangesAsync();
         }
+
         public static async Task PopulateCommunityManagersAsync(CommunityDbContext context)
         {
             int index = 1;
