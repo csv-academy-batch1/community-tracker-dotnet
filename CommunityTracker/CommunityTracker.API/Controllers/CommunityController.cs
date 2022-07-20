@@ -1,5 +1,6 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
+using CommunityTracker.API.TrackerApiDTOs;
 using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
@@ -43,8 +44,11 @@ namespace CommunityTracker.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var items = await _communityServiceQuery.GetAllCommunities();
-            return Ok(items);
+            var communities = await _communityServiceQuery.GetAllCommunities();
+            return Ok(new GetAllCommunitiesResponse()
+            {
+                Communities = new GetAllCommunitiesResponseDTO()
+            });
         }
 
         /// <summary>
@@ -94,7 +98,7 @@ namespace CommunityTracker.API.Controllers
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc,
-                Active = result.isActive    
+                Active = result.isActive
             };
 
             return Ok(response);
