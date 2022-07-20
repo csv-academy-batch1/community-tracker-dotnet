@@ -66,18 +66,28 @@ namespace CommunityTracker.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO request)
         {
-            var communityDTO = new CommunityDTO();
-            communityDTO.CommunityName = request.CommunityName;
-            communityDTO.CommunityMgrid = request.CommunityManager;
-            communityDTO.CommunityDesc = request.Description;
+            if (request == null)
+            {
+                return null;
+            }
+
+            var communityDTO = new CommunityDTO
+            {
+                CommunityName = request.CommunityName,
+                CommunityMgrid = request.CommunityManager,
+                CommunityDesc = request.Description
+            };
+
             var result = await _communityServiceCommands.AddCommunity(communityDTO);
-            if (result is null)
+
+            if (result == null)
             {
                 return BadRequest(new CustomErrors()
                 {
                     result = new Result()
                 });
             }
+
             var response = new ResponseDTO()
             {
                 CommunityId = result.CommunityId,
@@ -85,13 +95,8 @@ namespace CommunityTracker.API.Controllers
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc
             };
+
             return Ok(response);
         }
-
-        /// <summary>
-        /// Updates the community.
-        /// </summary>
-        /// <param name="updateRequestDTO">The update request dto.</param>
-        /// <returns></returns>
     }
 }
