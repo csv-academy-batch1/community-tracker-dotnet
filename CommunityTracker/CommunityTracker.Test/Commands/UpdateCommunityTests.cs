@@ -11,7 +11,7 @@ namespace CommunityTracker.Test.Commands
     public class UpdateCommunityTests : CommunityTrackerBaseTest
     {
         [TestMethod]
-        public async Task UpdatingCommunityName_Success()
+        public async Task UpdatingCommunity_Success()
         {
             //Arrange
             var mockDatabase = CreateCommunityDatabaseAsync();
@@ -37,7 +37,7 @@ namespace CommunityTracker.Test.Commands
 
         //Endpoint Validation
         [TestMethod]
-        public async Task UpdatingCommunityNameWithNonExistingManagerId_ReturnFailedMessage()
+        public async Task UpdatingCommunityWithNonExistingManagerId_ReturnFailedMessage()
         {
             //Arrange
             var mockDatabase = CreateCommunityDatabaseAsync();
