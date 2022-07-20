@@ -22,11 +22,20 @@ namespace CommunityTracker.Service.Commands
                 var community = new CommunityResponseDTO();
 
                 var communities = await _communityRepositoryQuery.GetAllCommunities();
+                var managers = await _communityRepositoryQuery.GetAllManagers();
 
                 //checks if community is existing
                 bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
 
                 if (communityExists)
+                {
+                    return null;
+                }
+
+                //checks if managerId is existing
+                bool managerIdExists = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
+
+                if (!managerIdExists)
                 {
                     return null;
                 }

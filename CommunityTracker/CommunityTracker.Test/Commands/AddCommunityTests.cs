@@ -19,7 +19,7 @@ namespace CommunityTracker.Test.Commands
             var community = await _serviceCommands.AddCommunity(new CommunityDTO()
             {
                 CommunityName = "Enterprise .Net",
-                CommunityMgrid = 10,
+                CommunityMgrid = 1,
                 CommunityDesc = "Test_Success - Should be able to add in community table."
             });
 
@@ -67,7 +67,7 @@ namespace CommunityTracker.Test.Commands
             var community = await _serviceCommands.AddCommunity(new CommunityDTO()
             {
                 CommunityName = "ManagerId 1-10",
-                CommunityMgrid = 11,
+                CommunityMgrid = 20,
                 CommunityDesc = "Return Failed Message - When I input a managerId that does not exist in the table and click submit."
             });
 
