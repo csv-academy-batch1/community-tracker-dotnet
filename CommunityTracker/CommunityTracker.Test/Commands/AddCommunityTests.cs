@@ -32,6 +32,7 @@ namespace CommunityTracker.Test.Commands
             communities.Should().NotBeEmpty();
             communities.Count().Should().Be(4);
             community.CommunityName.Should().Be(addedCommunity);
+            community.IsActive.Should().BeTrue();
             communities.Should().OnlyHaveUniqueItems(i => i.communityname);
         }
 
