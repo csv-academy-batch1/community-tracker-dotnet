@@ -26,24 +26,24 @@ namespace CommunityTracker.Service.Commands
             _communityRepositoryQuery = communityRepositoryQuery;
         }
 
-        private async Task<CommunityResponseDTO> MapCommunityResponse(CommunityDTO communityDTO)
-        {
-            var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
+        //private async Task<CommunityResponseDTO> MapCommunityResponse(CommunityDTO communityDTO)
+        //{
+        //    var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
 
-            if (community == null)
-            {
-                return null;
-            }
+        //    if (community == null)
+        //    {
+        //        return null;
+        //    }
 
-            var result = new CommunityResponseDTO()
-            {
-                CommunityId = community.CommunityId,
-                CommunityName = community.CommunityName,
-                CommunityManagerName = community.CommunityAdminAndManagerName,
-                CommunityDesc = community.CommunityDesc
-            };
+        //    var result = new CommunityResponseDTO()
+        //    {
+        //        CommunityId = community.CommunityId,
+        //        CommunityName = community.CommunityName,
+        //        CommunityManagerName = community.CommunityAdminAndManagerName,
+        //        CommunityDesc = community.CommunityDesc
+        //    };
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }

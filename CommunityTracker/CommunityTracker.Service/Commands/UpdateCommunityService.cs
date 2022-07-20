@@ -14,18 +14,11 @@ namespace CommunityTracker.Service.Commands
         {
             var communityUpdate = new CommunityResponseDTO();
 
-            var communities = await _communityRepositoryQuery.GetAllCommunities();
-            var managers = await _communityRepositoryQuery.GetAllManagers();
+            var validation = await ResponseValidation(communityDTO);
 
-            //checks if community is existing
-            bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
-
-            //checks if managerId is existing
-            bool managerIdExists = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
-
-            if (communityExists || !managerIdExists)
+            if (validation == null)
             {
-                return null;
+                return validation;
             }
 
             await _communityRepositoryCommands.UpdateCommunity(new Community()
@@ -36,7 +29,7 @@ namespace CommunityTracker.Service.Commands
                 CommunityDesc = communityDTO.CommunityDesc
             });
 
-            communityUpdate = await MapCommunityResponse(communityDTO);
+            communityUpdate = await MapAddCommunityResponse(communityDTO);
 
             return communityUpdate;
         }

@@ -35,7 +35,7 @@ namespace CommunityTracker.Service.Commands
                     CommunityMgrid = communityDTO.CommunityMgrid,
                 });
 
-                community = await MapCommunityResponse(communityDTO);
+                community = await MapAddCommunityResponse(communityDTO);
 
                 return community;
             }
@@ -43,6 +43,27 @@ namespace CommunityTracker.Service.Commands
             {
                 return null;
             }
+        }
+
+        private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
+        {
+            var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
+
+            if (community == null)
+            {
+                return null;
+            }
+
+            var result = new CommunityResponseDTO()
+            {
+                CommunityId = community.CommunityId,
+                CommunityName = community.CommunityName,
+                CommunityManagerName = community.CommunityAdminAndManagerName,
+                CommunityDesc = community.CommunityDesc,
+                isActive = community.isActive
+            };
+
+            return result;
         }
 
         private async Task<CommunityResponseDTO> ResponseValidation(CommunityDTO communityDTO)
@@ -63,16 +84,7 @@ namespace CommunityTracker.Service.Commands
                 return null;
             }
 
-            var result = new CommunityResponseDTO()
-            {
-                CommunityId = community.CommunityId,
-                CommunityName = community.CommunityName,
-                CommunityManagerName = community.CommunityAdminAndManagerName,
-                CommunityDesc = community.CommunityDesc,
-                isActive = community.isActive
-            };
-
-            return result;
+            return community;
         }
     }
 }
