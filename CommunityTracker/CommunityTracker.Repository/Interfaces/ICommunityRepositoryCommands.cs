@@ -16,6 +16,5 @@ namespace CommunityTracker.Repository.Interfaces
         /// </summary>
         /// <param name="communityData">The community data.</param>
         /// <returns></returns>
-        Task UpdateCommunity(Community communityData);
     }
 }

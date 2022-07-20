@@ -93,30 +93,5 @@ namespace CommunityTracker.API.Controllers
         /// </summary>
         /// <param name="updateRequestDTO">The update request dto.</param>
         /// <returns></returns>
-        [HttpPut]
-        public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
-        {
-            var communityDTO = new CommunityDTO();
-            communityDTO.CommunityId = updateRequestDTO.communityId;
-            communityDTO.CommunityName = updateRequestDTO.communityName;
-            communityDTO.CommunityMgrid = updateRequestDTO.communityMgrid;
-            communityDTO.CommunityDesc = updateRequestDTO.communityDesc;
-            var result = await _communityServiceCommands.UpdateCommunity(communityDTO);
-            if (result is null)
-            {
-                return BadRequest(new CustomErrors()
-                {
-                    result = new Result()
-                });
-            }
-            var response = new ResponseDTO()
-            {
-                CommunityId = result.CommunityId,
-                CommunityName = result.CommunityName,
-                CommunityManager = result.CommunityManagerName,
-                Description = result.CommunityDesc
-            };
-            return Ok(response);
-        }
     }
 }
