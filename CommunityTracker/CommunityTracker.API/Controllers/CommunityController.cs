@@ -61,15 +61,15 @@ namespace CommunityTracker.API.Controllers
         /// <summary>
         /// Adds the community.
         /// </summary>
-        /// <param name="apiDTO">The API dto.</param>
+        /// <param name="request">The API dto.</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO apiDTO)
+        public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO request)
         {
             var communityDTO = new CommunityDTO();
-            communityDTO.CommunityName = apiDTO.CommunityName;
-            communityDTO.CommunityMgrid = apiDTO.CommunityManager;
-            communityDTO.CommunityDesc = apiDTO.Description;
+            communityDTO.CommunityName = request.CommunityName;
+            communityDTO.CommunityMgrid = request.CommunityManager;
+            communityDTO.CommunityDesc = request.Description;
             var result = await _communityServiceCommands.AddCommunity(communityDTO);
             if (result is null)
             {
