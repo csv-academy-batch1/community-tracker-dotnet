@@ -19,7 +19,7 @@ namespace CommunityTracker.Service.Commands
                 return null;
             }
 
-            communities.FirstOrDefault(x => x.CommunityId == communityDTO.CommunityId);
+            var communityIdFilter = communities.First(x => x.CommunityId == communityDTO.CommunityId);
 
             await _communityRepositoryCommands.UpdateCommunity(new Community()
             {
@@ -27,7 +27,7 @@ namespace CommunityTracker.Service.Commands
                 CommunityName = communityDTO.CommunityName,
                 CommunityMgrid = communityDTO.CommunityMgrid,
                 CommunityDesc = communityDTO.CommunityDesc
-            }) ;
+            });
 
             communityUpdate = await MapCommunityResponse(communityDTO);
 
