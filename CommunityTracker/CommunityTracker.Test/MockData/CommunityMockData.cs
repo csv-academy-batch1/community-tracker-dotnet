@@ -27,5 +27,27 @@ namespace CommunityTracker.Test.MockData
 
             await context.SaveChangesAsync();
         }
+        public static async Task PopulateCommunityManagersAsync(CommunityDbContext context)
+        {
+            int index = 1;
+
+            while (index <= 10)
+            {
+                var communityManager = new CommunityManagers
+                {
+                    CommunityAdminAndManagerId = index,
+                    CommunityAdminAndManagerName = $"TestCommunityManager{index}",
+                    CSVEmail = $"manager@{index}",
+                    PassKey = "Passkey",
+                    RoleType = "TestType",
+                    IsActive = true,
+                };
+
+                index++;
+                await context.communityadminandmanager.AddAsync(communityManager);
+            }
+
+            await context.SaveChangesAsync();
+        }
     }
 }
