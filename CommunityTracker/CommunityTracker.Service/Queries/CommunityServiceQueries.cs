@@ -22,5 +22,6 @@ namespace CommunityTracker.Service.Queries
         {
             _communityRepositoryQuery = communityRepositoryQuery;
         }
+
     }
 }

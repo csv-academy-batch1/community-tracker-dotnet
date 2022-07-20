@@ -44,6 +44,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
         /// </value>
 
-        public bool Active { get; set; } = true;
+        public bool isActive { get; set; } = true;
     }
 }

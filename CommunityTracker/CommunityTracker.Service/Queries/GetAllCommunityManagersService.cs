@@ -17,7 +17,7 @@ namespace CommunityTracker.Service.Queries
         {
             var managers = await _communityRepositoryQuery.GetAllManagers();
             List<CommunityManagersDTO> result = new List<CommunityManagersDTO>();
-            
+
             foreach (var manager in managers)
             {
                 result.Add(new CommunityManagersDTO()
@@ -33,5 +33,6 @@ namespace CommunityTracker.Service.Queries
 
             return result;
         }
+
     }
 }

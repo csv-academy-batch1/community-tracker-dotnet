@@ -18,5 +18,7 @@ namespace CommunityTracker.Service.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<List<CommunityManagersDTO>> GetAllCommunityManagers();
+        
+        Task<List<CommunityMembersResponseDTO>> GetAllCommunityMembers();
     }
 }

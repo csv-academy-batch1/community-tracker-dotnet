@@ -94,10 +94,19 @@ namespace CommunityTracker.API.Controllers
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc,
-                Active = result.isActive    
+                isActive = result.isActive
             };
 
             return Ok(response);
         }
+
+        [Route("/{Members}")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllMembers()
+        {
+            var members = await _communityServiceQuery.GetAllCommunityMembers();
+            return Ok(members);
+        }
+
     }
 }

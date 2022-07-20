@@ -56,7 +56,7 @@ namespace CommunityTracker.Service.Commands
         private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
         {
             var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
-            
+
             if (community == null)
             {
                 return null;
