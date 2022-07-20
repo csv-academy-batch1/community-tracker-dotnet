@@ -22,7 +22,8 @@ namespace CommunityTracker.Service.Queries
                 result.Add(new CommunityDTOResponse()
                 {
                     communityid = item.CommunityId,
-                    communityname = item.CommunityName
+                    communityname = item.CommunityName,
+                    communitydescription = item.CommunityDesc
                 });
             }
             return result;

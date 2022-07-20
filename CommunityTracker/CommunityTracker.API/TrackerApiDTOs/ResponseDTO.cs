@@ -2,10 +2,6 @@
 
 namespace CommunityTracker.API.TrackerApiDTO
 {
-    /// <summary>
-    ///
-    /// </summary>
-    [Serializable]
     public class ResponseDTO
     {
         /// <summary>
@@ -41,6 +37,13 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// </value>
         public string? Description { get; set; }
 
-        public bool IsActive { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
+        /// </value>
+
+        public bool Active { get; set; } = true;
     }
 }

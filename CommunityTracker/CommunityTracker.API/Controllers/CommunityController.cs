@@ -1,7 +1,8 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
-using CommunityTracker.Service.ServicesDTO;
+using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Service.Interfaces;
+using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
 using CommunityTracker.Repository.RepositoryDTO;
 
@@ -79,42 +80,6 @@ namespace CommunityTracker.API.Controllers
             };
 
             var result = await _communityServiceCommands.AddCommunity(communityDTO);
-            
-            if (result == null)
-            {
-                return BadRequest(new CustomErrors()
-                {
-                    result = new Result()
-                });
-            }
-
-            var response = new ResponseDTO()
-            {
-                CommunityId = result.CommunityId,
-                CommunityName = result.CommunityName,
-                CommunityManager = result.CommunityManagerName,
-                Description = result.CommunityDesc
-            };
-
-            return Ok(response);
-        }
-
-        [Route("{id}")]
-        [HttpPut]
-        public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateRequestDTO updateRequestDTO)
-        {
-            //Todo Add data validation for int id and body id
-            
-            //Todo add validation where community id not found will return fail: INPROGRESS
-
-            var community = new CommunityDTO();
-
-            community.CommunityId = id;
-            community.CommunityName = updateRequestDTO.communityname;
-            community.CommunityMgrid = updateRequestDTO.communitymgrid;
-            community.CommunityDesc = updateRequestDTO.communitydesc;
-
-            var result = await this._communityServiceCommands.UpdateCommunity(community);
 
             if (result == null)
             {
@@ -130,7 +95,48 @@ namespace CommunityTracker.API.Controllers
                 CommunityName = result.CommunityName,
                 CommunityManager = result.CommunityManagerName,
                 Description = result.CommunityDesc,
-                IsActive = result.IsActive
+                Active = result.isActive
+            };
+
+            return Ok(response);
+        }
+
+        [Route("{id}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateRequestDTO updateRequestDTO)
+        {
+            //Todo Add data validation for int id and body id: DONE
+            //Todo add validation where community id not found will return fail: DONE???
+
+            var community = new CommunityDTO();
+
+            community.CommunityId = id;
+            community.CommunityName = updateRequestDTO.communityname;
+            community.CommunityMgrid = updateRequestDTO.communitymgrid;
+            community.CommunityDesc = updateRequestDTO.communitydesc;
+
+            if (id != community.CommunityId)
+            {
+                return null;
+            }
+
+            var result = await this._communityServiceCommands.UpdateCommunity(community);
+
+            if (result == null /*|| id != community.CommunityId*/)
+            {
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
+            }
+
+            var response = new ResponseDTO()
+            {
+                CommunityId = result.CommunityId,
+                CommunityName = result.CommunityName,
+                CommunityManager = result.CommunityManagerName,
+                Description = result.CommunityDesc,
+                Active = result.isActive
             };
 
             return Ok(response);
