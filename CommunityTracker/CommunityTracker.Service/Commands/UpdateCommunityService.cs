@@ -10,6 +10,11 @@ namespace CommunityTracker.Service.Commands
     /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityServiceCommands" />
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
+        /// <summary>Updates the community.</summary>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public async Task<CommunityResponseDTO> UpdateCommunity(CommunityDTO communityDTO)
         {
             var communityUpdate = new CommunityResponseDTO();
