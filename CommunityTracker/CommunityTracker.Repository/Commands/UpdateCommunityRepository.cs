@@ -17,7 +17,9 @@ namespace CommunityTracker.Repository.Commands
 
                 if (community != null)
                 {
-                    community.IsActive = false;
+                    community.CommunityName = communityData.CommunityName;
+                    community.CommunityMgrid = communityData.CommunityMgrid;
+                    community.CommunityDesc = communityData.CommunityDesc;
                 }
                 await SaveChangesAsync();
             }
