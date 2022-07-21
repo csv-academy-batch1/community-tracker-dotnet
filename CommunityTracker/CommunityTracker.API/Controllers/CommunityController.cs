@@ -110,17 +110,22 @@ namespace CommunityTracker.API.Controllers
 
             var community = new CommunityDTO();
 
-            community.CommunityId = id;
+            community.CommunityId = updateRequestDTO.communityid;
             community.CommunityName = updateRequestDTO.communityname;
             community.CommunityMgrid = updateRequestDTO.communitymgrid;
             community.CommunityDesc = updateRequestDTO.communitydesc;
 
             if (id != community.CommunityId)
             {
-                return null;
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
             }
 
             var result = await this._communityServiceCommands.UpdateCommunity(community);
+           
+
 
             if (result == null /*|| id != community.CommunityId*/)
             {
