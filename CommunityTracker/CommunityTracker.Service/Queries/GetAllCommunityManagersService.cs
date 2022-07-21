@@ -20,15 +20,18 @@ namespace CommunityTracker.Service.Queries
             
             foreach (var manager in managers)
             {
-                result.Add(new CommunityManagersDTO()
+                if (manager.IsActive == true)
                 {
-                    communityadminandmanagerid = manager.CommunityAdminAndManagerId,
-                    communityadminandmanagername = manager.CommunityAdminAndManagerName,
-                    csvemail = manager.CSVEmail,
-                    passkey = manager.PassKey,
-                    roletype = manager.RoleType,
-                    isactive = manager.IsActive
-                });
+                    result.Add(new CommunityManagersDTO()
+                    {
+                        communityadminandmanagerid = manager.CommunityAdminAndManagerId,
+                        communityadminandmanagername = manager.CommunityAdminAndManagerName,
+                        csvemail = manager.CSVEmail,
+                        passkey = manager.PassKey,
+                        roletype = manager.RoleType,
+                        isactive = manager.IsActive
+                    });
+                }
             }
 
             return result;

@@ -3,6 +3,7 @@ using CommunityTracker.API.TrackerApiDTO;
 using CommunityTracker.Service.ServicesDTO;
 using CommunityTracker.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using CommunityTracker.API.TrackerApiDTOs;
 
 namespace CommunityTracker.API.Controllers
 {
@@ -78,7 +79,7 @@ namespace CommunityTracker.API.Controllers
             };
 
             var result = await _communityServiceCommands.AddCommunity(communityDTO);
-            
+
             if (result == null)
             {
                 return BadRequest(new CustomErrors()
@@ -96,6 +97,60 @@ namespace CommunityTracker.API.Controllers
             };
 
             return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateCommunity([FromBody] UpdateRequestDTO updateRequestDTO)
+        {
+
+            var communityDTO = new CommunityDTO();
+            communityDTO.CommunityId = updateRequestDTO.communityId;
+            communityDTO.CommunityName = updateRequestDTO.communityName;
+            communityDTO.CommunityMgrid = updateRequestDTO.communityMgrid;
+            communityDTO.CommunityDesc = updateRequestDTO.communityDesc;
+
+            var request = await _communityServiceCommands.UpdateCommunity(communityDTO);
+            if (request is null)
+            {
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
+            }
+
+            var responseDTO = new ResponseDTO()
+            {
+                CommunityId = request.CommunityId,
+                CommunityName = request.CommunityName,
+                CommunityManager = request.CommunityManagerName,
+                Description = request.CommunityDesc
+            };
+            return Ok(responseDTO);
+        }
+
+        [HttpPut("Delete")]
+
+        public async Task<IActionResult> DeleteCommunity([FromBody] DeleteRequest deleteRequestDTO)
+        {
+            var communityDTO = new CommunityDTO();
+            communityDTO.CommunityId = deleteRequestDTO.communityid;
+            communityDTO.IsActive = deleteRequestDTO.isactive;
+
+            var request = await _communityServiceCommands.DeleteCommunity(communityDTO);
+            if (request is null)
+            {
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
+            }
+
+            var responseDTO = new ResponseDTO()
+            {
+                CommunityId = request.CommunityId,
+                Active = request.Active
+            };
+            return Ok(responseDTO);
         }
     }
 }

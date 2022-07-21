@@ -19,11 +19,14 @@ namespace CommunityTracker.Service.Queries
             List<CommunityDTOResponse> result = new List<CommunityDTOResponse>();
             foreach (var item in displayAllCommunities)
             {
-                result.Add(new CommunityDTOResponse()
+                if (item.IsActive == true)
                 {
-                    communityid = item.CommunityId,
-                    communityname = item.CommunityName
-                });
+                    result.Add(new CommunityDTOResponse()
+                    {
+                        communityid = item.CommunityId,
+                        communityname = item.CommunityName
+                    });
+                }
             }
             return result;
         }
