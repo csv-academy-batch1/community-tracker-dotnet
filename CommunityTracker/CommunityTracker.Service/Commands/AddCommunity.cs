@@ -42,7 +42,7 @@ namespace CommunityTracker.Service.Commands
                     return community;
                 }
 
-                community = await MapAddCommunityResponse(communityDTO);
+                community = await MapCommunityResponse(communityDTO);
                 community.ResultMessage = "Success";
             }
             catch (Exception)
@@ -51,32 +51,6 @@ namespace CommunityTracker.Service.Commands
             }
 
             return community;
-        }
-
-        /// <summary>
-        /// Maps the community to response.
-        /// </summary>
-        /// <param name="communityDTO">The community dto.</param>
-        /// <returns></returns>
-        private async Task<CommunityResponseDTO> MapAddCommunityResponse(CommunityDTO communityDTO)
-        {
-            var community = await _communityRepositoryQuery.GetCommunitiesWithManagerName(communityDTO.CommunityMgrid, communityDTO.CommunityName);
-
-            if (community == null)
-            {
-                return null;
-            }
-
-            var result = new CommunityResponseDTO()
-            {
-                CommunityId = community.CommunityId,
-                CommunityName = community.CommunityName,
-                CommunityManagerName = community.CommunityAdminAndManagerName,
-                CommunityDesc = community.CommunityDesc,
-                isActive = community.isActive
-            };
-
-            return result;
         }
     }
 }

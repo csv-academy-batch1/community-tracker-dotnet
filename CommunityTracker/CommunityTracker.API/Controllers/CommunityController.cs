@@ -4,6 +4,7 @@ using CommunityTracker.API.TrackerApiDTOs;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
+using CommunityTracker.Repository.RepositoryDTO;
 
 namespace CommunityTracker.API.Controllers
 {
@@ -139,6 +140,47 @@ namespace CommunityTracker.API.Controllers
                     Message = "Internal Server Error."
                 }
             });
+        }
+
+        /// <summary>Updates the community.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="updateRequestDTO">The update request dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        [Route("{id}")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateRequestDTO updateRequestDTO)
+        {
+            var community = new CommunityDTO();
+
+            if (id != updateRequestDTO.CommunityId)
+            {
+                return ClientErrorResponse();
+            }
+
+            community.CommunityId = id;
+            community.CommunityName = updateRequestDTO.CommunityName;
+            community.CommunityMgrid = updateRequestDTO.CommunityMgrid;
+            community.CommunityDesc = updateRequestDTO.CommunityDesc;
+
+            var result = await _communityServiceCommands.UpdateCommunity(community);
+
+            if (result == null)
+            {
+                return ClientErrorResponse();
+            }
+
+            var response = new ResponseDTO()
+            {
+                CommunityId = result.CommunityId,
+                CommunityName = result.CommunityName,
+                CommunityManager = result.CommunityManagerName,
+                Description = result.CommunityDesc,
+                Active = result.isActive
+            };
+
+            return Ok(response);
         }
     }
 }
