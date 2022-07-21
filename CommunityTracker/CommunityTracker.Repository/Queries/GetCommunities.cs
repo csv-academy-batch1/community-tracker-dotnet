@@ -12,7 +12,7 @@ namespace CommunityTracker.Repository.Queries
         /// <returns></returns>
         public async Task<List<Community>> GetAllCommunities()
         {
-            return await _communityDbContext.community.ToListAsync();
+            return await _communityDbContext.community.Where(x => x.IsActive == true).ToListAsync();
         }
 
         /// <summary>

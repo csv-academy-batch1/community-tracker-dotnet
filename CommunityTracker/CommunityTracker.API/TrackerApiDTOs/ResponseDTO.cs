@@ -19,6 +19,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The name of the community.
         /// </value>
+        ///
         public string? CommunityName { get; set; }
 
         /// <summary>
@@ -27,6 +28,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The community manager.
         /// </value>
+        ///
         public string? CommunityManager { get; set; }
 
         /// <summary>

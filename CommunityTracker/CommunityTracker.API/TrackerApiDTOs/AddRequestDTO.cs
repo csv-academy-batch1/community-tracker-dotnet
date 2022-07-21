@@ -23,7 +23,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// The community manager.
         /// </value>
         [Required]
-        public int? CommunityManager { get; set; }
+        public int? CommunityMgrid { get; set; }
 
         /// <summary>
         /// Gets or sets the description.

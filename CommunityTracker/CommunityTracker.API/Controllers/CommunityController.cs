@@ -1,6 +1,6 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
-using CommunityTracker.Repository.RepositoryDTO;
+using CommunityTracker.API.TrackerApiDTOs;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
@@ -38,14 +38,27 @@ namespace CommunityTracker.API.Controllers
         }
 
         /// <summary>
-        /// Gets all.
+        /// Gets all communities.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllCommunities()
         {
-            var items = await _communityServiceQuery.GetAllCommunities();
-            return Ok(items);
+            var communities = await _communityServiceQuery.GetAllCommunities();
+            List<GetAllCommunitiesResponseDTO> res = new List<GetAllCommunitiesResponseDTO>();
+            foreach (var community in communities)
+            {
+                res.Add(new GetAllCommunitiesResponseDTO()
+                {
+                    CommunityId = community.communityid,
+                    CommunityName = community.communityname
+                });
+            }
+
+            GetAllCommunitiesResponse response = new GetAllCommunitiesResponse();
+            response.Communities = res;
+
+            return Ok(response);
         }
 
         /// <summary>
@@ -75,7 +88,7 @@ namespace CommunityTracker.API.Controllers
             var communityDTO = new CommunityDTO
             {
                 CommunityName = request.CommunityName,
-                CommunityMgrid = request.CommunityManager,
+                CommunityMgrid = request.CommunityMgrid,
                 CommunityDesc = request.Description
             };
 
@@ -85,7 +98,7 @@ namespace CommunityTracker.API.Controllers
             {
                 return BadRequest(new CustomErrors()
                 {
-                    result = new Result()
+                    Result = new Result()
                 });
             }
 
@@ -116,7 +129,7 @@ namespace CommunityTracker.API.Controllers
             {
                 return BadRequest(new CustomErrors()
                 {
-                    result = new Result()
+                    Result = new Result()
                 });
             }
 
@@ -126,7 +139,7 @@ namespace CommunityTracker.API.Controllers
             {
                 return BadRequest(new CustomErrors()
                 {
-                    result = new Result()
+                    Result = new Result()
                 });
             }
 

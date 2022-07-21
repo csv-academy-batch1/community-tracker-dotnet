@@ -32,7 +32,6 @@ namespace CommunityTracker.Test.Commands
             addedCommunity.communityname.Should().Be(community.CommunityName);
             addedCommunity.communityid.Should().Be(community.CommunityId);
             addedCommunity.communityid.Should().Be(4);
-            addedCommunity.communitydescription.Should().Be(community.CommunityDesc);
             communities.Should().NotBeEmpty();
             communities.Count().Should().Be(4);
             communities.Should().OnlyHaveUniqueItems(i => i.communityname);
