@@ -11,16 +11,23 @@ namespace CommunityTracker.Repository.Commands
     {
         public async Task UpdateCommunity(Community communityData)
         {
-            var community = _communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
-
-            if (community != null)
+            try
             {
-                community.CommunityName = communityData.CommunityName;
-                community.CommunityMgrid = communityData.CommunityMgrid;
-                community.CommunityDesc = communityData.CommunityDesc;
+                var community = _communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
+
+                if (community != null)
+                {
+                    community.CommunityName = communityData.CommunityName;
+                    community.CommunityMgrid = communityData.CommunityMgrid;
+                    community.CommunityDesc = communityData.CommunityDesc;
+                }
+                await SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
-            await SaveChangesAsync();
         }
     }
 }

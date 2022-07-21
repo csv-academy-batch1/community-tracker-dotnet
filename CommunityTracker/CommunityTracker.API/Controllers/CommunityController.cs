@@ -111,6 +111,14 @@ namespace CommunityTracker.API.Controllers
             community.CommunityMgrid = updateRequestDTO.communitymgrid;
             community.CommunityDesc = updateRequestDTO.communitydesc;
 
+            if (id != community.CommunityId || id == null)
+            {
+                return BadRequest(new CustomErrors()
+                {
+                    result = new Result()
+                });
+            }
+
             var result = await this._communityServiceCommands.UpdateCommunity(community);
 
             if (result == null)
