@@ -149,8 +149,6 @@ namespace CommunityTracker.API.Controllers
         {
             var community = new CommunityDTO();
 
-            community.CommunityId = id;
-
             if (id != updateRequestDTO.CommunityId)
             {
                 return BadRequest(new CustomErrors()
@@ -159,6 +157,7 @@ namespace CommunityTracker.API.Controllers
                 });
             }
 
+            community.CommunityId = id;
             community.CommunityName = updateRequestDTO.CommunityName;
             community.CommunityMgrid = updateRequestDTO.CommunityMgrid;
             community.CommunityDesc = updateRequestDTO.CommunityDesc;
