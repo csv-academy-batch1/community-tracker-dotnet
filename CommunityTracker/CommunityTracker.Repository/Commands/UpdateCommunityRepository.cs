@@ -1,5 +1,6 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Repository.Interfaces;
+using System.Data.Entity;
 
 namespace CommunityTracker.Repository.Commands
 {
@@ -11,7 +12,7 @@ namespace CommunityTracker.Repository.Commands
         {
             try
             {
-                var isIdExisting = _communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
+                var isIdExisting = await _communityDbContext.community.FirstOrDefaultAsync(x => x.CommunityId == communityData.CommunityId);
                 if (isIdExisting != null && isIdExisting.CommunityId == communityData.CommunityId)
                 {
                     isIdExisting.CommunityName = communityData.CommunityName;

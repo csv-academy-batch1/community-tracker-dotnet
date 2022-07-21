@@ -151,10 +151,7 @@ namespace CommunityTracker.API.Controllers
 
             if (id != updateRequestDTO.CommunityId)
             {
-                return BadRequest(new CustomErrors()
-                {
-                    Result = new Result()
-                });
+                return ClientErrorResponse();
             }
 
             community.CommunityId = id;
@@ -166,10 +163,7 @@ namespace CommunityTracker.API.Controllers
 
             if (result == null)
             {
-                return BadRequest(new CustomErrors()
-                {
-                    Result = new Result()
-                });
+                return ClientErrorResponse();
             }
 
             var response = new ResponseDTO()
