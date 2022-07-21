@@ -7,22 +7,23 @@ namespace CommunityTracker.Service.Queries
     {
         public async Task<List<CommunityMembersResponseDTO>> GetAllCommunityMembers()
         {
-            var members = await _communityRepositoryQuery.GetAllMembers();
+            var members = await _communityRepositoryQuery.GetAllMembers();          
             List<CommunityMembersResponseDTO> result = new List<CommunityMembersResponseDTO>();
 
             foreach (var item in members)
             {
                 result.Add(new CommunityMembersResponseDTO()
                 {
-                    peopleid = item.PeopleId,
-                    lastname = item.LastName,
-                    firstname = item.FirstName,
-                    middlename = item.MiddleName,
-                    hireddate = item.HiredDate,
-                    joblevelid = item.JobLevelId,
-                    workstateid = item.WorkStateId,
-                    isactive = item.IsActive
-                });
+                    PeopleId = item.PeopleId,
+                    CommunityId = item.CommunityId,
+                    LastName = item.LastName,
+                    FirstName = item.FirstName,
+                    MiddleName = item.MiddleName,
+                    HiredDate = item.HiredDate.Date,
+                    JobLevelId = item.JobLevelId,
+                    WorkStateId = item.WorkStateId,
+                    IsActive = item.IsActive
+                }) ;
             }
 
             return result;

@@ -9,14 +9,14 @@ namespace CommunityTracker.Service.ServicesDTO
     public class CommunityMembersResponseDTO
     {
 
-        public int peopleid { get; set; }
-        public string lastname { get; set; }
-        public string firstname { get; set; }
-        public string middlename { get; set; }
-        public int hireddate { get; set; }
-        public int joblevelid { get; set; }
-        public int workstateid { get; set; }
-        //public string otherdetails { get; set; }
-        public bool isactive { get; set; } = true;
+        public int PeopleId { get; set; }
+        public int CommunityId { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public DateTime HiredDate { get; set; }
+        public int JobLevelId { get; set; }
+        public int WorkStateId { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

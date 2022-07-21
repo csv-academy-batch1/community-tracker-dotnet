@@ -51,7 +51,7 @@ namespace CommunityTracker.API.Controllers
         /// Gets all managers.
         /// </summary>
         /// <returns></returns>
-        [HttpGet("managers")]
+        [HttpGet("Managers")]
         public async Task<IActionResult> GetAllManagers()
         {
             var items = await _communityServiceQuery.GetAllCommunityManagers();
@@ -59,7 +59,7 @@ namespace CommunityTracker.API.Controllers
         }
 
   
-        [HttpGet("members")]
+        [HttpGet("Members")]
         public async Task<IActionResult> GetAllMembers()
         {
             var members = await _communityServiceQuery.GetAllCommunityMembers();

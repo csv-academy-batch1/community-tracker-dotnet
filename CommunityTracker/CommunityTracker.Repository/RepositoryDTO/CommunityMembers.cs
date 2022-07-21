@@ -14,7 +14,10 @@ namespace CommunityTracker.Repository.RepositoryDTO
         
         [Column("peopleid")]
         public int PeopleId { get; set; }
-        
+
+        [Column("communityid")]
+        public int CommunityId { get; set; }
+
         [Column("lastname")]
         public string LastName { get; set; }    
         
@@ -22,19 +25,18 @@ namespace CommunityTracker.Repository.RepositoryDTO
         public string FirstName { get; set; }   
         
         [Column("middlename")]
-        public string MiddleName { get; set; }  
-        
+        public string MiddleName { get; set; }
+
         [Column("hireddate")]
-        public int HiredDate { get; set; }  
+        public DateTime HiredDate { get; set; }
         
         [Column("joblevelid")]
         public int JobLevelId { get; set; }
+
+        //TODO: Skills: 1(Key value pair id & skillname)
         
         [Column("joblevelid")]
         public int WorkStateId { get; set; }
-        
-        //[Column("otherdetails")]
-        //public string OtherDetails { get; set; }
         
         [Column("isactive")]
         public bool IsActive { get; set; } = true;
