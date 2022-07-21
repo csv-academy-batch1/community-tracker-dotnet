@@ -29,8 +29,8 @@ namespace CommunityTracker.Test.Commands
             var updatedCommunity = afterUpdate.FirstOrDefault(x => x.communityid == 2);
 
             //Assert
-            //community.CommunityId.Should().Be(updatedCommunity.communityid);
-            //community.CommunityName.Should().Be(updatedCommunity.communityname);
+            community.CommunityId.Should().Be(updatedCommunity.communityid);
+            community.CommunityName.Should().Be(updatedCommunity.communityname);
             afterUpdate.Should().NotBeEmpty();
             afterUpdate.Count().Should().Be(3);
             afterUpdate.Should().OnlyHaveUniqueItems(i => i.communityname);
@@ -58,12 +58,9 @@ namespace CommunityTracker.Test.Commands
             var updatedCommunity = afterUpdate.FirstOrDefault(x => x.communityid == 2);
 
             //Assert
-            //community.CommunityId.Should().Be(updatedCommunity.communityid);
-            //community.CommunityName.Should().Be(updatedCommunity.communityname);
             afterUpdate.Should().NotBeEmpty();
             afterUpdate.Count().Should().Be(3);
             afterUpdate.Should().OnlyHaveUniqueItems(i => i.communityname);
-            community.CommunityName.Should().Be(updatedCommunity.communityname);
         }
     }
 }
