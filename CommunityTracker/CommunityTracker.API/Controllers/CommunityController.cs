@@ -1,7 +1,6 @@
 ﻿using CommunityTracker.API.Exceptions;
 using CommunityTracker.API.TrackerApiDTO;
 using CommunityTracker.API.TrackerApiDTOs;
-using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
@@ -38,11 +37,11 @@ namespace CommunityTracker.API.Controllers
         }
 
         /// <summary>
-        /// Gets all.
+        /// Gets all communities.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllCommunities()
         {
             var communities = await _communityServiceQuery.GetAllCommunities();
             List<GetAllCommunitiesResponseDTO> res = new List<GetAllCommunitiesResponseDTO>();
@@ -98,7 +97,7 @@ namespace CommunityTracker.API.Controllers
             {
                 return BadRequest(new CustomErrors()
                 {
-                    result = new Result()
+                    Result = new Result()
                 });
             }
 

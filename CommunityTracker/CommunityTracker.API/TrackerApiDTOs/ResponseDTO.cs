@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CommunityTracker.API.TrackerApiDTO
 {
@@ -22,7 +19,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The name of the community.
         /// </value>
-        /// 
+        ///
         public string? CommunityName { get; set; }
 
         /// <summary>
@@ -31,7 +28,7 @@ namespace CommunityTracker.API.TrackerApiDTO
         /// <value>
         /// The community manager.
         /// </value>
-        /// 
+        ///
         public string? CommunityManager { get; set; }
 
         /// <summary>
