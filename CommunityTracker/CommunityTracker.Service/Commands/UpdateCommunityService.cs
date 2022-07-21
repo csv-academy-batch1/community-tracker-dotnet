@@ -1,4 +1,5 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
+using CommunityTracker.Service.Helper;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
 
@@ -14,11 +15,13 @@ namespace CommunityTracker.Service.Commands
 
                 var communities = await _communityRepositoryQuery.GetAllCommunities();
 
-                bool communityNameExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
+                //bool communityNameExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
+
+                var validation = await DataValidations.RequestValidation(_communityRepositoryQuery, communityDTO);
 
                 //bool communityIdExists = communities.Any(x => x.CommunityId == null);
 
-                if (communityNameExists /*|| communityIdExists*/)
+                if (validation == null /*|| communityIdExists*/)
                 {
                     return null;
                 }
