@@ -22,12 +22,12 @@ namespace CommunityTracker.Service.Queries
             {
                 result.Add(new CommunityManagersDTO()
                 {
-                    communityadminandmanagerid = manager.CommunityAdminAndManagerId,
-                    communityadminandmanagername = manager.CommunityAdminAndManagerName,
-                    csvemail = manager.CSVEmail,
-                    passkey = manager.PassKey,
-                    roletype = manager.RoleType,
-                    isactive = manager.IsActive
+                    CommunityAdminAndManagerId = manager.CommunityAdminAndManagerId,
+                    CommunityAdminAndManagerName = manager.CommunityAdminAndManagerName,
+                    CsvEmail = manager.CSVEmail,
+                    PassKey = manager.PassKey,
+                    RoleType = manager.RoleType,
+                    IsActive = manager.IsActive
                 });
             }
 

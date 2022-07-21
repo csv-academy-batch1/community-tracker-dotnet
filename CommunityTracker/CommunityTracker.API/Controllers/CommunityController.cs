@@ -107,9 +107,9 @@ namespace CommunityTracker.API.Controllers
             var community = new CommunityDTO();
 
             community.CommunityId = id;
-            community.CommunityName = updateRequestDTO.communityname;
-            community.CommunityMgrid = updateRequestDTO.communitymgrid;
-            community.CommunityDesc = updateRequestDTO.communitydesc;
+            community.CommunityName = updateRequestDTO.CommunityName;
+            community.CommunityMgrid = updateRequestDTO.CommunityMgrId;
+            community.CommunityDesc = updateRequestDTO.CommunityDesc;
 
             if (id != community.CommunityId || id == null)
             {

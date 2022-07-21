@@ -15,8 +15,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// The communityid.
         /// </value>
         [Key]
-        [JsonPropertyName("Community ID")]
-        public int communityid { get; set; }
+        public int CommunityId { get; set; }
 
         /// <summary>
         /// Gets or sets the communityname.
@@ -24,9 +23,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communityname.
         /// </value>
-        [JsonPropertyName("Community Name")]
-        public string communityname { get; set; }
-        [JsonPropertyName("Descrpition")]
-        public string communitydescription { get; set; }
+        public string CommunityName { get; set; }
+        public string Description { get; set; }
     }
 }

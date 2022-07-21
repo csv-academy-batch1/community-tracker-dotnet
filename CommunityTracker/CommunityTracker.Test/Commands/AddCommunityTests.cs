@@ -25,17 +25,17 @@ namespace CommunityTracker.Test.Commands
 
             var communities = await _serviceQueries.GetAllCommunities();
             var addedCommunity = communities
-                .Where(x => x.communityid == 4).First();
+                .Where(x => x.CommunityId == 4).First();
 
             //Assert
             community.isActive.Should().BeTrue();
-            addedCommunity.communityname.Should().Be(community.CommunityName);
-            addedCommunity.communityid.Should().Be(community.CommunityId);
-            addedCommunity.communityid.Should().Be(4);
-            addedCommunity.communitydescription.Should().Be(community.CommunityDesc);
+            addedCommunity.CommunityName.Should().Be(community.CommunityName);
+            addedCommunity.CommunityId.Should().Be(community.CommunityId);
+            addedCommunity.CommunityId.Should().Be(4);
+            addedCommunity.Description.Should().Be(community.CommunityDesc);
             communities.Should().NotBeEmpty();
             communities.Count().Should().Be(4);
-            communities.Should().OnlyHaveUniqueItems(i => i.communityname);
+            communities.Should().OnlyHaveUniqueItems(i => i.CommunityName);
         }
 
         [TestMethod]

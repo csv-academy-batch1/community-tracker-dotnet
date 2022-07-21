@@ -14,7 +14,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// The communityadminandmanagerid.
         /// </value>
         [Key]
-        public int communityadminandmanagerid { get; set; }
+        public int CommunityAdminAndManagerId { get; set; }
 
         /// <summary>
         /// Gets or sets the communityadminandmanagername.
@@ -22,7 +22,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communityadminandmanagername.
         /// </value>
-        public string communityadminandmanagername { get; set; }
+        public string CommunityAdminAndManagerName { get; set; }
 
         /// <summary>
         /// Gets or sets the csvemail.
@@ -30,7 +30,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The csvemail.
         /// </value>
-        public string csvemail { get; set; }
+        public string CsvEmail { get; set; }
 
         /// <summary>
         /// Gets or sets the passkey.
@@ -38,7 +38,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The passkey.
         /// </value>
-        public string passkey { get; set; }
+        public string PassKey { get; set; }
 
         /// <summary>
         /// Gets or sets the roletype.
@@ -46,7 +46,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The roletype.
         /// </value>
-        public string roletype { get; set; }
+        public string RoleType { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="CommunityManagersDTO"/> is isactive.
@@ -54,6 +54,6 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         ///   <c>true</c> if isactive; otherwise, <c>false</c>.
         /// </value>
-        public bool isactive { get; set; } = true;
+        public bool IsActive { get; set; } = true;
     }
 }

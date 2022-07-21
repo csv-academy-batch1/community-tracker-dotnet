@@ -26,15 +26,15 @@ namespace CommunityTracker.Test.Commands
             });
 
             var afterUpdate = await _serviceQueries.GetAllCommunities();
-            var updatedCommunity = afterUpdate.FirstOrDefault(x => x.communityid == 2);
+            var updatedCommunity = afterUpdate.FirstOrDefault(x => x.CommunityId == 2);
 
             //Assert
-            community.CommunityId.Should().Be(updatedCommunity.communityid);
-            community.CommunityName.Should().Be(updatedCommunity.communityname);
+            community.CommunityId.Should().Be(updatedCommunity.CommunityId);
+            community.CommunityName.Should().Be(updatedCommunity.CommunityName);
             afterUpdate.Should().NotBeEmpty();
             afterUpdate.Count().Should().Be(3);
-            afterUpdate.Should().OnlyHaveUniqueItems(i => i.communityname);
-            community.CommunityName.Should().Be(updatedCommunity.communityname);
+            afterUpdate.Should().OnlyHaveUniqueItems(i => i.CommunityName);
+            community.CommunityName.Should().Be(updatedCommunity.CommunityName);
         }
 
         //Endpoint Validation
@@ -54,13 +54,13 @@ namespace CommunityTracker.Test.Commands
             });
 
             var communities = await _serviceQueries.GetAllCommunities();
-            var updatedCommunity = communities.FirstOrDefault(x => x.communityid == 2);
+            var updatedCommunity = communities.FirstOrDefault(x => x.CommunityId == 2);
 
             //Assert
             communities.Should().NotBeEmpty();
             communities.Count().Should().Be(3);
-            communities.Should().OnlyHaveUniqueItems(i => i.communityname);
-            updatedCommunity.communityname.Should().Be("TestCommunityName2");
+            communities.Should().OnlyHaveUniqueItems(i => i.CommunityName);
+            updatedCommunity.CommunityName.Should().Be("TestCommunityName2");
         }
     }
 }
