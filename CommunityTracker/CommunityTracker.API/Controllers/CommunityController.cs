@@ -43,8 +43,16 @@ namespace CommunityTracker.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCommunities()
         {
+            var response = new GetAllCommunitiesResponse();
             var communities = await _communityServiceQuery.GetAllCommunities();
-            List<GetAllCommunitiesResponseDTO> res = new List<GetAllCommunitiesResponseDTO>();
+            var res = new List<GetAllCommunitiesResponseDTO>();
+
+            if (communities == null)
+            {
+                ObjectResult errorResponse = ServerErrorResponse();
+                return errorResponse;
+            }
+
             foreach (var community in communities)
             {
                 res.Add(new GetAllCommunitiesResponseDTO()
@@ -54,7 +62,6 @@ namespace CommunityTracker.API.Controllers
                 });
             }
 
-            GetAllCommunitiesResponse response = new GetAllCommunitiesResponse();
             response.Communities = res;
 
             return Ok(response);
@@ -74,14 +81,14 @@ namespace CommunityTracker.API.Controllers
         /// <summary>
         /// Adds the community.
         /// </summary>
-        /// <param name="request">The API dto.</param>
+        /// <param name="request">The request.</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddCommunity([FromBody] AddRequestDTO request)
         {
             if (request == null)
             {
-                return null;
+                return ClientErrorResponse();
             }
 
             var communityDTO = new CommunityDTO
@@ -95,10 +102,7 @@ namespace CommunityTracker.API.Controllers
 
             if (result == null)
             {
-                return BadRequest(new CustomErrors()
-                {
-                    Result = new Result()
-                });
+                return ClientErrorResponse();
             }
 
             var response = new ResponseDTO()
@@ -111,6 +115,25 @@ namespace CommunityTracker.API.Controllers
             };
 
             return Ok(response);
+        }
+
+        private IActionResult ClientErrorResponse()
+        {
+            return BadRequest(new CustomErrors()
+            {
+                Result = new Result()
+            });
+        }
+
+        private ObjectResult ServerErrorResponse()
+        {
+            return StatusCode(500, new CustomErrors
+            {
+                Result = new Result
+                {
+                    Message = "Internal Server Error."
+                }
+            });
         }
     }
 }
