@@ -9,7 +9,7 @@ namespace CommunityTracker.Repository.Commands
     /// <seealso cref="CommunityTracker.Repository.Interfaces.ICommunityRepositoryCommands" />
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public async Task DeleteCommunity(Community communityData)
+        public async Task UpdateCommunity(Community communityData)
         {
             try
             {
@@ -17,7 +17,9 @@ namespace CommunityTracker.Repository.Commands
 
                 if (community != null)
                 {
-                    community.IsActive = false;
+                    community.CommunityName = communityData.CommunityName;
+                    community.CommunityMgrid = communityData.CommunityMgrid;
+                    community.CommunityDesc = communityData.CommunityDesc;
                 }
                 await SaveChangesAsync();
             }
