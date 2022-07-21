@@ -9,7 +9,7 @@ namespace CommunityTracker.Repository.Commands
     /// <seealso cref="CommunityTracker.Repository.Interfaces.ICommunityRepositoryCommands" />
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        public async Task UpdateCommunity(Community communityData)
+        public async Task DeleteCommunity(Community communityData)
         {
             try
             {
