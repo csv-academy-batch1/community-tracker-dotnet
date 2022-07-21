@@ -16,9 +16,9 @@ namespace CommunityTracker.Service.Commands
 
                 bool communityNameExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
 
-                bool communityIdExists = communities.Any(x => x.CommunityId == null);
+                //bool communityIdExists = communities.Any(x => x.CommunityId == null);
 
-                if (communityNameExists || communityIdExists)
+                if (communityNameExists /*|| communityIdExists*/)
                 {
                     return null;
                 }

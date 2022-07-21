@@ -124,8 +124,6 @@ namespace CommunityTracker.API.Controllers
             }
 
             var result = await this._communityServiceCommands.UpdateCommunity(community);
-           
-
 
             if (result == null /*|| id != community.CommunityId*/)
             {
