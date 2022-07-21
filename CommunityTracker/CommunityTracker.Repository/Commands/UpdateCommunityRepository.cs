@@ -11,12 +11,12 @@ namespace CommunityTracker.Repository.Commands
         {
             try
             {
-                var idCheck = _communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
-                if (idCheck != null)
+                var isIdExisting = _communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
+                if (isIdExisting != null && isIdExisting.CommunityId == communityData.CommunityId)
                 {
-                    idCheck.CommunityName = communityData.CommunityName;
-                    idCheck.CommunityMgrid = communityData.CommunityMgrid;
-                    idCheck.CommunityDesc = communityData.CommunityDesc;
+                    isIdExisting.CommunityName = communityData.CommunityName;
+                    isIdExisting.CommunityMgrid = communityData.CommunityMgrid;
+                    isIdExisting.CommunityDesc = communityData.CommunityDesc;
                 }
                 await SaveChangesAsync();
             }
