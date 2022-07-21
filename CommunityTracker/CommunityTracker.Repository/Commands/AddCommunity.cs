@@ -13,17 +13,22 @@ namespace CommunityTracker.Repository.Commands
         /// Adds the community to the database.
         /// </summary>
         /// <param name="communityData">The community data.</param>
-        public async Task AddCommunity(Community communityData)
+        public async Task<AddRepositoryResponse> AddCommunity(Community communityData)
         {
+            var response = new AddRepositoryResponse();
             try
             {
                 await _communityDbContext.AddAsync(communityData);
                 await SaveChangesAsync();
+
+                response.ResultMessage = "Success";
             }
             catch (Exception)
             {
-                throw;
+                response.ResultMessage = "Server Error";
             }
+
+            return response;
         }
 
     }

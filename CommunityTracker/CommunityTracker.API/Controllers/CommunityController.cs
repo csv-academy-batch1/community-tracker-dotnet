@@ -106,6 +106,11 @@ namespace CommunityTracker.API.Controllers
                 return ClientErrorResponse();
             }
 
+            if (result.ResultMessage == "Server Error")
+            {
+                return ServerErrorResponse();
+            }
+
             var response = new ResponseDTO()
             {
                 CommunityId = result.CommunityId,
