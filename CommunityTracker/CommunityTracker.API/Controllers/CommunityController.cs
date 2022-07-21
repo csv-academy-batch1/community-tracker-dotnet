@@ -114,18 +114,21 @@ namespace CommunityTracker.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>Updates the community.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="updateRequestDTO">The update request dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         [Route("{id}")]
         [HttpPut]
         public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateRequestDTO updateRequestDTO)
         {
             var community = new CommunityDTO();
 
-            community.CommunityId = updateRequestDTO.CommunityId;
-            community.CommunityName = updateRequestDTO.CommunityName;
-            community.CommunityMgrid = updateRequestDTO.CommunityMgrid;
-            community.CommunityDesc = updateRequestDTO.CommunityDesc;
+            community.CommunityId = id;
 
-            if (id != community.CommunityId)
+            if (id != updateRequestDTO.CommunityId)
             {
                 return BadRequest(new CustomErrors()
                 {
@@ -133,7 +136,11 @@ namespace CommunityTracker.API.Controllers
                 });
             }
 
-            var result = await this._communityServiceCommands.UpdateCommunity(community);
+            community.CommunityName = updateRequestDTO.CommunityName;
+            community.CommunityMgrid = updateRequestDTO.CommunityMgrid;
+            community.CommunityDesc = updateRequestDTO.CommunityDesc;
+
+            var result = await _communityServiceCommands.UpdateCommunity(community);
 
             if (result == null)
             {

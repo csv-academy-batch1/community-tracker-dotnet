@@ -7,6 +7,11 @@ namespace CommunityTracker.Service.Commands
 {
     public partial class CommunityServiceCommands : ICommunityServiceCommands
     {
+        /// <summary>Updates the community.</summary>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public async Task<CommunityResponseDTO> UpdateCommunity(CommunityDTO communityDTO)
         {
             try

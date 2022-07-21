@@ -3,15 +3,9 @@ using CommunityTracker.Repository.Interfaces;
 
 namespace CommunityTracker.Repository.Commands
 {
-    /// <summary>
-    /// CommunityRepositoryCommands
-    /// </summary>
-    /// <seealso cref="CommunityTracker.Repository.Interfaces.ICommunityRepositoryCommands" />
     public partial class CommunityRepositoryCommands : ICommunityRepositoryCommands
     {
-        /// <summary>
-        /// Adds the community to the database.
-        /// </summary>
+        /// <summary>Updates the community.</summary>
         /// <param name="communityData">The community data.</param>
         public async Task UpdateCommunity(Community communityData)
         {
