@@ -105,17 +105,14 @@ namespace CommunityTracker.API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCommunity(int id, [FromBody] UpdateRequestDTO updateRequestDTO)
         {
-            //Todo Add data validation for int id and body id: DONE
-            //Todo add validation where community id not found will return fail: DONE
-
             var community = new CommunityDTO();
 
-            community.CommunityId = updateRequestDTO.communityid;
-            community.CommunityName = updateRequestDTO.communityname;
-            community.CommunityMgrid = updateRequestDTO.communitymgrid;
-            community.CommunityDesc = updateRequestDTO.communitydesc;
+            community.CommunityId = updateRequestDTO.CommunityId;
+            community.CommunityName = updateRequestDTO.CommunityName;
+            community.CommunityMgrid = updateRequestDTO.CommunityMgrid;
+            community.CommunityDesc = updateRequestDTO.CommunityDesc;
 
-            if (id != community.CommunityId || id == null)
+            if (id != community.CommunityId)
             {
                 return BadRequest(new CustomErrors()
                 {
@@ -125,7 +122,7 @@ namespace CommunityTracker.API.Controllers
 
             var result = await this._communityServiceCommands.UpdateCommunity(community);
 
-            if (result == null /*|| id != community.CommunityId*/)
+            if (result == null)
             {
                 return BadRequest(new CustomErrors()
                 {

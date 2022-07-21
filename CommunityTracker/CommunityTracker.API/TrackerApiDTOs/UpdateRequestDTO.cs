@@ -5,14 +5,10 @@ namespace CommunityTracker.API.TrackerApiDTO
     public class UpdateRequestDTO
     {
         [Required]
-        [JsonProperty("communityId")]
-        public int communityid { get; set; }
-        [JsonProperty("communityName")]
-        public string communityname { get; set; }
+        public int CommunityId { get; set; }
+        public string CommunityName { get; set; }
         [Required]
-        [JsonProperty("communityMgrid")]
-        public int? communitymgrid { get; set; }
-        [JsonProperty("communityDesc")]
-        public string communitydesc { get; set; }
+        public int? CommunityMgrid { get; set; }
+        public string CommunityDesc { get; set; }
     }
 }

@@ -13,15 +13,9 @@ namespace CommunityTracker.Service.Commands
             {
                 var communityUpdate = new CommunityResponseDTO();
 
-                var communities = await _communityRepositoryQuery.GetAllCommunities();
-
-                //bool communityNameExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
-
                 var validation = await DataValidations.RequestValidation(_communityRepositoryQuery, communityDTO);
 
-                //bool communityIdExists = communities.Any(x => x.CommunityId == null);
-
-                if (validation == null /*|| communityIdExists*/)
+                if (validation == null)
                 {
                     return null;
                 }
