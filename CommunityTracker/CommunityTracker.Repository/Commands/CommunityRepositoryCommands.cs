@@ -23,7 +23,7 @@ namespace CommunityTracker.Repository.Commands
             _communityDbContext = communityDbContext;
         }
 
-        public async Task SaveChangesAsync()
+        private async Task SaveChangesAsync()
         {
             await _communityDbContext.SaveChangesAsync();
         }

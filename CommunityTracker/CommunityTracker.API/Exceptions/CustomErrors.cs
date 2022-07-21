@@ -1,4 +1,6 @@
-﻿namespace CommunityTracker.API.Exceptions
+﻿using System.Text.Json.Serialization;
+
+namespace CommunityTracker.API.Exceptions
 {
     /// <summary>
     ///
@@ -11,7 +13,9 @@
         /// <value>
         /// The result.
         /// </value>
-        public Result result { get; set; }
+ 
+        [JsonPropertyName("result")]
+        public Result? Result { get; set; }
     }
 
     /// <summary>
@@ -25,6 +29,8 @@
         /// <value>
         /// The message.
         /// </value>
-        public string message { get; set; } = "failed";
+
+        [JsonPropertyName("message")]
+        public string Message { get; set; } = "failed";
     }
 }
