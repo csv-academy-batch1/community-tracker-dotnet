@@ -45,10 +45,20 @@ namespace CommunityTracker.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var communities = await _communityServiceQuery.GetAllCommunities();
-            return Ok(new GetAllCommunitiesResponse()
+            List<GetAllCommunitiesResponseDTO> res = new List<GetAllCommunitiesResponseDTO>();
+            foreach (var community in communities)
             {
-                Communities = new GetAllCommunitiesResponseDTO()
-            });
+                res.Add(new GetAllCommunitiesResponseDTO()
+                {
+                    CommunityId = community.communityid,
+                    CommunityName = community.communityname
+                });
+            }
+
+            GetAllCommunitiesResponse response = new GetAllCommunitiesResponse();
+            response.Communities = res;
+
+            return Ok(response);
         }
 
         /// <summary>
@@ -78,7 +88,7 @@ namespace CommunityTracker.API.Controllers
             var communityDTO = new CommunityDTO
             {
                 CommunityName = request.CommunityName,
-                CommunityMgrid = request.CommunityManager,
+                CommunityMgrid = request.CommunityMgrid,
                 CommunityDesc = request.Description
             };
 
