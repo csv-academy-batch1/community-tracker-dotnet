@@ -26,9 +26,7 @@ namespace CommunityTracker.Service.Helper
             //checks if managerId is existing
             bool isManagerIdExist = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
 
-            var isCommunityActive = communities.FirstOrDefault(x => x.CommunityId == communityDTO.CommunityId && x.IsActive == true);
-
-            if (isCommunityNameExist || !isManagerIdExist || isCommunityActive == null)
+            if (isCommunityNameExist || !isManagerIdExist)
             {
                 return null;
             }
