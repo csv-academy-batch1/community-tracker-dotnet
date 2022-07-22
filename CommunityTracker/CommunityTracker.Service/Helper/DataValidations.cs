@@ -13,6 +13,12 @@ namespace CommunityTracker.Service.Helper
 {
     public static class DataValidations
     {
+        /// <summary>Requests the validation.</summary>
+        /// <param name="communityRepositoryQuery">The community repository query.</param>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static async Task<CommunityResponseDTO> RequestValidation(ICommunityRepositoryQueries communityRepositoryQuery, CommunityDTO communityDTO)
         {
             var community = new CommunityResponseDTO();
@@ -34,6 +40,12 @@ namespace CommunityTracker.Service.Helper
             return community;
         }
 
+        /// <summary>Actives the status validation.</summary>
+        /// <param name="communityRepositoryQuery">The community repository query.</param>
+        /// <param name="communityDTO">The community dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         public static async Task<CommunityResponseDTO> ActiveStatusValidation(ICommunityRepositoryQueries communityRepositoryQuery, CommunityDTO communityDTO)
         {
             var community = new CommunityResponseDTO();
@@ -48,6 +60,27 @@ namespace CommunityTracker.Service.Helper
             };
 
             return community;
+        }
+
+        /// <summary>Communities the identifier status validation.</summary>
+        /// <param name="communityRepositoryQueries">The community repository queries.</param>
+        /// <param name="request">The request.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        public static async Task<CommunityResponseDTO> CommunityIdStatusValidation(ICommunityRepositoryQueries communityRepositoryQueries, CommunityDTO request)
+        {
+            var communityResponse = new CommunityResponseDTO();
+
+            var getAllCommunities = await communityRepositoryQueries.GetAllCommunities();
+
+            var communityDataExists = getAllCommunities.FirstOrDefault(x => x.CommunityId == request.CommunityId && x.IsActive == true);
+
+            if (communityDataExists == null)
+            {
+                return null;
+            }
+            return communityResponse;
         }
     }   
 }
