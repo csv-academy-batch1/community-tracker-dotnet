@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace CommunityTracker.Service.ServicesDTO
 {
     /// <summary>
     ///
     /// </summary>
+    ///
     public class CommunityDTOResponse
     {
         /// <summary>
@@ -15,7 +15,6 @@ namespace CommunityTracker.Service.ServicesDTO
         /// The communityid.
         /// </value>
         [Key]
-        [JsonPropertyName("Community ID")]
         public int communityid { get; set; }
 
         /// <summary>
@@ -24,9 +23,6 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communityname.
         /// </value>
-        [JsonPropertyName("Community Name")]
-        public string communityname { get; set; }
-        [JsonPropertyName("Descrpition")]
-        public string communitydescription { get; set; }
+        public string? communityname { get; set; }
     }
 }

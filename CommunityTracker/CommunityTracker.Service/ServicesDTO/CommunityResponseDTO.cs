@@ -22,7 +22,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communityname.
         /// </value>
-        public string CommunityName { get; set; }
+        public string? CommunityName { get; set; }
 
         /// <summary>
         /// Gets or sets the communitymanagername.
@@ -30,7 +30,7 @@ namespace CommunityTracker.Service.ServicesDTO
         /// <value>
         /// The communitymanagername.
         /// </value>
-        public string CommunityManagerName { get; set; }
+        public string? CommunityManagerName { get; set; }
 
         /// <summary>
         /// Gets or sets the communitydesc.
@@ -39,6 +39,15 @@ namespace CommunityTracker.Service.ServicesDTO
         /// The communitydesc.
         /// </value>
         public string? CommunityDesc { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is active.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
+        /// </value>
         public bool isActive { get; set; } = true;
+
+        public string? ResultMessage { get; set; }
     }
 }
