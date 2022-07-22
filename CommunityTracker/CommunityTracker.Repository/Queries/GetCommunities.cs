@@ -1,4 +1,5 @@
-﻿using CommunityTracker.Repository.Interfaces;
+﻿using CommunityTracker.Repository.ConnectionHandler;
+using CommunityTracker.Repository.Interfaces;
 using CommunityTracker.Repository.RepositoryDTO;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,10 @@ namespace CommunityTracker.Repository.Queries
             catch (Exception)
             {
                 return null;
+            }
+            finally
+            {
+                CloseConnection.DisposeConnection();
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Repository.Interfaces;
 using System.Data.Entity;
+using CommunityTracker.Repository.ConnectionHandler;
 
 namespace CommunityTracker.Repository.Commands
 {
@@ -25,6 +26,10 @@ namespace CommunityTracker.Repository.Commands
             {
 
                 throw;
+            }
+            finally
+            {
+                CloseConnection.DisposeConnection();
             }
         }
     }
