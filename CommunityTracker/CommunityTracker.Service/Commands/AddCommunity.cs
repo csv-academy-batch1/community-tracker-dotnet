@@ -34,6 +34,7 @@ namespace CommunityTracker.Service.Commands
                     CommunityName = communityDTO.CommunityName,
                     CommunityDesc = communityDTO.CommunityDesc,
                     CommunityMgrid = communityDTO.CommunityMgrid,
+                    IsActive = true
                 });
 
                 if (response.ResultMessage == serverErrorMsg)
