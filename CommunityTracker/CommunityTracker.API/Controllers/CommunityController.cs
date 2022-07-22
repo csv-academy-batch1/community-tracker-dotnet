@@ -95,7 +95,7 @@ namespace CommunityTracker.API.Controllers
                 ObjectResult errorResponsea = ServerErrorResponse();
                 return errorResponsea;
             }
-
+             
             foreach (var community in members)
             {
                 respo.Add(new GetAllMembersResponseDTO()
