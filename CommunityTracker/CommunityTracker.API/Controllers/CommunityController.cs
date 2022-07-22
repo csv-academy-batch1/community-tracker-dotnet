@@ -187,5 +187,46 @@ namespace CommunityTracker.API.Controllers
 
             return Ok(response);
         }
+
+        /// <summary>Deletes the community.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="deleteRequestDTO">The delete request dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCommunity(int id, [FromBody] DeleteRequestDTO deleteRequestDTO)
+        {
+            var communityDTO = new CommunityDTO();
+
+            if (id != deleteRequestDTO.CommunityId)
+            {
+                return ClientErrorResponse();
+            }
+
+            communityDTO.CommunityId = id;
+            communityDTO.IsActive = deleteRequestDTO.IsActive;
+
+            var result = await _communityServiceCommands.DeleteCommunity(communityDTO);
+
+            if (result == null)
+            {
+                return ClientErrorResponse();
+            }
+
+            if (result.ResultMessage == "Server Error")
+            {
+                return ServerErrorResponse();
+            }
+
+            var response = new DeleteResponseDTO()
+            {
+                CommunityId = id,
+                Active = deleteRequestDTO.IsActive
+            };
+
+            return Ok(response);
+        }
     }
 }
