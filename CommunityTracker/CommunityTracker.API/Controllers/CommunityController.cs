@@ -162,7 +162,7 @@ namespace CommunityTracker.API.Controllers
             community.CommunityId = id;
             community.CommunityName = updateRequestDTO.CommunityName;
             community.CommunityMgrid = updateRequestDTO.CommunityMgrid;
-            community.CommunityDesc = updateRequestDTO.CommunityDesc;
+            community.CommunityDesc = updateRequestDTO.Description;
 
             var result = await _communityServiceCommands.UpdateCommunity(community);
 
