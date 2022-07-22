@@ -1,5 +1,6 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Repository.Interfaces;
+using CommunityTracker.Repository.ConnectionHandler;
 
 namespace CommunityTracker.Repository.Commands
 {
@@ -13,9 +14,9 @@ namespace CommunityTracker.Repository.Commands
         /// Adds the community to the database.
         /// </summary>
         /// <param name="communityData">The community data.</param>
-        public async Task<AddRepositoryResponse> AddCommunity(Community communityData)
+        public async Task<RepositoryResponse> AddCommunity(Community communityData)
         {
-            var response = new AddRepositoryResponse();
+            var response = new RepositoryResponse();
             try
             {
                 await _communityDbContext.AddAsync(communityData);
@@ -27,9 +28,11 @@ namespace CommunityTracker.Repository.Commands
             {
                 response.ResultMessage = "Server Error";
             }
-
+            finally
+            {
+                CloseConnection.DisposeConnection();
+            }
             return response;
         }
-
     }
 }

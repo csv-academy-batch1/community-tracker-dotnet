@@ -5,7 +5,7 @@ namespace CommunityTracker.Repository.RepositoryDTO
     /// <summary>
     ///
     /// </summary>
-    public class AddRepositoryResponse
+    public class RepositoryResponse
     {     
         public string? ResultMessage { get; set; }
     }

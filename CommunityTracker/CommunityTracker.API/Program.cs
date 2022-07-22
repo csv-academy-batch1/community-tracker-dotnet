@@ -11,18 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 // Add services to the container.
+ConfiguredServices(builder.Services);
 
 builder.Services.AddControllers().AddJsonOptions(opt => opt.JsonSerializerOptions.PropertyNamingPolicy = null);
-
-builder.Services.AddScoped<ICommunityRepositoryCommands, CommunityRepositoryCommands>();
-builder.Services.AddScoped<ICommunityRepositoryQueries, CommunityRepositoryQueries>();
-builder.Services.AddScoped<ICommunityRepositoryMembers, CommunityMembersRepository>();
-
-builder.Services.AddScoped<ICommunityServiceCommands, CommunityServiceCommands>();
-builder.Services.AddScoped<ICommunityServiceQueries, CommunityServiceQueries>();
-builder.Services.AddScoped<ICommunityMembersService, CommunityMembersService>();
-builder.Services.AddDbContext<CommunityDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
-
 
 var app = builder.Build();
 
@@ -35,3 +26,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void ConfiguredServices(IServiceCollection services)
+{
+    services.AddScoped<ICommunityRepositoryCommands, CommunityRepositoryCommands>();
+    services.AddScoped<ICommunityRepositoryQueries, CommunityRepositoryQueries>();
+    services.AddScoped<ICommunityServiceCommands, CommunityServiceCommands>();
+    services.AddScoped<ICommunityServiceQueries, CommunityServiceQueries>();
+    services.AddDbContext<CommunityDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+}
