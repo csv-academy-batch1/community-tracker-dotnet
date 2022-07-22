@@ -15,6 +15,6 @@ namespace CommunityTracker.API.TrackerApiDTO
         public int? CommunityMgrid { get; set; }
         /// <summary>Gets or sets the community desc.</summary>
         /// <value>The community desc.</value>
-        public string CommunityDesc { get; set; }
+        public string Description { get; set; }
     }
 }
