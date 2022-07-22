@@ -17,17 +17,22 @@ namespace CommunityTracker.Service.Queries
         {
             var displayAllCommunities = await _communityRepositoryQuery.GetAllCommunities();
             List<CommunityDTOResponse> result = new List<CommunityDTOResponse>();
+
+            if (displayAllCommunities == null)
+            {
+                return null;
+            }
+
             foreach (var item in displayAllCommunities)
             {
                 result.Add(new CommunityDTOResponse()
                 {
                     communityid = item.CommunityId,
-                    communityname = item.CommunityName,
-                    communitydescription = item.CommunityDesc
+                    communityname = item.CommunityName
                 });
             }
+
             return result;
         }
-
     }
 }

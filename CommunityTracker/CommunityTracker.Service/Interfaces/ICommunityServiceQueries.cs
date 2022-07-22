@@ -1,4 +1,5 @@
-﻿using CommunityTracker.Service.ServicesDTO;
+﻿using CommunityTracker.Repository.DataContext;
+using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Interfaces
 {
