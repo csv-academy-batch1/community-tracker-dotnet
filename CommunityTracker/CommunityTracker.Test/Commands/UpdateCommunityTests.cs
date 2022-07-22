@@ -1,4 +1,4 @@
-using CommunityTracker.Service.ServicesDTO;
+﻿using CommunityTracker.Service.ServicesDTO;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -15,6 +15,14 @@ namespace CommunityTracker.Test.Commands
             //Arrange
             var mockDatabase = CreateCommunityDatabaseAsync();
            
+//            //Act
+//            var community = await _serviceCommands.UpdateCommunity(new CommunityDTO()
+//            {
+//                CommunityId = 2,
+//                CommunityName = "Enterprise .Net",
+//                CommunityMgrid = 10,
+//                CommunityDesc = "Update Desc"
+//            });
 
             //Act
             var community = await _serviceCommands.UpdateCommunity(new CommunityDTO()

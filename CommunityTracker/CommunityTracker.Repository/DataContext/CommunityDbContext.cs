@@ -32,5 +32,7 @@ namespace CommunityTracker.Repository.DataContext
         /// The communityadminandmanager.
         /// </value>
         public DbSet<CommunityManagers> communityadminandmanager { get; set; }
+        
+        public DbSet<CommunityMembers> people { get; set; }
     }
 }

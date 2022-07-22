@@ -1,5 +1,4 @@
-﻿using CommunityTracker.Repository.DataContext;
-using CommunityTracker.Service.ServicesDTO;
+﻿using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Interfaces
 {
@@ -19,5 +18,6 @@ namespace CommunityTracker.Service.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<List<CommunityManagersDTO>> GetAllCommunityManagers();
+        
     }
 }

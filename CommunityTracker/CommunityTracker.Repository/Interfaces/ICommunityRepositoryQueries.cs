@@ -23,6 +23,8 @@ namespace CommunityTracker.Repository.Interfaces
         /// <returns></returns>
         Task<List<CommunityManagers>> GetAllManagers();
 
+        //Task<List<CommunityMembers>> GetAllMembers();
+
         /// <summary>
         /// Gets the community managers by identifier.
         /// </summary>
@@ -37,5 +39,6 @@ namespace CommunityTracker.Repository.Interfaces
         /// <param name="communityName">Name of the community.</param>
         /// <returns></returns>
         Task<CommunityDetails> GetCommunitiesWithManagerName(int? managerId, string communityName);
+
     }
 }

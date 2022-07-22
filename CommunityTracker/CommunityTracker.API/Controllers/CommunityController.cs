@@ -4,12 +4,12 @@ using CommunityTracker.API.TrackerApiDTOs;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
-using CommunityTracker.Repository.RepositoryDTO;
+
 
 namespace CommunityTracker.API.Controllers
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("/[controller]")]
@@ -27,14 +27,21 @@ namespace CommunityTracker.API.Controllers
         private readonly ICommunityServiceQueries _communityServiceQuery;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommunityController"/> class.
+        /// The community members service
+        /// </summary>
+        private readonly ICommunityMembersService _communityMembersService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommunityController" /> class.
         /// </summary>
         /// <param name="communityServiceCommands">The community service commands.</param>
         /// <param name="communityServiceQuery">The community service query.</param>
-        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQueries communityServiceQuery)
+        /// <param name="communityMembersService">The community members service.</param>
+        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQueries communityServiceQuery, ICommunityMembersService communityMembersService)
         {
             _communityServiceCommands = communityServiceCommands;
             _communityServiceQuery = communityServiceQuery;
+            _communityMembersService = communityMembersService;
         }
 
         /// <summary>
@@ -78,6 +85,46 @@ namespace CommunityTracker.API.Controllers
             var items = await _communityServiceQuery.GetAllCommunityManagers();
             return Ok(items);
         }
+
+
+        /// <summary>
+        /// Gets all members.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("members")]
+        public async Task<IActionResult> GetAllMembers()
+        {
+            var response = new GetAllMemberReponse();
+            var members = await _communityMembersService.GetAllCommunityMembers();
+            var respo = new List<GetAllMembersResponseDTO>();
+
+            if (members == null)
+            {
+                ObjectResult errorResponsea = ServerErrorResponse();
+                return errorResponsea;
+            }
+             
+            foreach (var community in members)
+            {
+                respo.Add(new GetAllMembersResponseDTO()
+                {
+                    PeopleId = community.PeopleId,
+                    CommunityId = community.CommunityId,
+                    LastName = community.LastName,
+                    FirstName = community.FirstName,
+                    MiddleName = community.MiddleName,
+                    HiredDate = community.HiredDate,
+                    JobLevelId = community.JobLevelId,
+                    WorkStateId = community.WorkStateId,
+                    IsActive = community.IsActive
+                });
+            }
+
+            response.CommunityMembers = respo;
+
+            return Ok(members);
+        }
+
 
         /// <summary>
         /// Adds the community.
@@ -123,6 +170,10 @@ namespace CommunityTracker.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Clients the error response.
+        /// </summary>
+        /// <returns></returns>
         private IActionResult ClientErrorResponse()
         {
             return BadRequest(new CustomErrors()
@@ -131,6 +182,10 @@ namespace CommunityTracker.API.Controllers
             });
         }
 
+        /// <summary>
+        /// Servers the error response.
+        /// </summary>
+        /// <returns></returns>
         private ObjectResult ServerErrorResponse()
         {
             return StatusCode(500, new CustomErrors
@@ -142,7 +197,9 @@ namespace CommunityTracker.API.Controllers
             });
         }
 
-        /// <summary>Updates the community.</summary>
+        /// <summary>
+        /// Updates the community.
+        /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="updateRequestDTO">The update request dto.</param>
         /// <returns>
@@ -187,5 +244,6 @@ namespace CommunityTracker.API.Controllers
 
             return Ok(response);
         }
+
     }
 }
