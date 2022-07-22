@@ -9,8 +9,10 @@ namespace CommunityTracker.Repository.Commands
     {
         /// <summary>Updates the community.</summary>
         /// <param name="communityData">The community data.</param>
-        public async Task UpdateCommunity(Community communityData)
+        public async Task<RepositoryResponse> UpdateCommunity(Community communityData)
         {
+            var response = new RepositoryResponse();
+
             try
             {
                 var isIdExisting = _communityDbContext.community.FirstOrDefault(x => x.CommunityId == communityData.CommunityId);
@@ -21,16 +23,19 @@ namespace CommunityTracker.Repository.Commands
                     isIdExisting.CommunityDesc = communityData.CommunityDesc;
                 }
                 await SaveChangesAsync();
+
+                response.ResultMessage = "Success";
             }
             catch (Exception)
             {
-
-                throw;
+                response.ResultMessage = "Server Error";
             }
             finally
             {
                 CloseConnection.DisposeConnection();
             }
+
+            return response;
         }
     }
 }

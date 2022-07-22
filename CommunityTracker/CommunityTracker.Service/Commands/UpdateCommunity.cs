@@ -14,18 +14,19 @@ namespace CommunityTracker.Service.Commands
         /// </returns>
         public async Task<CommunityResponseDTO> UpdateCommunity(CommunityDTO communityDTO)
         {
+            var communityUpdate = new CommunityResponseDTO();
+            var serverErrorMsg = "Server Error";
+
             try
             {
-                var communityUpdate = new CommunityResponseDTO();
-
                 var validation = await DataValidations.RequestValidation(_communityRepositoryQuery, communityDTO);
 
                 if (validation == null)
                 {
                     return null;
-                }
+                };
 
-                await _communityRepositoryCommands.UpdateCommunity(new Community()
+                var response = await _communityRepositoryCommands.UpdateCommunity(new Community()
                 {
                     CommunityId = communityDTO.CommunityId,
                     CommunityName = communityDTO.CommunityName,
@@ -33,15 +34,20 @@ namespace CommunityTracker.Service.Commands
                     CommunityDesc = communityDTO.CommunityDesc
                 });
 
-                communityUpdate = await MapCommunityResponse(communityDTO);
+                if (response.ResultMessage == serverErrorMsg)
+                {
+                    communityUpdate.ResultMessage = serverErrorMsg;
+                    return communityUpdate;
+                }
 
-                return communityUpdate;
+                communityUpdate = await MapCommunityResponse(communityDTO);
+                communityUpdate.ResultMessage = "Success";
             }
             catch (Exception)
             {
-
-                return null;
+                communityUpdate.ResultMessage = serverErrorMsg;
             }
+            return communityUpdate;
         }
     }
 }

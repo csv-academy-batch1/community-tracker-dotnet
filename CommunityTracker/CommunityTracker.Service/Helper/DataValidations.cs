@@ -21,17 +21,19 @@ namespace CommunityTracker.Service.Helper
             var managers = await communityRepositoryQuery.GetAllManagers();
 
             //checks if community is existing
-            bool communityExists = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
+            bool isCommunityNameExist = communities.Any(x => x.CommunityName.ToLower() == communityDTO.CommunityName.ToLower());
 
             //checks if managerId is existing
-            bool managerIdExists = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
+            bool isManagerIdExist = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
 
-            if (communityExists || !managerIdExists)
+            var isCommunityActive = communities.FirstOrDefault(x => x.CommunityId == communityDTO.CommunityId && x.IsActive == true);
+
+            if (isCommunityNameExist || !isManagerIdExist || isCommunityActive == null)
             {
                 return null;
             }
 
             return community;
         }
-    }
+    }   
 }
