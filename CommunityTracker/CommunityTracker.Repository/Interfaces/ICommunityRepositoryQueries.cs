@@ -40,7 +40,5 @@ namespace CommunityTracker.Repository.Interfaces
         /// <returns></returns>
         Task<CommunityDetails> GetCommunitiesWithManagerName(int? managerId, string communityName);
 
-        Task<List<CommunityMembers>> GetAllMembers();
-
     }
 }

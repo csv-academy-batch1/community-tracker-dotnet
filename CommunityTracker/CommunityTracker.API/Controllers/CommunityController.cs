@@ -4,7 +4,7 @@ using CommunityTracker.API.TrackerApiDTOs;
 using CommunityTracker.Service.Interfaces;
 using CommunityTracker.Service.ServicesDTO;
 using Microsoft.AspNetCore.Mvc;
-using CommunityTracker.Repository.RepositoryDTO;
+
 
 namespace CommunityTracker.API.Controllers
 {
@@ -25,16 +25,19 @@ namespace CommunityTracker.API.Controllers
         /// The community service query
         /// </summary>
         private readonly ICommunityServiceQueries _communityServiceQuery;
+        
+        private readonly ICommunityMembersService _communityMembersService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommunityController"/> class.
         /// </summary>
         /// <param name="communityServiceCommands">The community service commands.</param>
         /// <param name="communityServiceQuery">The community service query.</param>
-        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQueries communityServiceQuery)
+        public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQueries communityServiceQuery, ICommunityMembersService communityMembersService)
         {
             _communityServiceCommands = communityServiceCommands;
             _communityServiceQuery = communityServiceQuery;
+            _communityMembersService = communityMembersService;
         }
 
         /// <summary>
@@ -72,18 +75,45 @@ namespace CommunityTracker.API.Controllers
         /// Gets all managers.
         /// </summary>
         /// <returns></returns>
-        [HttpGet("Managers")]
+        [HttpGet("managers")]
         public async Task<IActionResult> GetAllManagers()
         {
             var items = await _communityServiceQuery.GetAllCommunityManagers();
             return Ok(items);
         }
 
-  
-        [HttpGet("Members")]
+
+        [HttpGet("members")]
         public async Task<IActionResult> GetAllMembers()
         {
-            var members = await _communityServiceQuery.GetAllCommunityMembers();
+            var response = new GetAllMemberReponse();
+            var members = await _communityMembersService.GetAllCommunityMembers();
+            var respo = new List<GetAllMembersResponseDTO>();
+
+            if (members == null)
+            {
+                ObjectResult errorResponsea = ServerErrorResponse();
+                return errorResponsea;
+            }
+
+            foreach (var community in members)
+            {
+                respo.Add(new GetAllMembersResponseDTO()
+                {
+                    PeopleId = community.PeopleId,
+                    CommunityId = community.CommunityId,
+                    LastName = community.LastName,
+                    FirstName = community.FirstName,
+                    MiddleName = community.MiddleName,
+                    HiredDate = community.HiredDate,
+                    JobLevelId = community.JobLevelId,
+                    WorkStateId = community.WorkStateId,
+                    IsActive = community.IsActive
+                });
+            }
+
+            response.CommunityMembers = respo;
+
             return Ok(members);
         }
 

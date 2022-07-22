@@ -32,8 +32,6 @@ namespace CommunityTracker.Repository.RepositoryDTO
         
         [Column("joblevelid")]
         public int JobLevelId { get; set; }
-
-        //TODO: Skills: 1(Key value pair id & skillname)
         
         [Column("joblevelid")]
         public int WorkStateId { get; set; }

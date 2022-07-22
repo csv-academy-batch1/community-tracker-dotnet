@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommunityTracker.Repository.Queries
 {
-    public partial class CommunityRepositoryQueries : ICommunityRepositoryQueries
+    public partial class CommunityMembersRepository : ICommunityRepositoryMembers
     {
         public async Task<List<CommunityMembers>> GetAllMembers()
         {
