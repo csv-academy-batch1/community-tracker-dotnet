@@ -9,9 +9,9 @@ namespace CommunityTracker.Repository.Commands
     {
         /// <summary>Updates the community.</summary>
         /// <param name="communityData">The community data.</param>
-        public async Task<UpdateRepositoryResponse> UpdateCommunity(Community communityData)
+        public async Task<RepositoryResponse> UpdateCommunity(Community communityData)
         {
-            var response = new UpdateRepositoryResponse();
+            var response = new RepositoryResponse();
 
             try
             {
