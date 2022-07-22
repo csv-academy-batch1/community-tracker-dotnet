@@ -26,12 +26,26 @@ namespace CommunityTracker.Service.Helper
             //checks if managerId is existing
             bool isManagerIdExist = managers.Any(x => x.CommunityAdminAndManagerId == communityDTO.CommunityMgrid);
 
-            var isCommunityActive = communities.FirstOrDefault(x => x.CommunityId == communityDTO.CommunityId && x.IsActive == true);
-
-            if (isCommunityNameExist || !isManagerIdExist || isCommunityActive == null)
+            if (isCommunityNameExist || !isManagerIdExist)
             {
                 return null;
             }
+
+            return community;
+        }
+
+        public static async Task<CommunityResponseDTO> ActiveStatusValidation(ICommunityRepositoryQueries communityRepositoryQuery, CommunityDTO communityDTO)
+        {
+            var community = new CommunityResponseDTO();
+
+            var communities = await communityRepositoryQuery.GetAllCommunities();
+
+            bool activeStatus = communities.Where(x => x.CommunityId == communityDTO.CommunityId).Select(x => x.IsActive).FirstOrDefault();
+
+            if (activeStatus == false)
+            {
+                return null;
+            };
 
             return community;
         }

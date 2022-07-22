@@ -16,12 +16,13 @@ namespace CommunityTracker.Service.Commands
         {
             var communityUpdate = new CommunityResponseDTO();
             var serverErrorMsg = "Server Error";
-
+            
             try
             {
+                var isActiveValidation = await DataValidations.ActiveStatusValidation(_communityRepositoryQuery, communityDTO);
                 var validation = await DataValidations.RequestValidation(_communityRepositoryQuery, communityDTO);
 
-                if (validation == null)
+                if (validation == null || isActiveValidation == null)
                 {
                     return null;
                 };
