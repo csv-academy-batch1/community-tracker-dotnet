@@ -1,5 +1,6 @@
 ﻿using CommunityTracker.Repository.RepositoryDTO;
 using CommunityTracker.Repository.Interfaces;
+using CommunityTracker.Repository.ConnectionHandler;
 
 namespace CommunityTracker.Repository.Commands
 {
@@ -27,9 +28,11 @@ namespace CommunityTracker.Repository.Commands
             {
                 response.ResultMessage = "Server Error";
             }
-
+            finally
+            {
+                CloseConnection.DisposeConnection();
+            }
             return response;
         }
-
     }
 }
