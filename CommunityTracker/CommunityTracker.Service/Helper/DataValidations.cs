@@ -33,5 +33,21 @@ namespace CommunityTracker.Service.Helper
 
             return community;
         }
+
+        public static async Task<CommunityResponseDTO> ActiveStatusValidation(ICommunityRepositoryQueries communityRepositoryQuery, CommunityDTO communityDTO)
+        {
+            var community = new CommunityResponseDTO();
+
+            var communities = await communityRepositoryQuery.GetAllCommunities();
+
+            bool activeStatus = communities.Where(x => x.CommunityId == communityDTO.CommunityId).Select(x => x.IsActive).FirstOrDefault();
+
+            if (activeStatus == false)
+            {
+                return null;
+            };
+
+            return community;
+        }
     }   
 }
