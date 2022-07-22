@@ -3,8 +3,16 @@ using CommunityTracker.Service.ServicesDTO;
 
 namespace CommunityTracker.Service.Queries
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="CommunityTracker.Service.Interfaces.ICommunityMembersService" />
     public partial class CommunityMembersService : ICommunityMembersService
     {
+        /// <summary>
+        /// Gets all community members.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<CommunityMembersDTO>> GetAllCommunityMembers()
         {
             var members = await _communityRepositoryMembers.GetAllMembers();          

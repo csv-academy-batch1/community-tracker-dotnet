@@ -31,7 +31,10 @@ void ConfiguredServices(IServiceCollection services)
 {
     services.AddScoped<ICommunityRepositoryCommands, CommunityRepositoryCommands>();
     services.AddScoped<ICommunityRepositoryQueries, CommunityRepositoryQueries>();
+    services.AddScoped<ICommunityRepositoryMembers, CommunityMembersRepository>();
+
     services.AddScoped<ICommunityServiceCommands, CommunityServiceCommands>();
     services.AddScoped<ICommunityServiceQueries, CommunityServiceQueries>();
+    services.AddScoped<ICommunityMembersService, CommunityMembersService>();
     services.AddDbContext<CommunityDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CommunityTracker.API.Controllers
 {
     /// <summary>
-    ///
+    /// 
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("/[controller]")]
@@ -25,14 +25,18 @@ namespace CommunityTracker.API.Controllers
         /// The community service query
         /// </summary>
         private readonly ICommunityServiceQueries _communityServiceQuery;
-        
+
+        /// <summary>
+        /// The community members service
+        /// </summary>
         private readonly ICommunityMembersService _communityMembersService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommunityController"/> class.
+        /// Initializes a new instance of the <see cref="CommunityController" /> class.
         /// </summary>
         /// <param name="communityServiceCommands">The community service commands.</param>
         /// <param name="communityServiceQuery">The community service query.</param>
+        /// <param name="communityMembersService">The community members service.</param>
         public CommunityController(ICommunityServiceCommands communityServiceCommands, ICommunityServiceQueries communityServiceQuery, ICommunityMembersService communityMembersService)
         {
             _communityServiceCommands = communityServiceCommands;
@@ -83,6 +87,10 @@ namespace CommunityTracker.API.Controllers
         }
 
 
+        /// <summary>
+        /// Gets all members.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("members")]
         public async Task<IActionResult> GetAllMembers()
         {
@@ -162,6 +170,10 @@ namespace CommunityTracker.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Clients the error response.
+        /// </summary>
+        /// <returns></returns>
         private IActionResult ClientErrorResponse()
         {
             return BadRequest(new CustomErrors()
@@ -170,6 +182,10 @@ namespace CommunityTracker.API.Controllers
             });
         }
 
+        /// <summary>
+        /// Servers the error response.
+        /// </summary>
+        /// <returns></returns>
         private ObjectResult ServerErrorResponse()
         {
             return StatusCode(500, new CustomErrors
@@ -181,7 +197,9 @@ namespace CommunityTracker.API.Controllers
             });
         }
 
-        /// <summary>Updates the community.</summary>
+        /// <summary>
+        /// Updates the community.
+        /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="updateRequestDTO">The update request dto.</param>
         /// <returns>

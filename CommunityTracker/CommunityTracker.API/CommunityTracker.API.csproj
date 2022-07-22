@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CommunityTracker.Repository\CommunityTracker.Repository.csproj" />
     <ProjectReference Include="..\CommunityTracker.Service\CommunityTracker.Service.csproj" />
   </ItemGroup>
 
